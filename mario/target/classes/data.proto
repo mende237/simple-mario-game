@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package proto;
+
+// Represents a game object with position and dimensions.
+message GameObject {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+}
+
+// Request data containing the state of the game.
+message GameData {
+    GameObject mario = 1;
+    GameObject left_antagonist = 2;
+    GameObject right_antagonist = 3;
+    int32 floor_level = 4;
+    GameObject left_object = 5;
+    GameObject right_object = 6;
+}
+
+// Response data containing the action to be taken.
+message Action {
+    int32 action = 1;
+}
+
+// The game service definition.
+service GameService {
+    // Sends game data and receives an action.
+    rpc GetAction(GameData) returns (Action) {}
+}

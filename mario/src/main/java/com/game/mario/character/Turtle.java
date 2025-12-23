@@ -74,7 +74,8 @@ public class Turtle extends Antagonist implements Runnable {
 				PAUSE = 50;
 			// when the character is dead we stop its thread
 			if (super.remove == true) {
-				super.getThread().stop();
+				super.getThread().interrupt();
+				break;
 			}
 
 			this.move();

@@ -63,8 +63,10 @@ public class Champignon extends Antagonist implements Runnable {
 		while (true) {
 			if (super.isLiving() == true)
 				this.move();
-			else
-				super.getThread().stop();
+			else {
+				super.getThread().interrupt();
+				break;
+			}
 
 			try {
 				Thread.sleep(PAUSE);

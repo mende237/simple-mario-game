@@ -39,6 +39,7 @@ public class App extends Application {
         // Set the scene and show the stage
         stage.setScene(fxScene);
         stage.setTitle("Mario Game");
+        stage.setResizable(false);
 
         stage.setOnCloseRequest(event -> {
             // Optionally, you can add a confirmation dialog here

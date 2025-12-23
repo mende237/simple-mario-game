@@ -11,11 +11,13 @@
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/character/Mario.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/character/Antagonist.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/game/Chrono.java
+/home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/mario/GameServiceGrpc.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/item/GameItem.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/module-info.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/util/Contact.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/game/FirstStage.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/game/Scene.java
+/home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/mario/Data.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/character/Turtle.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/item/Coin.java
 /home/dimitri/Documents/Private/simple-mario-game/mario/src/main/java/com/game/mario/game/GameManager.java
