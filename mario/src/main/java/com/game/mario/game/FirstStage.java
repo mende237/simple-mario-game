@@ -168,32 +168,32 @@ public class FirstStage extends Scene {
 		this.pieceTab.add(new Coin(3400, 150));
 
 		champignon1 = new Champignon(800, 263);
-		// champignon2 = new Champignon(800, 263);
-		// champignon3 = new Champignon(1500, 263);
-		// champignon4 = new Champignon(3000, 263);
-		// champignon5 = new Champignon(3200, 263);
-		// champignon6 = new Champignon(3500, 263);
+		champignon2 = new Champignon(850, 263);
+		champignon3 = new Champignon(1500, 263);
+		champignon4 = new Champignon(3000, 263);
+		champignon5 = new Champignon(3200, 263);
+		champignon6 = new Champignon(3500, 263);
 
 		tortue1 = new Turtle(700, 243);
-		// tortue2 = new Tortue(2000, 243);
-		// tortue3 = new Tortue(1900, 243);
-		// tortue4 = new Tortue(2500, 243);
-		// tortue5 = new Tortue(2900, 243);
-		// tortue6 = new Tortue(3300, 243);
+		tortue2 = new Turtle(2000, 243);
+		tortue3 = new Turtle(1900, 243);
+		tortue4 = new Turtle(2500, 243);
+		tortue5 = new Turtle(2900, 243);
+		tortue6 = new Turtle(3300, 243);
 
 		this.tortueTab.add(tortue1);
-		// this.tortueTab.add(tortue2);
-		// this.tortueTab.add(tortue3);
-		// this.tortueTab.add(tortue4);
-		// this.tortueTab.add(tortue5);
-		// this.tortueTab.add(tortue6);
+		this.tortueTab.add(tortue2);
+		this.tortueTab.add(tortue3);
+		this.tortueTab.add(tortue4);
+		this.tortueTab.add(tortue5);
+		this.tortueTab.add(tortue6);
 
 		this.champTab.add(champignon1);
-		// this.champTab.add(champignon2);
-		// this.champTab.add(champignon3);
-		// this.champTab.add(champignon4);
-		// this.champTab.add(champignon5);
-		// this.champTab.add(champignon6);
+		this.champTab.add(champignon2);
+		this.champTab.add(champignon3);
+		this.champTab.add(champignon4);
+		this.champTab.add(champignon5);
+		this.champTab.add(champignon6);
 
 		// //int pas = 0;
 		// for (int i = 0; i < 500; i++) {
@@ -210,8 +210,6 @@ public class FirstStage extends Scene {
 		}
 
 		antagonistTab.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
-
-		System.out.println("size  " + antagonistTab.size());
 
 		// Thread screenChrono = new Thread(new DisplayFrequence());
 		Thread chrono = new Thread(new Chrono());
