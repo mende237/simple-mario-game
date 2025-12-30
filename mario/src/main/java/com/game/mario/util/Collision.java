@@ -12,7 +12,7 @@ import com.game.mario.character.Champignon;
 import com.game.mario.character.Turtle;
 import com.game.mario.character.Mario;
 
-public class Contact {
+public class Collision {
 	public enum Position {
 		BEHIND, FRONT
 	}
@@ -176,8 +176,8 @@ public class Contact {
 					tortueTab.get(j).setFrontCharacter(tabC[1]);
 				}
 				/*
-				 * on retire le personnage du tableau une meme personne est toujours proche de
-				 * lui meme
+				 * on retire le personnage du tableau une même personne est toujours proche de
+				 * d'elle meme
 				 */
 				Turtle temp = tortueTab.remove(j);
 				if (tortueTab.size() >= 1) {
@@ -186,6 +186,33 @@ public class Contact {
 					setNear(temp, tabC[1], Position.FRONT);
 				}
 				tortueTab.add(j, temp);
+			}
+			GameManager.UP();
+		}
+	}
+
+	public static void antagonist(ArrayList<Antagonist> antagonistsTab, ArrayList<? extends GameItem> objectTab) {
+		Antagonist tabC[];
+		int tabO[];
+		if (GameManager.DOWN() >= 0) {
+			for (int j = 0; j < antagonistsTab.size(); j++) {
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, antagonistsTab.get(j));
+				antagonistsTab.get(j).setBehindObject(tabO[0]);
+				antagonistsTab.get(j).setFrontObject(tabO[1]);
+
+				/*
+				 * on retire le personnage du tableau, une même personne est toujours proche de
+				 * d'elle meme
+				 */
+				Antagonist tempAntagonist = antagonistsTab.remove(j);
+				if (antagonistsTab.size() >= 1) {
+					tabC = aroundCharacter(antagonistsTab, 0, antagonistsTab.size() - 1, 0, tempAntagonist);
+
+					setNear(tempAntagonist, tabC[0], Position.BEHIND);
+					setNear(tempAntagonist, tabC[1], Position.FRONT);
+				}
+
+				antagonistsTab.add(j, tempAntagonist);
 			}
 			GameManager.UP();
 		}

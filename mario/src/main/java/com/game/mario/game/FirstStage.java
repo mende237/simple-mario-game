@@ -14,9 +14,10 @@ import com.game.mario.item.Bloc;
 import com.game.mario.item.Coin;
 import com.game.mario.item.Tuyau;
 import com.game.mario.character.Turtle;
+import com.game.mario.character.Antagonist;
 import com.game.mario.character.Champignon;
 import com.game.mario.character.Mario;
-import com.game.mario.util.Contact;
+import com.game.mario.util.Collision;
 
 public class FirstStage extends Scene {
 	private Image imgFond1;
@@ -39,6 +40,7 @@ public class FirstStage extends Scene {
 	private ArrayList<Coin> pieceTab;
 	private ArrayList<Champignon> champTab;
 	private ArrayList<Turtle> tortueTab;
+	private ArrayList<Antagonist> antagonistTab;
 
 	private Font font;
 	private Champignon champignon1;
@@ -107,6 +109,7 @@ public class FirstStage extends Scene {
 		pieceTab = new ArrayList<Coin>();
 		champTab = new ArrayList<Champignon>();
 		tortueTab = new ArrayList<Turtle>();
+		antagonistTab = new ArrayList<Antagonist>();
 
 		int pas = 0;
 		for (int i = 0; i < 7; i++) {
@@ -198,6 +201,18 @@ public class FirstStage extends Scene {
 		// pas += 40;
 		// }
 
+		for (int i = 0; i < champTab.size(); i++) {
+			antagonistTab.add(champTab.get(i));
+		}
+
+		for (int i = 0; i < tortueTab.size(); i++) {
+			antagonistTab.add(tortueTab.get(i));
+		}
+
+		antagonistTab.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
+
+		System.out.println("size  " + antagonistTab.size());
+
 		// Thread screenChrono = new Thread(new DisplayFrequence());
 		Thread chrono = new Thread(new Chrono());
 		chrono.start();
@@ -279,15 +294,17 @@ public class FirstStage extends Scene {
 
 			}
 			// on supprime tous les caractères qui sont deja mort
-			Contact.updateTab(champTab);
-			Contact.updateTab(tortueTab);
+			// Collision.updateTab(champTab);
+			// Collision.updateTab(tortueTab);
 
-			Contact.piece(this.pieceTab, this.mario);
+			Collision.updateTab(antagonistTab);
+
+			Collision.piece(this.pieceTab, this.mario);
 			// Contact.mario(this.tuyauTab, 43, this.mario);
 			// Contact.mario(this.blocTab, 30, this.mario);
 
-			if (Contact.mario(this.tuyauTab, 43, this.mario) == false
-					&& Contact.mario(this.blocTab, 30, this.mario) == false) {
+			if (Collision.mario(this.tuyauTab, 43, this.mario) == false
+					&& Collision.mario(this.blocTab, 30, this.mario) == false) {
 				App.scene.setHeightRoof(0);
 				App.scene.setYFloor(293);
 			}
@@ -328,8 +345,9 @@ public class FirstStage extends Scene {
 			// }else {
 			// //System.out.println("enter displement");
 			// }
-			Contact.chamignon(this.champTab, this.tortueTab, this.tuyauTab);
-			Contact.tortue(this.tortueTab, this.champTab, this.tuyauTab);
+			// Collision.chamignon(this.champTab, this.tortueTab, this.tuyauTab);
+			// Collision.tortue(this.tortueTab, this.champTab, this.tuyauTab);
+			Collision.antagonist(this.antagonistTab, this.tuyauTab);
 			GameManager.setBegin(true);
 
 			// ***********************paint of backgrounds' game***********************//
