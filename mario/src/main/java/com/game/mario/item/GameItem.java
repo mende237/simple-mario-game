@@ -11,8 +11,8 @@ public class GameItem {
 	 *********************************************/
 	private int height, width;
 	private int x, y;
-	protected Image imgObjet;
-	protected ImageView icoObjet;
+	protected Image imgObject;
+	protected ImageView icoObject;
 	protected int sem;
 	protected static int globalSem = 1;
 
@@ -26,14 +26,14 @@ public class GameItem {
 		this.y = y;
 	}
 
-	public GameItem(int x, int y, int height, int width, Image imgObjet) {
+	public GameItem(int x, int y, int height, int width, Image imgObject) {
 		this(x, y, height, width);
-		icoObjet = new ImageView(imgObjet);
-		this.imgObjet = imgObjet;
-		icoObjet.setX(x);
-		icoObjet.setY(y);
-		icoObjet.setFitWidth(width);
-		icoObjet.setFitHeight(height);
+		icoObject = new ImageView(imgObject);
+		this.imgObject = imgObject;
+		icoObject.setX(x);
+		icoObject.setY(y);
+		icoObject.setFitWidth(width);
+		icoObject.setFitHeight(height);
 	}
 
 	/*************************************
@@ -59,12 +59,12 @@ public class GameItem {
 		return x;
 	}
 
-	public Image getImgObjet() {
-		return imgObjet;
+	public Image getImgObject() {
+		return imgObject;
 	}
 
-	public void setImageObjet(Image img) {
-		imgObjet = img;
+	public void setImageObject(Image img) {
+		imgObject = img;
 	}
 
 	/***********************************

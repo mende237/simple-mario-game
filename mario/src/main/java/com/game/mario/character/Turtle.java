@@ -100,8 +100,8 @@ public class Turtle extends Antagonist implements Runnable {
 			// we verify if another character is not running its own critical region
 			if (GameManager.DOWN() >= 0) {
 				// we determine the area in which the character can move without any problems
-				int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObjet);
-				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObjet);
+				int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
+				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 				// we can move if only if the character is alive or in zombi state
 				if (super.isWalke() == true && (super.isLiving() == true || this.zombie == true)) {
 					if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
@@ -265,8 +265,8 @@ public class Turtle extends Antagonist implements Runnable {
 						this.zombie = true;
 						super.setToRight(mario.isToRight());
 						int zoneMin, zoneMax;
-						zoneMin = super.getZoneMin(super.behindCharacter, super.behindObjet);
-						zoneMax = super.getZoneMax(super.frontCharacter, super.frontObjet);
+						zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
+						zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 						if (mario.isToRight() == true) {
 							if (super.getX() + 29 > zoneMax) {
 								super.setX(super.getX() + zoneMax - (super.getX() + super.getWidth()) - 1);

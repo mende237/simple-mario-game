@@ -113,15 +113,15 @@ public class Contact {
 
 	}
 
-	/* this function manage the collision with mario and objets */
-	public static boolean mario(ArrayList<? extends GameItem> objetTab, int objetWidth, Mario mario) {
+	/* this function manage the collision with mario and objects */
+	public static boolean mario(ArrayList<? extends GameItem> objectTab, int objectWidth, Mario mario) {
 		int indexMemory = 0, cmptMerge = 0, cmpt = 0;
 		boolean enter = false;
-		// on determines les objets qui sont autour de mario
-		int tab[] = around(objetTab, 0, objetTab.size() - 1, 0, objetWidth, mario);
+		// on determines les objects qui sont autour de mario
+		int tab[] = around(objectTab, 0, objectTab.size() - 1, 0, objectWidth, mario);
 		if (tab != null) {
 			for (int i = 0; i < tab[1] - tab[0] + 1; i++) {
-				if (mario.near(objetTab.get(tab[0] + i)) == true) {
+				if (mario.near(objectTab.get(tab[0] + i)) == true) {
 					cmptMerge++;
 					if (enter == false) {
 						indexMemory = tab[0] + i;
@@ -133,19 +133,19 @@ public class Contact {
 				}
 
 			}
-			// dans le cas ou mario n'est proche d'aucun objet
+			// dans le cas ou mario n'est proche d'aucun object
 			if (cmpt == tab[1] - tab[0] + 1) {
 				if (mario.isJump() == false) {
-					mario.setIsOnObjet(false);
+					mario.setIsOnObject(false);
 				}
 				return false;
 			} else {
 				// in case of mario is near two objects at the same time
 				// the two objects are merged together
 				if (cmptMerge >= 2) {
-					mario.contact(objetTab.get(indexMemory), true);
+					mario.contact(objectTab.get(indexMemory), true);
 				} else {
-					mario.contact(objetTab.get(indexMemory), false);
+					mario.contact(objectTab.get(indexMemory), false);
 				}
 
 				return true;
@@ -153,7 +153,7 @@ public class Contact {
 
 		} else {
 			if (mario.isJump() == false) {
-				mario.setIsOnObjet(false);
+				mario.setIsOnObject(false);
 			}
 			return false;
 		}
@@ -161,14 +161,14 @@ public class Contact {
 	}
 
 	public static void tortue(ArrayList<Turtle> tortueTab, ArrayList<Champignon> champTab,
-			ArrayList<? extends GameItem> objetTab) {
+			ArrayList<? extends GameItem> objectTab) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < tortueTab.size(); j++) {
-				tabO = aroundObjet(objetTab, 0, objetTab.size() - 1, 0, tortueTab.get(j));
-				tortueTab.get(j).setBehindObjet(tabO[0]);
-				tortueTab.get(j).setFrontObjet(tabO[1]);
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, tortueTab.get(j));
+				tortueTab.get(j).setBehindObject(tabO[0]);
+				tortueTab.get(j).setFrontObject(tabO[1]);
 
 				if (champTab.size() >= 1) {
 					tabC = aroundCharacter(champTab, 0, champTab.size() - 1, 0, tortueTab.get(j));
@@ -193,14 +193,14 @@ public class Contact {
 
 	/* collision de chaque champignon S */
 	public static void chamignon(ArrayList<Champignon> champTab, ArrayList<Turtle> tortueTab,
-			ArrayList<? extends GameItem> objetTab) {
+			ArrayList<? extends GameItem> objectTab) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < champTab.size(); j++) {
-				tabO = aroundObjet(objetTab, 0, objetTab.size() - 1, 0, champTab.get(j));
-				champTab.get(j).setBehindObjet(tabO[0]);
-				champTab.get(j).setFrontObjet(tabO[1]);
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, champTab.get(j));
+				champTab.get(j).setBehindObject(tabO[0]);
+				champTab.get(j).setFrontObject(tabO[1]);
 				if (tortueTab.size() >= 1) {
 					tabC = aroundCharacter(tortueTab, 0, tortueTab.size() - 1, 0, champTab.get(j));
 					champTab.get(j).setBehindCharacter(tabC[0]);
@@ -288,7 +288,7 @@ public class Contact {
 	 * this function gives two the objects which enclose an character
 	 * to achieve that it uses the principle of dichotomous search
 	 */
-	public static int[] aroundObjet(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
+	public static int[] aroundObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
 			GameCharacter personnage) {
 		middle = (begin + end) / 2;
 		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX()) {
@@ -303,7 +303,7 @@ public class Contact {
 					}
 				}
 
-				return aroundObjet(tab, begin, end, middle, personnage);
+				return aroundObject(tab, begin, end, middle, personnage);
 			} else {
 				int array[] = new int[2];
 				array[0] = 0;
@@ -319,7 +319,7 @@ public class Contact {
 					array[1] = tab.get(middle + 1).getX();
 					return array;
 				}
-				return aroundObjet(tab, begin, end, middle, personnage);
+				return aroundObject(tab, begin, end, middle, personnage);
 			} else if (begin == end - 1) {
 				if (tab.get(begin).getX() + tab.get(begin).getWidth() < personnage.getX()
 						&& personnage.getX() + personnage.getWidth() < tab.get(end).getX()) {

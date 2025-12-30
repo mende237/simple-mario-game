@@ -274,7 +274,7 @@ public class FirstStage extends Scene {
 			if (App.scene.mario.isLiving() == false && App.scene.mario.getNumberOfLive() > 0) {
 				// System.out.println("enter");
 				App.scene.restart(App.scene.getxPos());
-				App.scene.mario.setIsOnObjet(false);
+				App.scene.mario.setIsOnObject(false);
 				App.scene.mario.setWalke(false);
 
 			}
@@ -342,13 +342,14 @@ public class FirstStage extends Scene {
 			// ------paint of start arrow
 			gc.drawImage(this.imgDepart, 220 - super.getxPos(), 234);
 
-			// -----paint objet
+			// -----paint object
 			for (int i = 0; i < blocTab.size(); i++) {
-				gc.drawImage(this.blocTab.get(i).getImgObjet(), this.blocTab.get(i).getX(), this.blocTab.get(i).getY());
+				gc.drawImage(this.blocTab.get(i).getImgObject(), this.blocTab.get(i).getX(),
+						this.blocTab.get(i).getY());
 			}
 
 			for (int i = 0; i < tuyauTab.size(); i++) {
-				gc.drawImage(this.tuyauTab.get(i).getImgObjet(), this.tuyauTab.get(i).getX(),
+				gc.drawImage(this.tuyauTab.get(i).getImgObject(), this.tuyauTab.get(i).getX(),
 						this.tuyauTab.get(i).getY());
 			}
 
@@ -391,18 +392,18 @@ public class FirstStage extends Scene {
 			// game*************************//
 			if (super.mario.getNumberOfLive() > 0) {
 				if (super.mario.isJump() == true && super.mario.isFall() == false) {
-					if (super.mario.isOnObjet() == false) {
+					if (super.mario.isOnObject() == false) {
 						// --------------when mario jumps to suffer from an object
 						gc.drawImage(super.mario.jump(293), super.mario.getX(), super.mario.getY());
 
 					} else {
 						// --------------when mario jumps to suffer from the floor
-						gc.drawImage(super.mario.jump(super.mario.getYObjetCollision()), super.mario.getX(),
+						gc.drawImage(super.mario.jump(super.mario.getYObjectCollision()), super.mario.getX(),
 								super.mario.getY());
 					}
 
 				} else if (super.mario.isFall() == true) {
-					gc.drawImage(super.mario.fall(super.mario.getYObjetCollision()), super.mario.getX(),
+					gc.drawImage(super.mario.fall(super.mario.getYObjectCollision()), super.mario.getX(),
 							super.mario.getY());
 
 				} else {

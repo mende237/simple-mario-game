@@ -13,8 +13,8 @@ public class Mario extends GameCharacter {
 	private Image imgMario;
 
 	private boolean jump;// is true if mario is jumping
-	private boolean isOnObjet;
-	private int yObjetCollision;
+	private boolean isOnObject;
+	private int yObjectCollision;
 	private int counter;// determine the duration and height of jump
 	private int dieCounter; // permet de soulever mario lorsqu'il est mort
 	private boolean fall; // is true when mario is jumping
@@ -48,12 +48,12 @@ public class Mario extends GameCharacter {
 		return this.imgMario;
 	}
 
-	public boolean isOnObjet() {
-		return this.isOnObjet;
+	public boolean isOnObject() {
+		return this.isOnObject;
 	}
 
-	public int getYObjetCollision() {
-		return this.yObjetCollision;
+	public int getYObjectCollision() {
+		return this.yObjectCollision;
 	}
 
 	public boolean isFall() {
@@ -78,8 +78,8 @@ public class Mario extends GameCharacter {
 		this.jump = jump;
 	}
 
-	public void setIsOnObjet(boolean onObjet) {
-		this.isOnObjet = onObjet;
+	public void setIsOnObject(boolean onObject) {
+		this.isOnObject = onObject;
 	}
 
 	public void setNumberOfLive(int numberOfLive) {
@@ -191,14 +191,14 @@ public class Mario extends GameCharacter {
 		// bottom contact
 		if (super.bottomCollision(gameItem) == true) {// mario jump on an object
 			App.scene.setYFloor(gameItem.getY());
-			this.isOnObjet = true;
-			this.yObjetCollision = gameItem.getY();
+			this.isOnObject = true;
+			this.yObjectCollision = gameItem.getY();
 		} else if (super.bottomCollision(gameItem) == false && merge == false) {// mario fall on the initial floor
 			App.scene.setYFloor(293);// altitude initiale
 			if (this.jump == false)
 				this.fall = true;
 
-			this.isOnObjet = false;
+			this.isOnObject = false;
 		}
 
 		// top contact

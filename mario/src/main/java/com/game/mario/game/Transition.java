@@ -52,7 +52,7 @@ public class Transition {
 			if (App.scene.mario.isLiving() == false && App.scene.mario.getNumberOfLive() > 0) {
 				// System.out.println("enter");
 				App.scene.restart(App.scene.getxPos());
-				App.scene.mario.setIsOnObjet(false);
+				App.scene.mario.setIsOnObject(false);
 				App.scene.mario.setWalke(false);
 
 			}

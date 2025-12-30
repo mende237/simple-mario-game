@@ -6,8 +6,8 @@ import com.game.mario.App;
 public abstract class Antagonist extends GameCharacter {
 	private int Dx;
 	private Thread thread;
-	protected int frontObjet = 0;
-	protected int behindObjet = 5000;
+	protected int frontObject = 0;
+	protected int behindObject = 5000;
 	protected Antagonist frontCharacter = null;// contient le personnage qui est devant ce personnage;
 	protected Antagonist behindCharacter = null;// contient le personnage qui est deriere ce personnage
 	protected boolean zombie;
@@ -28,12 +28,12 @@ public abstract class Antagonist extends GameCharacter {
 		return thread;
 	}
 
-	public int getFrontObjet() {
-		return this.frontObjet;
+	public int getFrontObject() {
+		return this.frontObject;
 	}
 
-	public int getbehindObjet() {
-		return this.behindObjet;
+	public int getbehindObject() {
+		return this.behindObject;
 	}
 
 	public GameCharacter getFrontCharacter() {
@@ -55,12 +55,12 @@ public abstract class Antagonist extends GameCharacter {
 		this.thread = thread;
 	}
 
-	public void setFrontObjet(int frontObjet) {
-		this.frontObjet = frontObjet;
+	public void setFrontObject(int frontObject) {
+		this.frontObject = frontObject;
 	}
 
-	public void setBehindObjet(int behindObjet) {
-		this.behindObjet = behindObjet;
+	public void setBehindObject(int behindObject) {
+		this.behindObject = behindObject;
 	}
 
 	public void setFrontCharacter(Antagonist frontCharater) {
@@ -128,17 +128,17 @@ public abstract class Antagonist extends GameCharacter {
 	 * this function select the between an object and a character the one that come
 	 * come before other
 	 */
-	public int getZoneMax(Antagonist personnage, int maxObjet) {
+	public int getZoneMax(Antagonist personnage, int maxObject) {
 		if (personnage != null && personnage.remove == false) {
 
-			if (personnage.getX() <= maxObjet && personnage.remove == false) {
+			if (personnage.getX() <= maxObject && personnage.remove == false) {
 				this.characterDirectlyFront = true;
 				return personnage.getX();
 			} else
-				return maxObjet;
+				return maxObject;
 		} else {
 			this.characterDirectlyFront = false;
-			return maxObjet;
+			return maxObject;
 		}
 	}
 
@@ -146,18 +146,18 @@ public abstract class Antagonist extends GameCharacter {
 	 * this function select the between an object and a character the one that come
 	 * come after other
 	 */
-	public int getZoneMin(Antagonist personnage, int minObjet) {
+	public int getZoneMin(Antagonist personnage, int minObject) {
 
 		if (personnage != null && personnage.remove == false) {
-			if (personnage.getX() + personnage.getWidth() >= minObjet) {
+			if (personnage.getX() + personnage.getWidth() >= minObject) {
 				this.characterDirectlyBehind = true;
 
 				return personnage.getX() + personnage.getWidth();
 			} else
-				return minObjet;
+				return minObject;
 		} else {
 			this.characterDirectlyBehind = false;
-			return minObjet;
+			return minObject;
 		}
 	}
 

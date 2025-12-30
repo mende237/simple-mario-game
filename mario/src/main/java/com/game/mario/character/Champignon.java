@@ -53,7 +53,7 @@ public class Champignon extends Antagonist implements Runnable {
 	 **************************************/
 	@Override
 	public void run() {
-		// on attend 20ms que tous les objets de la scene s'affiche
+		// on attend 20ms que tous les objects de la scene s'affiche
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -94,8 +94,8 @@ public class Champignon extends Antagonist implements Runnable {
 			// System.out.println("min " + super.getZoneMin() + " max " + super.zoneMax);
 			if (GameManager.DOWN() >= 0) {
 				// on verifie si mario tue le champignon ou c'est le champignon qui tu mario
-				int zomeMin = super.getZoneMin(super.behindCharacter, super.behindObjet);
-				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObjet);
+				int zomeMin = super.getZoneMin(super.behindCharacter, super.behindObject);
+				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 
 				if (super.isWalke() == true && super.isLiving() == true) {
 					if (super.getX() + super.getWidth() < zoneMax && super.getX() > zomeMin) {
