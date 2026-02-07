@@ -15,10 +15,13 @@ public abstract class Antagonist extends GameCharacter {
 	protected boolean characterDirectlyBehind = false;
 	protected int nbreOfLive = 2;
 	protected boolean remove = false;
+	protected String name;
+	protected int walkFrequency;
 
-	public Antagonist(int x, int y, int width, int height) {
+	public Antagonist(int x, int y, int width, int height, String name, int walkFrequency) {
 		super(x, y, width, height);
-
+		this.name = name;
+		this.walkFrequency = walkFrequency;
 	}
 
 	/*********************************
@@ -46,6 +49,14 @@ public abstract class Antagonist extends GameCharacter {
 
 	public boolean isRemove() {
 		return this.remove;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public int getWalkFrequency() {
+		return this.walkFrequency;
 	}
 
 	/***********************************

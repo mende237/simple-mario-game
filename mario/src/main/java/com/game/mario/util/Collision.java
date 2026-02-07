@@ -114,11 +114,11 @@ public class Collision {
 	}
 
 	/* this function manage the collision with mario and objects */
-	public static boolean mario(ArrayList<? extends GameItem> objectTab, int objectWidth, Mario mario) {
+	public static boolean mario(ArrayList<? extends GameItem> objectTab, int precision, Mario mario) {
 		int indexMemory = 0, cmptMerge = 0, cmpt = 0;
 		boolean enter = false;
 		// on determines les objects qui sont autour de mario
-		int tab[] = around(objectTab, 0, objectTab.size() - 1, 0, objectWidth, mario);
+		int tab[] = around(objectTab, 0, objectTab.size() - 1, 0, precision, mario);
 		if (tab != null) {
 			for (int i = 0; i < tab[1] - tab[0] + 1; i++) {
 				if (mario.near(objectTab.get(tab[0] + i)) == true) {
@@ -161,12 +161,12 @@ public class Collision {
 	}
 
 	public static void tortue(ArrayList<Turtle> tortueTab, ArrayList<Champignon> champTab,
-			ArrayList<? extends GameItem> objectTab) {
+			ArrayList<? extends GameItem> objectTab, int xMax) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < tortueTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, tortueTab.get(j));
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, tortueTab.get(j));
 				tortueTab.get(j).setBehindObject(tabO[0]);
 				tortueTab.get(j).setFrontObject(tabO[1]);
 
@@ -191,12 +191,13 @@ public class Collision {
 		}
 	}
 
-	public static void antagonist(ArrayList<Antagonist> antagonistsTab, ArrayList<? extends GameItem> objectTab) {
+	public static void antagonist(ArrayList<Antagonist> antagonistsTab, ArrayList<? extends GameItem> objectTab,
+			int xMax) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < antagonistsTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, antagonistsTab.get(j));
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
 				antagonistsTab.get(j).setBehindObject(tabO[0]);
 				antagonistsTab.get(j).setFrontObject(tabO[1]);
 
@@ -220,12 +221,12 @@ public class Collision {
 
 	/* collision de chaque champignon S */
 	public static void chamignon(ArrayList<Champignon> champTab, ArrayList<Turtle> tortueTab,
-			ArrayList<? extends GameItem> objectTab) {
+			ArrayList<? extends GameItem> objectTab, int xMax) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < champTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, champTab.get(j));
+				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, champTab.get(j));
 				champTab.get(j).setBehindObject(tabO[0]);
 				champTab.get(j).setFrontObject(tabO[1]);
 				if (tortueTab.size() >= 1) {
@@ -311,11 +312,16 @@ public class Collision {
 		}
 	}
 
+	public static boolean yCollision(GameCharacter character, GameItem gameItem) {
+		return character.getY() + character.getHeight() > gameItem.getY()
+				&& character.getY() < gameItem.getY() + gameItem.getHeight();
+	}
+
 	/*
 	 * this function gives two the objects which enclose an character
 	 * to achieve that it uses the principle of dichotomous search
 	 */
-	public static int[] aroundObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
+	public static int[] aroundObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle, int xMax,
 			GameCharacter personnage) {
 		middle = (begin + end) / 2;
 		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX()) {
@@ -324,17 +330,30 @@ public class Collision {
 				if (middle > 0) {
 					if (personnage.getX() >= tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth()) {
 						int array[] = new int[2];
-						array[0] = tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth();
-						array[1] = tab.get(middle).getX();
+						if (yCollision(personnage, tab.get(middle - 1))) {
+							array[0] = tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth();
+						} else {
+							array[0] = 0;
+						}
+
+						if (yCollision(personnage, tab.get(middle))) {
+							array[1] = tab.get(middle).getX();
+						} else {
+							array[1] = xMax;
+						}
 						return array;
 					}
 				}
 
-				return aroundObject(tab, begin, end, middle, personnage);
+				return aroundObject(tab, begin, end, middle, xMax, personnage);
 			} else {
 				int array[] = new int[2];
 				array[0] = 0;
-				array[1] = tab.get(begin).getX();
+				if (yCollision(personnage, tab.get(begin))) {
+					array[1] = tab.get(begin).getX();
+				} else {
+					array[1] = xMax;
+				}
 				return array;
 			}
 		} else if (personnage.getX() > tab.get(middle).getX() + tab.get(middle).getWidth()) {
@@ -342,34 +361,72 @@ public class Collision {
 			if (begin < end - 1) {
 				if (personnage.getX() + personnage.getWidth() < tab.get(middle + 1).getX()) {
 					int array[] = new int[2];
-					array[0] = tab.get(middle).getX() + tab.get(middle).getWidth();
-					array[1] = tab.get(middle + 1).getX();
+
+					if (yCollision(personnage, tab.get(middle))) {
+						array[0] = tab.get(middle).getX() + tab.get(middle).getWidth();
+					} else {
+						array[0] = 0;
+					}
+
+					if (yCollision(personnage, tab.get(middle + 1))) {
+						array[1] = tab.get(middle + 1).getX();
+					} else {
+						array[1] = xMax;
+					}
 					return array;
 				}
-				return aroundObject(tab, begin, end, middle, personnage);
+				return aroundObject(tab, begin, end, middle, xMax, personnage);
 			} else if (begin == end - 1) {
 				if (tab.get(begin).getX() + tab.get(begin).getWidth() < personnage.getX()
 						&& personnage.getX() + personnage.getWidth() < tab.get(end).getX()) {
 					int array[] = new int[2];
-					array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
-					array[1] = tab.get(end).getX();
+					if (yCollision(personnage, tab.get(begin))) {
+						array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
+					} else {
+						array[0] = 0;
+					}
+
+					if (yCollision(personnage, tab.get(end))) {
+						array[1] = tab.get(end).getX();
+					} else {
+						array[1] = xMax;
+					}
 					return array;
 				} else {
 					int array[] = new int[2];
-					array[0] = tab.get(end).getX() + tab.get(end).getWidth();
-					array[1] = 5000;
+					if (yCollision(personnage, tab.get(end))) {
+						array[0] = tab.get(end).getX() + tab.get(end).getWidth();
+					} else {
+						array[0] = 0;
+					}
+
+					array[1] = xMax;
 					return array;
 				}
 			} else {
 				int array[] = new int[2];
-				array[0] = tab.get(end).getX() + tab.get(end).getWidth();
-				array[1] = 5000;
+				if (yCollision(personnage, tab.get(end))) {
+					array[0] = tab.get(end).getX() + tab.get(end).getWidth();
+				} else {
+					array[0] = 0;
+				}
+				array[1] = xMax;
 				return array;
 			}
 		} else {
 			int array[] = new int[2];
-			array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
-			array[1] = tab.get(end).getX();
+			if (yCollision(personnage, tab.get(begin))) {
+				array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
+			} else {
+				array[0] = 0;
+			}
+
+			if (yCollision(personnage, tab.get(end))) {
+				array[1] = tab.get(end).getX();
+			} else {
+				array[1] = xMax;
+			}
+
 			return array;
 		}
 	}

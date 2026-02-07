@@ -21,7 +21,7 @@ public class Champignon extends Antagonist implements Runnable {
 	 * constructor
 	 *****************************************/
 	public Champignon(int x, int y) {
-		super(x, y, 27, 30);
+		super(x, y, 27, 30, "champ", 50);
 		super.nbreOfLive = 1;
 		super.setToRight(true);
 		super.setWalke(true);
@@ -148,7 +148,7 @@ public class Champignon extends Antagonist implements Runnable {
 				this.kill(App.scene.mario);
 				// System.out.println("live");
 				if (super.isLiving() == false) {
-					System.out.println("champignon tuer");
+					System.out.println("champignon tuer !!!");
 					super.remove = true;
 				}
 

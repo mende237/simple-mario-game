@@ -221,7 +221,6 @@ public class Mario extends GameCharacter {
 				str = "images/" + name + "ArretGauche.png";
 		} else {
 			super.setCounter(super.getCounter() + 1);
-			;
 			if (super.getCounter() / frequency == 0) {
 				if (super.isToRight() == true)
 					str = "images/" + name + "ArretDroite.png";

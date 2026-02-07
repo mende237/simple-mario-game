@@ -23,14 +23,11 @@ public class Turtle extends Antagonist implements Runnable {
 	 * constructor
 	 *****************************************/
 	public Turtle(int x, int y) {
-		super(x, y, 43, 50);
+		super(x, y, 43, 50, "tortue", 100);
 		super.nbreOfLive = 2;
 		super.setToRight(true);
 		super.setWalke(true);
 		this.zombie = false;
-		// this.icoTortue = new
-		// ImageIcon(getClass().getResource("/images/champArretDroite.png"));
-		// this.imageTortue = icoTortue.getImage();
 		this.imageTurtle = new Image(getClass().getResource("images/tortueMarcheDroite.png").toExternalForm());
 		this.icoTurtle = new ImageView(this.imageTurtle);
 		super.setLiving(true);

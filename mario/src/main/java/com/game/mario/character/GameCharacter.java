@@ -120,7 +120,7 @@ public abstract class GameCharacter {
 	}
 
 	// *************************************methods****************************************//
-	protected abstract Image walk(String name, int frequency);
+	public abstract Image walk(String name, int frequency);
 
 	// protected abstract void kill(Mario mario);
 
