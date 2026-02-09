@@ -20,6 +20,19 @@ public abstract class Stage extends Scene {
         this.antagonists = antagonists;
         this.coins = coins;
         this.xMax = xMax;
+
+        // System.out.println("//////////////////////////////////////////" + this.xMax);
+
+        // for (GameItem gameItem : gameItems) {
+        // System.out.println(gameItem.getX());
+        // System.out.println("*****************************************");
+        // }
+
+        // System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+        // for (Antagonist antagonist : antagonists) {
+        // System.out.println("+++++++++++++++++++++++++++++ " + antagonist.getX());
+        // }
     }
 
     public ArrayList<GameItem> getGameItems() {

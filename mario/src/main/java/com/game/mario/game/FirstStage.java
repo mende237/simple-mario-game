@@ -21,6 +21,8 @@ import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 
 public class FirstStage extends Stage {
+	private Thread gamerAI_Thread;
+
 	private Image imgFond1;
 	private Image imgFond2;
 	private Image imgDepart;
@@ -36,38 +38,30 @@ public class FirstStage extends Stage {
 	private ImageView icoChateauFin;
 	private ImageView icoDrapeau;
 
-	// private ArrayList<Bloc> blocTab;
-	// private ArrayList<Tuyau> tuyauTab;
 	private static ArrayList<Coin> coinTab;
-	// private ArrayList<Champignon> champTab;
-	// private ArrayList<Turtle> turtleTab;
 	private static ArrayList<Antagonist> antagonistTab;
 	private static ArrayList<GameItem> gameItems;
 
 	private Font font;
-	private Champignon champignon1;
-	private Champignon champignon2;
-	private Champignon champignon3;
-	private Champignon champignon4;
-	private Champignon champignon5;
-	private Champignon champignon6;
+	private static Champignon champignon1;
+	private static Champignon champignon2;
+	private static Champignon champignon3;
+	private static Champignon champignon4;
+	private static Champignon champignon5;
+	private static Champignon champignon6;
 
-	private Turtle tortue1;
-	private Turtle tortue2;
-	private Turtle tortue3;
-	private Turtle tortue4;
-	private Turtle tortue5;
-	private Turtle tortue6;
+	private static Turtle tortue1;
+	private static Turtle tortue2;
+	private static Turtle tortue3;
+	private static Turtle tortue4;
+	private static Turtle tortue5;
+	private static Turtle tortue6;
 
 	private int xFond1;
 	private int xFond2;
 
-	{
-		// blocTab = new ArrayList<Bloc>();
-		// tuyauTab = new ArrayList<>();
+	static {
 		coinTab = new ArrayList<Coin>();
-		// champTab = new ArrayList<Champignon>();
-		// turtleTab = new ArrayList<Turtle>();
 		antagonistTab = new ArrayList<Antagonist>();
 		gameItems = new ArrayList<GameItem>();
 
@@ -155,25 +149,17 @@ public class FirstStage extends Stage {
 		antagonistTab.add(champignon5);
 		antagonistTab.add(champignon6);
 
-		// for (int i = 0; i < champTab.size(); i++) {
-		// antagonistTab.add(champTab.get(i));
-		// }
-
-		// for (int i = 0; i < turtleTab.size(); i++) {
-		// antagonistTab.add(turtleTab.get(i));
-		// }
-
 		antagonistTab.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
 		gameItems.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
 
 	}
 
 	// *************************************constructor***************************************//
-	public FirstStage() {
+	public FirstStage(boolean aiMode) {
 
 		// super(293, 0, 0);
-
 		super(293, 0, 0, 5000, gameItems, antagonistTab, coinTab);
+
 		this.xFond1 = -50;
 		this.xFond2 = 750;
 		mario = new Mario(300, super.getYFloor() - 50);
@@ -202,6 +188,12 @@ public class FirstStage extends Stage {
 		Thread chrono = new Thread(new Chrono());
 		chrono.start();
 		SceneUpdater.update(getGraphicsContext2D());
+
+		if (aiMode) {
+			GamerAI gamerAI = new GamerAI(this, mario, xMax);
+			this.gamerAI_Thread = new Thread(gamerAI);
+			this.gamerAI_Thread.start();
+		}
 	}
 
 	// ****************************************setter*******************************//
@@ -335,18 +327,6 @@ public class FirstStage extends Stage {
 					}
 				}
 			}
-
-			// // print of all turtles of the scene
-			// for (int i = 0; i < turtleTab.size(); i++) {
-			// if (turtleTab.get(i).isLiving() == true) {
-			// gc.drawImage(this.turtleTab.get(i).walk("tortue", 100),
-			// this.turtleTab.get(i).getX(),
-			// this.turtleTab.get(i).getY());
-			// } else {
-			// gc.drawImage(turtleTab.get(i).die(), this.turtleTab.get(i).getX(),
-			// (293 - this.turtleTab.get(i).getHeight()));
-			// }
-			// }
 
 			// **************************add of mario in scene's
 			// game*************************//

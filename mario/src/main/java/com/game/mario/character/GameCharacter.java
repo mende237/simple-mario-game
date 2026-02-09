@@ -181,7 +181,7 @@ public abstract class GameCharacter {
 				|| this.y + this.height <= gameItem.getY() || this.y >= gameItem.getY() + gameItem.getHeight()) {
 			return false;
 		} else {
-			// System.out.println("front collision");
+			// System.out.println("front collision " + gameItem.getX());
 			return true;
 		}
 	}

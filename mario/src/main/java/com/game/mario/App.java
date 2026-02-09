@@ -18,7 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         // Create a custom Scene (subclass of Canvas)
-        scene = new FirstStage();
+        scene = new FirstStage(true);
 
         Clavier clavier = new Clavier(scene);
 
