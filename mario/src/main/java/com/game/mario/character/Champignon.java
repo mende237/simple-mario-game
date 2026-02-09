@@ -81,14 +81,6 @@ public class Champignon extends Antagonist implements Runnable {
 		this.imageChamp = imageChamp;
 	}
 
-	@Override
-	public void displacement() {
-		if (App.scene.getxPos() != -1) {
-			super.setX(super.getX() - App.scene.getDx());
-			kill(App.scene.mario);
-		}
-	}
-
 	public void move() {
 		if (GameManager.isBegin() == true) {
 			// System.out.println("min " + super.getZoneMin() + " max " + super.zoneMax);

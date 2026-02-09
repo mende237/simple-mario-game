@@ -19,7 +19,8 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            int tabO[] = Collision.aroundObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0, this.xMax,
+            int tabO[] = Collision.antagonistBetweenObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0,
+                    this.xMax,
                     mario);
 
             System.out.println(

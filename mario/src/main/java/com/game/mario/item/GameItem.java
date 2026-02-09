@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import com.game.mario.App;
+import com.game.mario.game.GameManager;
 
 public class GameItem {
 	/****************************************
@@ -88,8 +89,11 @@ public class GameItem {
 	// }
 
 	public void displacement() {
-		if (App.scene.getxPos() != -1)
+		if (App.scene.getxPos() != -1) {
+			GameManager.DOWN();
 			this.x = this.x - ((int) App.scene.getDx());
+			GameManager.UP();
+		}
 	}
 
 	/*******************************************

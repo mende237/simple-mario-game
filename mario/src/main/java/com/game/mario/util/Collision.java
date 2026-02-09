@@ -17,77 +17,6 @@ public class Collision {
 		BEHIND, FRONT
 	}
 
-	/*
-	 * this function manage the collision with each champignon , tortue which are in
-	 * an array
-	 */
-	public static void Champignon(ArrayList<Champignon> champTab, ArrayList<Turtle> tortueTab, Mario mario) {
-		for (int i = 0; i < champTab.size(); i++) {
-			if (champTab.get(i).isLiving() == true) {// on verifie que le champignon n'est pas mort
-				// on verifie si mario tue le champignon ou le contraire
-				champTab.get(i).kill(mario);
-				// collision du champignon avec la tortue
-				for (int j = 0; j < tortueTab.size(); j++) {
-					if (tortueTab.get(j).isLiving() == true) {// on verifie que la tortue est vivante
-						if (champTab.get(i).near(tortueTab.get(j)) == true) {
-							System.out.println("near");
-							champTab.get(i).contact(tortueTab.get(j));
-						}
-					}
-				}
-
-				// collision du champignon avec un autre champignon
-				for (int j = 0; j < champTab.size(); j++) {
-					if (champTab.get(j).isLiving() == true) {
-						if (i != j) {
-							if (champTab.get(i).near(champTab.get(j)) == true) {
-								champTab.get(i).contact(champTab.get(j));
-							}
-						}
-					}
-				}
-			}
-
-		}
-
-	}
-
-	public static void tortue(ArrayList<Turtle> tortueTab, ArrayList<? extends GameCharacter> champTab, Mario mario) {
-		for (int i = 0; i < tortueTab.size(); i++) {
-			tortueTab.get(i).kill(mario);
-			if (tortueTab.get(i).isLiving() == true || tortueTab.get(i).isZombie() == true) {
-				// collision de la tortue avec une autre tortue
-				for (int j = 0; j < tortueTab.size(); j++) {
-					if (i != j && tortueTab.get(j).isLiving() == true) {// on verifie que la tortue n'est pas morte
-						if (tortueTab.get(i).near(tortueTab.get(j)) == true) {
-							if (tortueTab.get(i).isZombie() == true) {
-								tortueTab.get(j).setLiving(false);
-							} else {
-
-								tortueTab.get(i).contact(champTab.get(j));
-							}
-						}
-					}
-				}
-
-				// collision de la tortue avec un champignon
-				for (int j = 0; j < champTab.size(); j++) {
-					if (champTab.get(j).isLiving() == true) {
-						if (tortueTab.get(i).near(champTab.get(j))) {
-							if (tortueTab.get(i).isZombie() == true) {
-								champTab.get(j).setLiving(false);
-							} else {
-
-								tortueTab.get(i).contact(champTab.get(j));
-							}
-						}
-					}
-				}
-
-			}
-		}
-	}
-
 	public static void piece(ArrayList<Coin> pieceTab, Mario mario) {
 		int minus = 0;
 		if (pieceTab.size() > 1) {
@@ -160,44 +89,13 @@ public class Collision {
 
 	}
 
-	public static void tortue(ArrayList<Turtle> tortueTab, ArrayList<Champignon> champTab,
-			ArrayList<? extends GameItem> objectTab, int xMax) {
-		Antagonist tabC[];
-		int tabO[];
-		if (GameManager.DOWN() >= 0) {
-			for (int j = 0; j < tortueTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, tortueTab.get(j));
-				tortueTab.get(j).setBehindObject(tabO[0]);
-				tortueTab.get(j).setFrontObject(tabO[1]);
-
-				if (champTab.size() >= 1) {
-					tabC = aroundCharacter(champTab, 0, champTab.size() - 1, 0, tortueTab.get(j));
-					tortueTab.get(j).setBehindCharacter(tabC[0]);
-					tortueTab.get(j).setFrontCharacter(tabC[1]);
-				}
-				/*
-				 * on retire le personnage du tableau une même personne est toujours proche de
-				 * d'elle meme
-				 */
-				Turtle temp = tortueTab.remove(j);
-				if (tortueTab.size() >= 1) {
-					tabC = aroundCharacter(tortueTab, 0, tortueTab.size() - 1, 0, temp);
-					setNear(temp, tabC[0], Position.BEHIND);
-					setNear(temp, tabC[1], Position.FRONT);
-				}
-				tortueTab.add(j, temp);
-			}
-			GameManager.UP();
-		}
-	}
-
 	public static void antagonist(ArrayList<Antagonist> antagonistsTab, ArrayList<? extends GameItem> objectTab,
 			int xMax) {
 		Antagonist tabC[];
 		int tabO[];
 		if (GameManager.DOWN() >= 0) {
 			for (int j = 0; j < antagonistsTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
+				tabO = antagonistBetweenObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
 				antagonistsTab.get(j).setBehindObject(tabO[0]);
 				antagonistsTab.get(j).setFrontObject(tabO[1]);
 
@@ -217,35 +115,6 @@ public class Collision {
 			}
 			GameManager.UP();
 		}
-	}
-
-	/* collision de chaque champignon S */
-	public static void chamignon(ArrayList<Champignon> champTab, ArrayList<Turtle> tortueTab,
-			ArrayList<? extends GameItem> objectTab, int xMax) {
-		Antagonist tabC[];
-		int tabO[];
-		if (GameManager.DOWN() >= 0) {
-			for (int j = 0; j < champTab.size(); j++) {
-				tabO = aroundObject(objectTab, 0, objectTab.size() - 1, 0, xMax, champTab.get(j));
-				champTab.get(j).setBehindObject(tabO[0]);
-				champTab.get(j).setFrontObject(tabO[1]);
-				if (tortueTab.size() >= 1) {
-					tabC = aroundCharacter(tortueTab, 0, tortueTab.size() - 1, 0, champTab.get(j));
-					champTab.get(j).setBehindCharacter(tabC[0]);
-					champTab.get(j).setFrontCharacter(tabC[1]);
-				}
-
-				Champignon temp = champTab.remove(j);
-				if (champTab.size() >= 1) {
-					tabC = aroundCharacter(champTab, 0, champTab.size() - 1, 0, temp);
-					setNear(temp, tabC[0], Position.BEHIND);
-					setNear(temp, tabC[1], Position.FRONT);
-				}
-				champTab.add(j, temp);
-			}
-			GameManager.UP();
-		}
-
 	}
 
 	/*
@@ -318,13 +187,14 @@ public class Collision {
 	}
 
 	/*
-	 * this function gives two the objects which enclose an character
-	 * to achieve that it uses the principle of dichotomous search
+	 * this function gives the x-axis position two the objects which enclose an
+	 * antogonist to achieve that it uses the principle of dichotomous search
 	 */
-	public static int[] aroundObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle, int xMax,
+	public static int[] antagonistBetweenObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
+			int xMax,
 			GameCharacter personnage) {
 		middle = (begin + end) / 2;
-		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX()) {
+		if (personnage.getX() + personnage.getWidth() <= tab.get(middle).getX()) {
 			end = middle;
 			if (begin < end) {
 				if (middle > 0) {
@@ -345,7 +215,7 @@ public class Collision {
 					}
 				}
 
-				return aroundObject(tab, begin, end, middle, xMax, personnage);
+				return antagonistBetweenObject(tab, begin, end, middle, xMax, personnage);
 			} else {
 				int array[] = new int[2];
 				array[0] = 0;
@@ -356,10 +226,10 @@ public class Collision {
 				}
 				return array;
 			}
-		} else if (personnage.getX() > tab.get(middle).getX() + tab.get(middle).getWidth()) {
+		} else if (personnage.getX() >= tab.get(middle).getX() + tab.get(middle).getWidth()) {
 			begin = middle;
 			if (begin < end - 1) {
-				if (personnage.getX() + personnage.getWidth() < tab.get(middle + 1).getX()) {
+				if (personnage.getX() + personnage.getWidth() <= tab.get(middle + 1).getX()) {
 					int array[] = new int[2];
 
 					if (yCollision(personnage, tab.get(middle))) {
@@ -375,10 +245,10 @@ public class Collision {
 					}
 					return array;
 				}
-				return aroundObject(tab, begin, end, middle, xMax, personnage);
+				return antagonistBetweenObject(tab, begin, end, middle, xMax, personnage);
 			} else if (begin == end - 1) {
-				if (tab.get(begin).getX() + tab.get(begin).getWidth() < personnage.getX()
-						&& personnage.getX() + personnage.getWidth() < tab.get(end).getX()) {
+				if (tab.get(begin).getX() + tab.get(begin).getWidth() <= personnage.getX()
+						&& personnage.getX() + personnage.getWidth() <= tab.get(end).getX()) {
 					int array[] = new int[2];
 					if (yCollision(personnage, tab.get(begin))) {
 						array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
@@ -414,6 +284,7 @@ public class Collision {
 				return array;
 			}
 		} else {
+			System.out.println("--------------------------------  " + tab.get(begin).getX());
 			int array[] = new int[2];
 			if (yCollision(personnage, tab.get(begin))) {
 				array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
@@ -424,6 +295,7 @@ public class Collision {
 			if (yCollision(personnage, tab.get(end))) {
 				array[1] = tab.get(end).getX();
 			} else {
+				System.out.println("--------------------------------****  " + tab.get(end).getX());
 				array[1] = xMax;
 			}
 

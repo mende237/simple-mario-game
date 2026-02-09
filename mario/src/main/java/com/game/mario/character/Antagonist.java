@@ -2,6 +2,7 @@ package com.game.mario.character;
 
 import com.game.mario.item.GameItem;
 import com.game.mario.App;
+import com.game.mario.game.GameManager;
 
 public abstract class Antagonist extends GameCharacter {
 	private int Dx;
@@ -130,8 +131,10 @@ public abstract class Antagonist extends GameCharacter {
 
 	public void displacement() {
 		if (App.scene.getxPos() != -1) {
+			GameManager.DOWN();
 			super.setX(super.getX() - App.scene.getDx());
 			kill(App.scene.mario);
+			GameManager.UP();
 		}
 	}
 
