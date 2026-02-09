@@ -131,10 +131,10 @@ public abstract class Antagonist extends GameCharacter {
 
 	public void displacement() {
 		if (App.scene.getxPos() != -1) {
-			GameManager.DOWN();
+			// GameManager.DOWN();
 			super.setX(super.getX() - App.scene.getDx());
 			kill(App.scene.mario);
-			GameManager.UP();
+			// GameManager.UP();
 		}
 	}
 

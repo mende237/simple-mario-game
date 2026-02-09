@@ -90,9 +90,9 @@ public class GameItem {
 
 	public void displacement() {
 		if (App.scene.getxPos() != -1) {
-			GameManager.DOWN();
+			// GameManager.DOWN();
 			this.x = this.x - ((int) App.scene.getDx());
-			GameManager.UP();
+			// GameManager.UP();
 		}
 	}
 
