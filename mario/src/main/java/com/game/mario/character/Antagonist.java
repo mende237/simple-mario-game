@@ -184,17 +184,6 @@ public abstract class Antagonist extends GameCharacter {
 
 	public boolean canMove() {
 		boolean eval = GameManager.isBegin() == true;
-		// && GameManager.getAllAntagonistPositionLocker().isLocked() == false;
-
-		// Optional<Antagonist> behindCharacter =
-		// Optional.ofNullable(this.behindCharacter);
-		// Optional<Antagonist> frontCharacter =
-		// Optional.ofNullable(this.frontCharacter);
-
-		// eval = eval &&
-		// behindCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked).orElse(true);
-		// eval = eval &&
-		// frontCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked).orElse(true);
 		return eval;
 	}
 

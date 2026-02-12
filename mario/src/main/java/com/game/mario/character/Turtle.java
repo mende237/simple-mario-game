@@ -98,31 +98,6 @@ public class Turtle extends Antagonist implements Runnable {
 
 	public void move() {
 		if (canMove()) {
-			// we verify if another character is not running its own critical region
-
-			// if (super.behindCharacter != null) {
-			// super.behindCharacter.getPositionLocker().lock();
-			// System.out.println("************************************** "
-			// + super.behindCharacter.getPositionLocker().isLocked());
-			// }
-
-			// this.positionLocker.lock();
-			// super.behindCharacter.getPositionLocker().lock();
-			// super.frontCharacter.getPositionLocker().lock();
-
-			// if (!this.positionLocker.tryLock())
-			// return;
-
-			// if (super.behindCharacter != null) {
-			// if (!super.behindCharacter.getPositionLocker().tryLock())
-			// return;
-			// }
-
-			// if (super.frontCharacter != null) {
-			// if (!super.frontCharacter.getPositionLocker().tryLock())
-			// return;
-			// }
-
 			boolean lockRead = GameManager.getAllAntagonistPositionReaderLocker().tryLock();
 
 			if (!GameManager.getAllAntagonistPositionWriterLocker().isLocked()) {
@@ -234,6 +209,13 @@ public class Turtle extends Antagonist implements Runnable {
 
 						}
 					}
+
+					this.kill(App.scene.mario);
+					if (super.nbreOfLive <= 0) {
+						// super.getThread().stop();
+						super.remove = true;
+					}
+
 				}
 
 				this.positionLocker.unlock();
@@ -242,24 +224,6 @@ public class Turtle extends Antagonist implements Runnable {
 			if (lockRead) {
 				GameManager.getAllAntagonistPositionReaderLocker().unlock();
 			}
-
-			this.kill(App.scene.mario);
-			if (super.nbreOfLive <= 0) {
-				// super.getThread().stop();
-				super.remove = true;
-			}
-
-			// super.behindCharacter.getPositionLocker().unlock();
-			// super.frontCharacter.getPositionLocker().unlock();
-
-			// this.positionLocker.unlock();
-			// if (super.behindCharacter != null) {
-			// super.behindCharacter.getPositionLocker().unlock();
-			// }
-
-			// if (super.frontCharacter != null) {
-			// super.frontCharacter.getPositionLocker().unlock();
-			// }
 		}
 	}
 

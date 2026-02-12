@@ -87,22 +87,6 @@ public class Champignon extends Antagonist implements Runnable {
 
 	public void move() {
 		if (canMove()) {
-			// this.positionLocker.lock();
-			// super.behindCharacter.getPositionLocker().lock();
-			// super.frontCharacter.getPositionLocker().lock();
-
-			// if (!this.positionLocker.tryLock())
-			// return;
-
-			// if (super.behindCharacter != null) {
-			// if (!super.behindCharacter.getPositionLocker().tryLock())
-			// return;
-			// }
-
-			// if (super.frontCharacter != null) {
-			// if (!super.frontCharacter.getPositionLocker().tryLock())
-			// return;
-			// }
 
 			boolean lockRead = GameManager.getAllAntagonistPositionReaderLocker().tryLock();
 
@@ -110,11 +94,6 @@ public class Champignon extends Antagonist implements Runnable {
 				// on verifie si mario tue le champignon ou c'est le champignon qui tu mario
 
 				this.positionLocker.lock();
-
-				// if (this.frontCharacter != null) {
-				// System.out.println(this.frontCharacter.positionLocker.isLocked());
-				// }
-
 				Optional<Antagonist> behindCharacter = Optional.ofNullable(this.behindCharacter);
 				Optional<Antagonist> frontCharacter = Optional.ofNullable(this.frontCharacter);
 
@@ -175,32 +154,21 @@ public class Champignon extends Antagonist implements Runnable {
 
 						}
 					}
+
+					this.kill(App.scene.mario);
+					// System.out.println("live");
+					if (super.isLiving() == false) {
+						System.out.println("champignon tuer !!!");
+						super.remove = true;
+					}
 				}
 
 				this.positionLocker.unlock();
 			}
 
-			this.kill(App.scene.mario);
-			// System.out.println("live");
-			if (super.isLiving() == false) {
-				System.out.println("champignon tuer !!!");
-				super.remove = true;
-			}
-
 			if (lockRead) {
 				GameManager.getAllAntagonistPositionReaderLocker().unlock();
 			}
-
-			// super.behindCharacter.getPositionLocker().unlock();
-			// super.frontCharacter.getPositionLocker().unlock();
-			// this.positionLocker.unlock();
-			// if (super.behindCharacter != null) {
-			// super.behindCharacter.getPositionLocker().unlock();
-			// }
-
-			// if (super.frontCharacter != null) {
-			// super.frontCharacter.getPositionLocker().unlock();
-			// }
 		}
 
 	}
