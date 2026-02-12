@@ -4,6 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import com.game.mario.game.GameManager;
+
+import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
+
 import com.game.mario.App;
 import com.game.mario.util.Axe;
 import com.game.mario.util.TransitionState;
@@ -93,115 +97,169 @@ public class Turtle extends Antagonist implements Runnable {
 	}
 
 	public void move() {
-		if (GameManager.isBegin() == true) {
+		if (canMove()) {
 			// we verify if another character is not running its own critical region
-			if (GameManager.DOWN() >= 0) {
-				// we determine the area in which the character can move without any problems
-				int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
-				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
-				// we can move if only if the character is alive or in zombi state
-				if (super.isWalke() == true && (super.isLiving() == true || this.zombie == true)) {
-					if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
-						if (super.isToRight() == true) {
+
+			// if (super.behindCharacter != null) {
+			// super.behindCharacter.getPositionLocker().lock();
+			// System.out.println("************************************** "
+			// + super.behindCharacter.getPositionLocker().isLocked());
+			// }
+
+			// this.positionLocker.lock();
+			// super.behindCharacter.getPositionLocker().lock();
+			// super.frontCharacter.getPositionLocker().lock();
+
+			// if (!this.positionLocker.tryLock())
+			// return;
+
+			// if (super.behindCharacter != null) {
+			// if (!super.behindCharacter.getPositionLocker().tryLock())
+			// return;
+			// }
+
+			// if (super.frontCharacter != null) {
+			// if (!super.frontCharacter.getPositionLocker().tryLock())
+			// return;
+			// }
+
+			boolean lockRead = GameManager.getAllAntagonistPositionReaderLocker().tryLock();
+
+			if (!GameManager.getAllAntagonistPositionWriterLocker().isLocked()) {
+				this.positionLocker.lock();
+
+				Optional<Antagonist> behindCharacter = Optional.ofNullable(this.behindCharacter);
+				Optional<Antagonist> frontCharacter = Optional.ofNullable(this.frontCharacter);
+
+				boolean lockBehind = behindCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked)
+						.orElse(false);
+				boolean lockFront = frontCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked)
+						.orElse(false);
+
+				if (!lockBehind && !lockFront) {
+					// we determine the area in which the character can move without any problems
+					int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
+					int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
+					// we can move if only if the character is alive or in zombi state
+					if (super.isWalke() == true && (super.isLiving() == true || this.zombie == true)) {
+						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
+							if (super.isToRight() == true) {
+								this.dxTortue = 1;
+								super.setX(super.getX() + this.dxTortue);
+							} else {
+								this.dxTortue = -1;
+								super.setX(super.getX() + this.dxTortue);
+							}
+						}
+
+						// we verify if the character have crossed its lower limit
+						if (super.getX() <= zoneMin) {
+							boolean collision = false;
+							/*
+							 * we verify if there is one character directly behind this character there must
+							 * have nothing between the two characters, and the if the behind character is
+							 * in the zombi state
+							 */
+							if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
+								super.behindCharacter.setLiving(false);
+								super.behindCharacter.remove = true;
+								this.remove = true;
+								collision = true;
+							}
+
+							/*
+							 * we verify if there is one character directly behind the current character
+							 * there must have nothing between the two characters, and the if the the
+							 * current character is in the zombi state
+							 */
+
+							if (this.characterDirectlyBehind == true && this.zombie == true) {
+								super.remove = true;
+								super.behindCharacter.setLiving(false);
+								super.behindCharacter.remove = true;
+								collision = true;
+							}
+
+							if (collision == true) {
+								this.setLiving(false);
+								super.remove = true;
+								if (super.frontCharacter != null && super.behindCharacter.behindCharacter != null) {
+									super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
+									super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
+								}
+							}
+							super.setToRight(true);
 							this.dxTortue = 1;
 							super.setX(super.getX() + this.dxTortue);
-						} else {
+						}
+
+						if (super.getX() + super.getWidth() >= zoneMax) {
+							/*
+							 * we verify if there is one character directly in front of this character there
+							 * must have nothing between the two characters , and the if the front character
+							 * is in the zombi state
+							 */
+							boolean collision = false;
+							if (this.characterDirectlyFront == true && this.frontCharacter.zombie == true) {
+								super.frontCharacter.setLiving(false);
+								super.frontCharacter.remove = true;
+								super.remove = true;
+								collision = true;
+							}
+
+							/*
+							 * we verify if there is one character directly in front of the current
+							 * character there must have nothing between the two characters, and the if the
+							 * the current character is in the zombi state
+							 */
+							if (this.characterDirectlyFront == true && this.zombie == true) {
+								super.remove = true;
+								this.frontCharacter.setLiving(false);
+								super.frontCharacter.remove = true;
+								collision = true;
+							}
+
+							if (collision == true) {
+								super.setLiving(false);
+								super.remove = true;
+								if (super.behindCharacter != null && super.frontCharacter.frontCharacter != null) {
+									super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
+									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
+								}
+							}
+
+							super.setToRight(false);
 							this.dxTortue = -1;
 							super.setX(super.getX() + this.dxTortue);
+
 						}
-					}
-
-					// we verify if the character have crossed its lower limit
-					if (super.getX() <= zoneMin) {
-						boolean collision = false;
-						/*
-						 * we verify if there is one character directly behind this character there must
-						 * have nothing between the two characters, and the if the behind character is
-						 * in the zombi state
-						 */
-						if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
-							super.behindCharacter.setLiving(false);
-							super.behindCharacter.remove = true;
-							this.remove = true;
-							collision = true;
-						}
-
-						/*
-						 * we verify if there is one character directly behind the current character
-						 * there must have nothing between the two characters, and the if the the
-						 * current character is in the zombi state
-						 */
-
-						if (this.characterDirectlyBehind == true && this.zombie == true) {
-							super.remove = true;
-							super.behindCharacter.setLiving(false);
-							super.behindCharacter.remove = true;
-							collision = true;
-						}
-
-						if (collision == true) {
-							this.setLiving(false);
-							super.remove = true;
-							if (super.frontCharacter != null && super.behindCharacter.behindCharacter != null) {
-								super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
-								super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
-							}
-						}
-						super.setToRight(true);
-						this.dxTortue = 1;
-						super.setX(super.getX() + this.dxTortue);
-					}
-
-					if (super.getX() + super.getWidth() >= zoneMax) {
-						/*
-						 * we verify if there is one character directly in front of this character there
-						 * must have nothing between the two characters , and the if the front character
-						 * is in the zombi state
-						 */
-						boolean collision = false;
-						if (this.characterDirectlyFront == true && this.frontCharacter.zombie == true) {
-							super.frontCharacter.setLiving(false);
-							super.frontCharacter.remove = true;
-							super.remove = true;
-							collision = true;
-						}
-
-						/*
-						 * we verify if there is one character directly in front of the current
-						 * character there must have nothing between the two characters, and the if the
-						 * the current character is in the zombi state
-						 */
-						if (this.characterDirectlyFront == true && this.zombie == true) {
-							super.remove = true;
-							this.frontCharacter.setLiving(false);
-							super.frontCharacter.remove = true;
-							collision = true;
-						}
-
-						if (collision == true) {
-							super.setLiving(false);
-							super.remove = true;
-							if (super.behindCharacter != null && super.frontCharacter.frontCharacter != null) {
-								super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
-								super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
-							}
-						}
-
-						super.setToRight(false);
-						this.dxTortue = -1;
-						super.setX(super.getX() + this.dxTortue);
-
 					}
 				}
 
-				this.kill(App.scene.mario);
-				if (super.nbreOfLive <= 0) {
-					// super.getThread().stop();
-					super.remove = true;
-				}
-
-				GameManager.UP();
+				this.positionLocker.unlock();
 			}
+
+			if (lockRead) {
+				GameManager.getAllAntagonistPositionReaderLocker().unlock();
+			}
+
+			this.kill(App.scene.mario);
+			if (super.nbreOfLive <= 0) {
+				// super.getThread().stop();
+				super.remove = true;
+			}
+
+			// super.behindCharacter.getPositionLocker().unlock();
+			// super.frontCharacter.getPositionLocker().unlock();
+
+			// this.positionLocker.unlock();
+			// if (super.behindCharacter != null) {
+			// super.behindCharacter.getPositionLocker().unlock();
+			// }
+
+			// if (super.frontCharacter != null) {
+			// super.frontCharacter.getPositionLocker().unlock();
+			// }
 		}
 	}
 

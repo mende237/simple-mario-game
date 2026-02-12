@@ -3,6 +3,10 @@ package com.game.mario.character;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import com.game.mario.game.GameManager;
+
+import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
+
 import com.game.mario.App;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.TransitionState;
@@ -82,71 +86,121 @@ public class Champignon extends Antagonist implements Runnable {
 	}
 
 	public void move() {
-		if (GameManager.isBegin() == true) {
-			// System.out.println("min " + super.getZoneMin() + " max " + super.zoneMax);
-			if (GameManager.DOWN() >= 0) {
-				// on verifie si mario tue le champignon ou c'est le champignon qui tu mario
-				int zomeMin = super.getZoneMin(super.behindCharacter, super.behindObject);
-				int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
+		if (canMove()) {
+			// this.positionLocker.lock();
+			// super.behindCharacter.getPositionLocker().lock();
+			// super.frontCharacter.getPositionLocker().lock();
 
-				if (super.isWalke() == true && super.isLiving() == true) {
-					if (super.getX() + super.getWidth() < zoneMax && super.getX() > zomeMin) {
-						if (super.isToRight() == true) {
+			// if (!this.positionLocker.tryLock())
+			// return;
+
+			// if (super.behindCharacter != null) {
+			// if (!super.behindCharacter.getPositionLocker().tryLock())
+			// return;
+			// }
+
+			// if (super.frontCharacter != null) {
+			// if (!super.frontCharacter.getPositionLocker().tryLock())
+			// return;
+			// }
+
+			boolean lockRead = GameManager.getAllAntagonistPositionReaderLocker().tryLock();
+
+			if (!GameManager.getAllAntagonistPositionWriterLocker().isLocked()) {
+				// on verifie si mario tue le champignon ou c'est le champignon qui tu mario
+
+				this.positionLocker.lock();
+
+				// if (this.frontCharacter != null) {
+				// System.out.println(this.frontCharacter.positionLocker.isLocked());
+				// }
+
+				Optional<Antagonist> behindCharacter = Optional.ofNullable(this.behindCharacter);
+				Optional<Antagonist> frontCharacter = Optional.ofNullable(this.frontCharacter);
+
+				boolean lockBehind = behindCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked)
+						.orElse(false);
+				boolean lockFront = frontCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked)
+						.orElse(false);
+
+				if (!lockBehind && !lockFront) {
+
+					int zomeMin = super.getZoneMin(super.behindCharacter, super.behindObject);
+					int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
+
+					if (super.isWalke() == true && super.isLiving() == true) {
+						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zomeMin) {
+							if (super.isToRight() == true) {
+								this.dxChamp = 1;
+								super.setX(super.getX() + this.dxChamp);
+							} else {
+								this.dxChamp = -1;
+								super.setX(super.getX() + this.dxChamp);
+							}
+						}
+
+						if (super.getX() <= zomeMin) {
+							if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
+								this.setLiving(false);
+								super.behindCharacter.setLiving(false);
+								super.remove = true;
+								super.behindCharacter.remove = true;
+								if (super.frontCharacter != null && super.behindCharacter.behindCharacter != null) {
+									super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
+									super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
+								}
+							}
+
+							super.setToRight(true);
 							this.dxChamp = 1;
 							super.setX(super.getX() + this.dxChamp);
-						} else {
+							// super.setWalke(false);
+						}
+
+						if (super.getX() + super.getWidth() >= zoneMax) {
+							if (this.characterDirectlyFront == true && this.frontCharacter.zombie == true) {
+								this.setLiving(false);
+								super.frontCharacter.setLiving(false);
+								super.remove = true;
+								super.frontCharacter.remove = true;
+								if (super.behindCharacter != null && super.frontCharacter.frontCharacter != null) {
+									super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
+									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
+								}
+							}
+
+							super.setToRight(false);
 							this.dxChamp = -1;
 							super.setX(super.getX() + this.dxChamp);
+
 						}
-					}
-
-					if (super.getX() <= zomeMin) {
-						if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
-							this.setLiving(false);
-							super.behindCharacter.setLiving(false);
-							super.remove = true;
-							super.behindCharacter.remove = true;
-							if (super.frontCharacter != null && super.behindCharacter.behindCharacter != null) {
-								super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
-								super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
-							}
-						}
-
-						super.setToRight(true);
-						this.dxChamp = 1;
-						super.setX(super.getX() + this.dxChamp);
-						// super.setWalke(false);
-					}
-
-					if (super.getX() + super.getWidth() >= zoneMax) {
-						if (this.characterDirectlyFront == true && this.frontCharacter.zombie == true) {
-							this.setLiving(false);
-							super.frontCharacter.setLiving(false);
-							super.remove = true;
-							super.frontCharacter.remove = true;
-							if (super.behindCharacter != null && super.frontCharacter.frontCharacter != null) {
-								super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
-								super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
-							}
-						}
-
-						super.setToRight(false);
-						this.dxChamp = -1;
-						super.setX(super.getX() + this.dxChamp);
-
 					}
 				}
 
-				this.kill(App.scene.mario);
-				// System.out.println("live");
-				if (super.isLiving() == false) {
-					System.out.println("champignon tuer !!!");
-					super.remove = true;
-				}
+				this.positionLocker.unlock();
+			}
 
-				GameManager.UP();
-			} else
-				;// System.out.println("champignon bloqué");
+			this.kill(App.scene.mario);
+			// System.out.println("live");
+			if (super.isLiving() == false) {
+				System.out.println("champignon tuer !!!");
+				super.remove = true;
+			}
+
+			if (lockRead) {
+				GameManager.getAllAntagonistPositionReaderLocker().unlock();
+			}
+
+			// super.behindCharacter.getPositionLocker().unlock();
+			// super.frontCharacter.getPositionLocker().unlock();
+			// this.positionLocker.unlock();
+			// if (super.behindCharacter != null) {
+			// super.behindCharacter.getPositionLocker().unlock();
+			// }
+
+			// if (super.frontCharacter != null) {
+			// super.frontCharacter.getPositionLocker().unlock();
+			// }
 		}
 
 	}

@@ -121,33 +121,33 @@ public class FirstStage extends Stage {
 		coinTab.add(new Coin(3300, 110));
 		coinTab.add(new Coin(3400, 150));
 
-		// champignon1 = new Champignon(800, 263);
-		// champignon2 = new Champignon(850, 263);
-		// champignon3 = new Champignon(1500, 263);
-		// champignon4 = new Champignon(3000, 263);
-		// champignon5 = new Champignon(3200, 263);
-		// champignon6 = new Champignon(3500, 263);
+		champignon1 = new Champignon(800, 263);
+		champignon2 = new Champignon(850, 263);
+		champignon3 = new Champignon(1500, 263);
+		champignon4 = new Champignon(3000, 263);
+		champignon5 = new Champignon(3200, 263);
+		champignon6 = new Champignon(3500, 263);
 
-		// tortue1 = new Turtle(700, 243);
-		// tortue2 = new Turtle(2000, 243);
-		// tortue3 = new Turtle(1900, 243);
-		// tortue4 = new Turtle(2500, 243);
-		// tortue5 = new Turtle(2900, 243);
-		// tortue6 = new Turtle(3300, 243);
+		tortue1 = new Turtle(700, 243);
+		tortue2 = new Turtle(2000, 243);
+		tortue3 = new Turtle(1900, 243);
+		tortue4 = new Turtle(2500, 243);
+		tortue5 = new Turtle(2900, 243);
+		tortue6 = new Turtle(3300, 243);
 
-		// antagonistTab.add(tortue1);
-		// antagonistTab.add(tortue2);
-		// antagonistTab.add(tortue3);
-		// antagonistTab.add(tortue4);
-		// antagonistTab.add(tortue5);
-		// antagonistTab.add(tortue6);
+		antagonistTab.add(tortue1);
+		antagonistTab.add(tortue2);
+		antagonistTab.add(tortue3);
+		antagonistTab.add(tortue4);
+		antagonistTab.add(tortue5);
+		antagonistTab.add(tortue6);
 
-		// antagonistTab.add(champignon1);
-		// antagonistTab.add(champignon2);
-		// antagonistTab.add(champignon3);
-		// antagonistTab.add(champignon4);
-		// antagonistTab.add(champignon5);
-		// antagonistTab.add(champignon6);
+		antagonistTab.add(champignon1);
+		antagonistTab.add(champignon2);
+		antagonistTab.add(champignon3);
+		antagonistTab.add(champignon4);
+		antagonistTab.add(champignon5);
+		antagonistTab.add(champignon6);
 
 		antagonistTab.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
 		gameItems.sort((a, b) -> Integer.compare(a.getX(), b.getX()));

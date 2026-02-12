@@ -1,12 +1,15 @@
 package com.game.mario.game;
 
 import com.game.mario.util.TransitionState;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class GameManager {
 	private static boolean interupt = false;
 	private static boolean begin = false;
 	private static TransitionState state;
 	private static int sem = 1;
+	private static ReentrantLock allAntagonistPositionReaderLocker = new ReentrantLock();
+	private static ReentrantLock allAntagonistPositionWriterLocker = new ReentrantLock();
 
 	/******************************** getter *********************************/
 	public static TransitionState getState() {
@@ -32,6 +35,14 @@ public class GameManager {
 
 	public static void setBegin(boolean begin) {
 		GameManager.begin = begin;
+	}
+
+	public static ReentrantLock getAllAntagonistPositionReaderLocker() {
+		return allAntagonistPositionReaderLocker;
+	}
+
+	public static ReentrantLock getAllAntagonistPositionWriterLocker() {
+		return allAntagonistPositionWriterLocker;
 	}
 
 	/************************** methods *************************************/

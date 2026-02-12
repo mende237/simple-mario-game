@@ -93,28 +93,30 @@ public class Collision {
 			int xMax) {
 		Antagonist tabC[];
 		int tabO[];
-		if (GameManager.DOWN() >= 0) {
-			for (int j = 0; j < antagonistsTab.size(); j++) {
-				tabO = antagonistBetweenObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
-				antagonistsTab.get(j).setBehindObject(tabO[0]);
-				antagonistsTab.get(j).setFrontObject(tabO[1]);
 
-				/*
-				 * on retire le personnage du tableau, une même personne est toujours proche de
-				 * d'elle meme
-				 */
-				Antagonist tempAntagonist = antagonistsTab.remove(j);
-				if (antagonistsTab.size() >= 1) {
+		for (int j = 0; j < antagonistsTab.size(); j++) {
+			tabO = antagonistBetweenObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
+			antagonistsTab.get(j).setBehindObject(tabO[0]);
+			antagonistsTab.get(j).setFrontObject(tabO[1]);
+
+			/*
+			 * on retire le personnage du tableau, une même personne est toujours proche de
+			 * d'elle meme
+			 */
+			Antagonist tempAntagonist = antagonistsTab.remove(j);
+			if (antagonistsTab.size() >= 1) {
+				GameManager.getAllAntagonistPositionWriterLocker().lock();
+				if (!GameManager.getAllAntagonistPositionReaderLocker().isLocked()) {
 					tabC = aroundCharacter(antagonistsTab, 0, antagonistsTab.size() - 1, 0, tempAntagonist);
-
 					setNear(tempAntagonist, tabC[0], Position.BEHIND);
 					setNear(tempAntagonist, tabC[1], Position.FRONT);
 				}
-
-				antagonistsTab.add(j, tempAntagonist);
+				GameManager.getAllAntagonistPositionWriterLocker().unlock();
 			}
-			GameManager.UP();
+
+			antagonistsTab.add(j, tempAntagonist);
 		}
+
 	}
 
 	/*
@@ -284,7 +286,6 @@ public class Collision {
 				return array;
 			}
 		} else {
-			System.out.println("--------------------------------  " + tab.get(begin).getX());
 			int array[] = new int[2];
 			if (yCollision(personnage, tab.get(begin))) {
 				array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
@@ -295,7 +296,6 @@ public class Collision {
 			if (yCollision(personnage, tab.get(end))) {
 				array[1] = tab.get(end).getX();
 			} else {
-				System.out.println("--------------------------------****  " + tab.get(end).getX());
 				array[1] = xMax;
 			}
 
@@ -370,6 +370,18 @@ public class Collision {
 			array[0] = tab.get(begin);
 			array[1] = tab.get(end);
 			return array;
+		}
+	}
+
+	public static void DOWN_ALL(ArrayList<? extends Antagonist> antagonists) {
+		for (Antagonist antagonist : antagonists) {
+			antagonist.getPositionLocker().lock();
+		}
+	}
+
+	public static void UP_ALL(ArrayList<? extends Antagonist> antagonists) {
+		for (Antagonist antagonist : antagonists) {
+			antagonist.getPositionLocker().unlock();
 		}
 	}
 

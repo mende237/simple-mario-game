@@ -83,16 +83,9 @@ public class GameItem {
 		this.y = y;
 	}
 
-	// public void displacement() {
-	// if (App.scene.getxPos() != -1)
-	// this.x = this.x - App.scene.getDx();
-	// }
-
 	public void displacement() {
 		if (App.scene.getxPos() != -1) {
-			// GameManager.DOWN();
 			this.x = this.x - ((int) App.scene.getDx());
-			// GameManager.UP();
 		}
 	}
 

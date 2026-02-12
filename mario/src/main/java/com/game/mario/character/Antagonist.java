@@ -4,6 +4,9 @@ import com.game.mario.item.GameItem;
 import com.game.mario.App;
 import com.game.mario.game.GameManager;
 
+import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
+
 public abstract class Antagonist extends GameCharacter {
 	private int Dx;
 	private Thread thread;
@@ -18,11 +21,13 @@ public abstract class Antagonist extends GameCharacter {
 	protected boolean remove = false;
 	protected String name;
 	protected int walkFrequency;
+	protected ReentrantLock positionLocker;
 
 	public Antagonist(int x, int y, int width, int height, String name, int walkFrequency) {
 		super(x, y, width, height);
 		this.name = name;
 		this.walkFrequency = walkFrequency;
+		positionLocker = new ReentrantLock();
 	}
 
 	/*********************************
@@ -58,6 +63,10 @@ public abstract class Antagonist extends GameCharacter {
 
 	public int getWalkFrequency() {
 		return this.walkFrequency;
+	}
+
+	public ReentrantLock getPositionLocker() {
+		return this.positionLocker;
 	}
 
 	/***********************************
@@ -131,10 +140,8 @@ public abstract class Antagonist extends GameCharacter {
 
 	public void displacement() {
 		if (App.scene.getxPos() != -1) {
-			// GameManager.DOWN();
 			super.setX(super.getX() - App.scene.getDx());
 			kill(App.scene.mario);
-			// GameManager.UP();
 		}
 	}
 
@@ -173,6 +180,22 @@ public abstract class Antagonist extends GameCharacter {
 			this.characterDirectlyBehind = false;
 			return minObject;
 		}
+	}
+
+	public boolean canMove() {
+		boolean eval = GameManager.isBegin() == true;
+		// && GameManager.getAllAntagonistPositionLocker().isLocked() == false;
+
+		// Optional<Antagonist> behindCharacter =
+		// Optional.ofNullable(this.behindCharacter);
+		// Optional<Antagonist> frontCharacter =
+		// Optional.ofNullable(this.frontCharacter);
+
+		// eval = eval &&
+		// behindCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked).orElse(true);
+		// eval = eval &&
+		// frontCharacter.map(Antagonist::getPositionLocker).map(ReentrantLock::isLocked).orElse(true);
+		return eval;
 	}
 
 	public abstract void kill(Mario mario);
