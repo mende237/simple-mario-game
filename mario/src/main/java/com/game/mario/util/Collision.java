@@ -8,8 +8,7 @@ import com.game.mario.item.GameItem;
 import com.game.mario.item.Coin;
 import com.game.mario.character.GameCharacter;
 import com.game.mario.character.Antagonist;
-import com.game.mario.character.Champignon;
-import com.game.mario.character.Turtle;
+
 import com.game.mario.character.Mario;
 
 public class Collision {
@@ -20,11 +19,22 @@ public class Collision {
 	public static void piece(ArrayList<Coin> pieceTab, Mario mario) {
 		int minus = 0;
 		if (pieceTab.size() > 1) {
-			int tab[] = around(pieceTab, 0, pieceTab.size() - 1, 0, 30, mario);
+			int tab[] = marioBetweenObject(pieceTab, 0, pieceTab.size() - 1, 0, 30, mario);
 			if (tab != null) {
-				for (int i = 0; i <= tab[1] - tab[0] - minus; i++) {
-					if (mario.contactCoin(pieceTab.get(tab[0] + i)) == true) {
-						pieceTab.remove(tab[0] + i);
+				int begin = tab[0];
+				int end = tab[1];
+
+				if (begin == -1) {
+					begin = 0;
+				}
+
+				if (end == -2) {
+					end = 0;
+				}
+
+				for (int i = 0; i <= end - begin - minus; i++) {
+					if (mario.contactCoin(pieceTab.get(begin + i)) == true) {
+						pieceTab.remove(begin + i);
 						minus++;
 						mario.setScore(mario.getScore() + 1);
 						// Audio.playSong("/audio/piece.wav");
@@ -47,13 +57,24 @@ public class Collision {
 		int indexMemory = 0, cmptMerge = 0, cmpt = 0;
 		boolean enter = false;
 		// on determines les objects qui sont autour de mario
-		int tab[] = around(objectTab, 0, objectTab.size() - 1, 0, precision, mario);
+		int tab[] = marioBetweenObject(objectTab, 0, objectTab.size() - 1, 0, precision, mario);
 		if (tab != null) {
-			for (int i = 0; i < tab[1] - tab[0] + 1; i++) {
-				if (mario.near(objectTab.get(tab[0] + i)) == true) {
+			int begin = tab[0];
+			int end = tab[1];
+
+			if (begin == -1) {
+				begin = 0;
+			}
+
+			if (end == -2) {
+				end = 0;
+			}
+
+			for (int i = 0; i < end - begin + 1; i++) {
+				if (mario.near(objectTab.get(begin + i)) == true) {
 					cmptMerge++;
 					if (enter == false) {
-						indexMemory = tab[0] + i;
+						indexMemory = begin + i;
 						enter = true;
 					}
 
@@ -63,7 +84,7 @@ public class Collision {
 
 			}
 			// dans le cas ou mario n'est proche d'aucun object
-			if (cmpt == tab[1] - tab[0] + 1) {
+			if (cmpt == end - begin + 1) {
 				if (mario.isJump() == false) {
 					mario.setIsOnObject(false);
 				}
@@ -150,26 +171,35 @@ public class Collision {
 	 * abscissa which is passed in parameter of the function
 	 * to achieve that it uses the principle of dichotomous search
 	 */
-	public static int[] around(ArrayList<? extends GameItem> tab, int begin, int end, int middle, int precision,
+	public static int[] marioBetweenObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
+			int precision,
 			GameCharacter personnage) {
 		middle = (begin + end) / 2;
 		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX() - precision) {
 			end = middle;
 			if (begin < end)
-				return around(tab, begin, end, middle, precision, personnage);
-			else
-				return null;
+				return marioBetweenObject(tab, begin, end, middle, precision, personnage);
+			else {
+				int array[] = new int[2];
+				array[0] = -1;
+				array[1] = begin;
+				return array;
+			}
 		} else if (personnage.getX() > tab.get(middle).getX() + tab.get(middle).getWidth() + precision) {
 			begin = middle;
 			if (begin < end - 1)
-				return around(tab, begin, end, middle, precision, personnage);
+				return marioBetweenObject(tab, begin, end, middle, precision, personnage);
 			else if (begin == end - 1) {
 				int array[] = new int[2];
 				array[0] = begin;
 				array[1] = end;
 				return array;
-			} else
-				return null;
+			} else {
+				int array[] = new int[2];
+				array[0] = end;
+				array[1] = -2;
+				return array;
+			}
 		} else {
 			int array[] = new int[2];
 			if (middle >= 2 && middle <= end - 2) {
@@ -372,17 +402,4 @@ public class Collision {
 			return array;
 		}
 	}
-
-	public static void DOWN_ALL(ArrayList<? extends Antagonist> antagonists) {
-		for (Antagonist antagonist : antagonists) {
-			antagonist.getPositionLocker().lock();
-		}
-	}
-
-	public static void UP_ALL(ArrayList<? extends Antagonist> antagonists) {
-		for (Antagonist antagonist : antagonists) {
-			antagonist.getPositionLocker().unlock();
-		}
-	}
-
 }

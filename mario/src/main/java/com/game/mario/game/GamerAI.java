@@ -19,12 +19,14 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            int tabO[] = Collision.antagonistBetweenObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0,
-                    this.xMax,
+            int tabO[] = Collision.marioBetweenObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0,
+                    0,
                     mario);
 
             System.out.println(
-                    "x mario " + mario.getX() + " width " + mario.getWidth() + "  " + tabO[0] + " ----- " + tabO[1]);
+                    "x mario " + mario.getX() + " width " + mario.getWidth() + "  " + tabO[0] + " ----- "
+                            + tabO[1]);
+
             try {
                 Thread.sleep(REACTION_TIME);
             } catch (InterruptedException e) {
