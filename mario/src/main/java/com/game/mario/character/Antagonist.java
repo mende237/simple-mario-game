@@ -27,7 +27,7 @@ public abstract class Antagonist extends GameCharacter {
 		super(x, y, width, height);
 		this.name = name;
 		this.walkFrequency = walkFrequency;
-		positionLocker = new ReentrantLock();
+		positionLocker = new ReentrantLock(true);
 	}
 
 	/*********************************

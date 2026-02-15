@@ -92,26 +92,5 @@ public class GameItem {
 	/*******************************************
 	 * methods
 	 ********************************************/
-	public void DOWN() {
-		while (this.sem - 1 < 0) {
 
-		}
-		this.sem = this.sem - 1;
-	}
-
-	public static int DOWNALL() {
-		if (GameItem.globalSem > 0) {
-			GameItem.globalSem = GameItem.globalSem - 1;
-			return GameItem.globalSem;
-		} else
-			return -1;
-	}
-
-	public void UP() {
-		this.sem = 1;
-	}
-
-	public static void UPALL() {
-		GameItem.globalSem = 1;
-	}
 }
