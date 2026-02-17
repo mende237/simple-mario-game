@@ -190,7 +190,7 @@ public class FirstStage extends Stage {
 		SceneUpdater.update(getGraphicsContext2D());
 
 		if (aiMode) {
-			GamerAI gamerAI = new GamerAI(this, 5);
+			GamerAI gamerAI = new GamerAI(this, 5, 5);
 			this.gamerAI_Thread = new Thread(gamerAI);
 			this.gamerAI_Thread.start();
 		}
