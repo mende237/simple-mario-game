@@ -27,6 +27,7 @@ public class GamerAI implements Runnable {
                 stage.getAntagonists().size(), 0, stage.getMario());
 
         if (nearestAntagonist[0] == null || nearestAntagonist[1] == null) {
+            // System.out.println("--------------------------------------------");
             if (this.contextAntogonistWidth <= this.stage.getAntagonists().size()) {
                 if (nearestAntagonist[0] == null) {
                     for (int i = 0; i < this.contextAntogonistWidth; i++) {
@@ -55,6 +56,9 @@ public class GamerAI implements Runnable {
             } else {
                 int nbrLeft = (this.contextAntogonistWidth - 2) / 2;
                 int nbrRight = (this.contextAntogonistWidth - 2) - nbrLeft;
+
+                // System.out.println("******* left " + nbrLeft + " *********** right " +
+                // nbrRight);
                 Antagonist current = (Antagonist) nearestAntagonist[0].getBehindCharacter();
                 int i = 0;
                 while (current != null && i < nbrLeft) {
@@ -66,8 +70,10 @@ public class GamerAI implements Runnable {
                 int nbrFoundAntagonistLeft = i;
 
                 antagonists[i] = nearestAntagonist[0];
+                i++;
                 nbrRight += (nbrLeft - nbrFoundAntagonistLeft);
-
+                antagonists[i] = nearestAntagonist[1];
+                i++;
                 current = (Antagonist) nearestAntagonist[1].getFrontCharacter();
                 int j = 0;
                 while (current != null && j < nbrRight) {
@@ -174,7 +180,7 @@ public class GamerAI implements Runnable {
 
             for (Antagonist antagonist : antagonists) {
                 if (antagonist != null) {
-                    System.out.print("Antagonist x : " + antagonist.getX() + " ");
+                    System.out.print(antagonist.getName() + " x : " + antagonist.getX() + " ");
                 }
             }
 
