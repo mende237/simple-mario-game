@@ -1,10 +1,9 @@
 package com.game.mario.item;
 
+import com.game.mario.App;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import com.game.mario.App;
-import com.game.mario.game.GameManager;
 
 public class GameItem {
 	/****************************************
@@ -14,21 +13,21 @@ public class GameItem {
 	private int x, y;
 	protected Image imgObject;
 	protected ImageView icoObject;
-	protected int sem;
-	protected static int globalSem = 1;
+	protected String name;
 
 	/***************************************
 	 * constructor
 	 ********************************************/
-	public GameItem(int x, int y, int height, int width) {
+	public GameItem(int x, int y, int height, int width, String name) {
 		this.height = height;
 		this.width = width;
 		this.x = x;
 		this.y = y;
+		this.name = name;
 	}
 
-	public GameItem(int x, int y, int height, int width, Image imgObject) {
-		this(x, y, height, width);
+	public GameItem(int x, int y, int height, int width, String name, Image imgObject) {
+		this(x, y, height, width, name);
 		icoObject = new ImageView(imgObject);
 		this.imgObject = imgObject;
 		icoObject.setX(x);
@@ -62,6 +61,10 @@ public class GameItem {
 
 	public Image getImgObject() {
 		return imgObject;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 	public void setImageObject(Image img) {

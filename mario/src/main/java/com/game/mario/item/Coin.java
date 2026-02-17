@@ -14,7 +14,7 @@ public class Coin extends GameItem {
 	 * constructor
 	 **************************************/
 	public Coin(int x, int y) {
-		super(x, y, 30, 30, new Image(Coin.class.getResource("images/piece1.png").toExternalForm()));
+		super(x, y, 30, 30, "coin", new Image(Coin.class.getResource("images/piece1.png").toExternalForm()));
 	}
 
 	/******************************************

@@ -210,7 +210,7 @@ public class Turtle extends Antagonist implements Runnable {
 						}
 					}
 
-					this.kill(App.scene.mario);
+					this.kill(App.scene.getMario());
 					if (super.nbreOfLive <= 0) {
 						// super.getThread().stop();
 						super.remove = true;

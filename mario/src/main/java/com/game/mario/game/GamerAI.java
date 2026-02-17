@@ -7,26 +7,22 @@ import com.game.mario.util.Collision;
 public class GamerAI implements Runnable {
     private final int REACTION_TIME = 500; // milliseconds
     private Stage stage;
-    private Mario mario;
     private int contextItemWidth;
 
-    public GamerAI(Stage stage, Mario mario, int contextItemWidth) {
+    public GamerAI(Stage stage, int contextItemWidth) {
         this.stage = stage;
-        this.mario = mario;
         this.contextItemWidth = contextItemWidth;
     }
 
     private GameItem[] getItemContext() {
         int nbrNearestItems;
         int cmpt = 0;
+        Mario mario = stage.getMario();
 
         GameItem[] gameItems = new GameItem[this.contextItemWidth];
         int tabO[] = Collision.marioBetweenObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0,
                 0,
                 mario);
-
-        System.out.println(
-                "x mario " + mario.getX() + " width " + mario.getWidth() + " " + tabO[0] + "----- " + tabO[1]);
 
         int begin = tabO[0];
         int end = tabO[1];
@@ -56,11 +52,11 @@ public class GamerAI implements Runnable {
                 int nbrRight = rest - nbrLeft;
 
                 if (nbrLeft > begin) {
-                    nbrLeft = begin;
                     nbrRight += (nbrLeft - begin);
+                    nbrLeft = begin;
                 }
 
-                for (int i = 0; i < begin; i++) {
+                for (int i = 0; i < nbrLeft; i++) {
                     gameItems[cmpt] = stage.getGameItems().get(i);
                     cmpt++;
                 }
@@ -89,21 +85,12 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            // int tabO[] = Collision.marioBetweenObject(stage.getGameItems(), 0,
-            // stage.getGameItems().size() - 1, 0,
-            // 0,
-            // mario);
-
-            // System.out.println(
-            // "x mario " + mario.getX() + " width " + mario.getWidth() + " " + tabO[0] + "
-            // ----- "
-            // + tabO[1]);
-
             GameItem[] gameItems = getItemContext();
 
+            System.out.print("Mario " + this.stage.getMario().getX());
             for (GameItem gameItem : gameItems) {
                 if (gameItem != null) {
-                    System.out.print(gameItem.getX() + "  ");
+                    System.out.print(" Name " + gameItem.getName() + " x : " + gameItem.getX() + "  ");
                 }
             }
             System.out.println();

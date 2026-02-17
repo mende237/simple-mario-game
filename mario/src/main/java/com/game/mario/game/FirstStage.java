@@ -10,10 +10,10 @@ import javafx.scene.image.ImageView;
 
 import com.game.mario.App;
 
-import com.game.mario.item.Bloc;
+import com.game.mario.item.Block;
 import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
-import com.game.mario.item.Tuyau;
+import com.game.mario.item.Pipe;
 import com.game.mario.character.Turtle;
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Champignon;
@@ -67,33 +67,33 @@ public class FirstStage extends Stage {
 
 		int pas = 0;
 		for (int i = 0; i < 7; i++) {
-			gameItems.add(new Tuyau(600 + pas, 228));
+			gameItems.add(new Pipe(600 + pas, 228));
 			pas = pas + 500;
 		}
 		pas = 0;
 		for (int i = 0; i < 4; i++) {
-			gameItems.add(new Bloc(800 + pas, 180));
+			gameItems.add(new Block(800 + pas, 180));
 			pas = pas + 30;
 		}
 
 		pas = 0;
 		for (int i = 4; i < 8; i++) {
-			gameItems.add(new Bloc(1700 + pas, 180));
+			gameItems.add(new Block(1700 + pas, 180));
 			pas = pas + 30;
 		}
 
 		for (int i = 8; i < 11; i++) {
-			gameItems.add(new Bloc(1800 + pas, 140));
+			gameItems.add(new Block(1800 + pas, 140));
 			pas = pas + 30;
 		}
 
-		gameItems.add(new Bloc(2200, 180));
-		gameItems.add(new Bloc(2300, 140));
-		gameItems.add(new Bloc(2400, 180));
+		gameItems.add(new Block(2200, 180));
+		gameItems.add(new Block(2300, 140));
+		gameItems.add(new Block(2400, 180));
 
-		gameItems.add(new Bloc(3200, 180));
-		gameItems.add(new Bloc(3300, 140));
-		gameItems.add(new Bloc(3400, 180));
+		gameItems.add(new Block(3200, 180));
+		gameItems.add(new Block(3300, 140));
+		gameItems.add(new Block(3400, 180));
 
 		pas = 0;
 		for (int i = 0; i < 4; i++) {
@@ -190,7 +190,7 @@ public class FirstStage extends Stage {
 		SceneUpdater.update(getGraphicsContext2D());
 
 		if (aiMode) {
-			GamerAI gamerAI = new GamerAI(this, mario, 5);
+			GamerAI gamerAI = new GamerAI(this, 5);
 			this.gamerAI_Thread = new Thread(gamerAI);
 			this.gamerAI_Thread.start();
 		}

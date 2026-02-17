@@ -155,7 +155,7 @@ public class Champignon extends Antagonist implements Runnable {
 						}
 					}
 
-					this.kill(App.scene.mario);
+					this.kill(App.scene.getMario());
 					// System.out.println("live");
 					if (super.isLiving() == false) {
 						System.out.println("champignon tuer !!!");

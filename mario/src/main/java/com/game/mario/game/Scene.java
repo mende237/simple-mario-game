@@ -7,7 +7,7 @@ import com.game.mario.character.Mario;
 
 public abstract class Scene extends Canvas {
 	// *************************** property *********************************** //
-	public Mario mario;
+	protected Mario mario;
 
 	private int yFloor;
 	private int heightRoof;
@@ -39,6 +39,10 @@ public abstract class Scene extends Canvas {
 
 	public int getHeightRoof() {
 		return this.heightRoof;
+	}
+
+	public Mario getMario() {
+		return this.mario;
 	}
 
 	// **************************************** setter
