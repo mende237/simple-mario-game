@@ -16,6 +16,13 @@ public class Collision {
 		BEHIND, FRONT
 	}
 
+	/**
+	 * Manages collision detection and collection of coins by Mario.
+	 * Removes collected coins from the list and updates Mario's score.
+	 *
+	 * @param pieceTab the list of coins available in the game world
+	 * @param mario    the Mario character instance
+	 */
 	public static void piece(ArrayList<Coin> pieceTab, Mario mario) {
 		int minus = 0;
 		if (pieceTab.size() > 1) {
@@ -52,7 +59,16 @@ public class Collision {
 
 	}
 
-	/* this function manage the collision with mario and objects */
+	/**
+	 * Manages collision detection between Mario and game objects.
+	 * Determines if Mario is in contact with objects and handles merged object
+	 * collisions.
+	 *
+	 * @param objectTab the list of game objects to check for collision with Mario
+	 * @param precision the collision detection precision range in pixels
+	 * @param mario     the Mario character instance
+	 * @return true if Mario is in contact with an object, false otherwise
+	 */
 	public static boolean mario(ArrayList<? extends GameItem> objectTab, int precision, Mario mario) {
 		int indexMemory = 0, cmptMerge = 0, cmpt = 0;
 		boolean enter = false;
@@ -110,6 +126,17 @@ public class Collision {
 
 	}
 
+	/**
+	 * Manages collision detection for antagonists with game objects and other
+	 * antagonists.
+	 * Sets the blocking objects and nearby antagonists for each antagonist in the
+	 * list.
+	 *
+	 * @param antagonistsTab the list of antagonists to process
+	 * @param objectTab      the list of game objects that may block antagonist
+	 *                       movement
+	 * @param xMax           the maximum x-axis coordinate boundary
+	 */
 	public static void antagonist(ArrayList<Antagonist> antagonistsTab, ArrayList<? extends GameItem> objectTab,
 			int xMax) {
 		Antagonist tabC[];
@@ -140,55 +167,69 @@ public class Collision {
 
 	}
 
-	/*
-	 * this fonction modifies the character closest to a character if the one that
-	 * is passed
-	 * through parameter is closer than the one which was there before
+	/**
+	 * Updates the nearest character reference for a target antagonist if the
+	 * provided
+	 * character is closer than the previously stored one.
+	 *
+	 * @param targerCharacter the target antagonist whose nearest character will be
+	 *                        updated
+	 * @param character       the antagonist character to potentially set as nearest
+	 * @param position        the direction position (BEHIND or FRONT) relative to
+	 *                        the target
 	 */
-	public static void setNear(Antagonist personnageCible, Antagonist personnage, Position position) {
+	public static void setNear(Antagonist targerCharacter, Antagonist character, Position position) {
 		if (position == Position.BEHIND) {
-			if (personnageCible.getBehindCharacter() == null)
-				personnageCible.setBehindCharacter(personnage);
-			else if (personnage != null) {
-				if (personnage.getX() + personnage.getWidth() >= personnageCible.getBehindCharacter().getX()
-						+ personnageCible.getBehindCharacter().getWidth()) {
-					personnageCible.setBehindCharacter(personnage);
+			if (targerCharacter.getBehindCharacter() == null)
+				targerCharacter.setBehindCharacter(character);
+			else if (character != null) {
+				if (character.getX() + character.getWidth() >= targerCharacter.getBehindCharacter().getX()
+						+ targerCharacter.getBehindCharacter().getWidth()) {
+					targerCharacter.setBehindCharacter(character);
 				}
 			}
 		} else {
-			if (personnageCible.getFrontCharacter() == null) {
-				personnageCible.setFrontCharacter(personnage);
-			} else if (personnage != null) {
-				if (personnage.getX() <= personnageCible.getFrontCharacter().getX()) {
-					personnageCible.setFrontCharacter(personnage);
+			if (targerCharacter.getFrontCharacter() == null) {
+				targerCharacter.setFrontCharacter(character);
+			} else if (character != null) {
+				if (character.getX() <= targerCharacter.getFrontCharacter().getX()) {
+					targerCharacter.setFrontCharacter(character);
 				}
 			}
 		}
 	}
 
-	/*
-	 * this function return the index of the two object which are extremely near of
-	 * abscissa which is passed in parameter of the function
-	 * to achieve that it uses the principle of dichotomous search
+	/**
+	 * Uses binary search to find game objects closest to Mario's x-position.
+	 * Returns indices of objects on either side of or containing Mario.
+	 *
+	 * @param tab       the sorted list of game items to search through
+	 * @param begin     the starting index for the binary search
+	 * @param end       the ending index for the binary search
+	 * @param middle    the middle index for the current binary search iteration
+	 * @param precision the collision detection precision range in pixels
+	 * @param character the game character (Mario) to check proximity to
+	 * @return an array containing two indices: the index of the nearest object to
+	 *         the left and right of Mario
 	 */
 	public static int[] marioBetweenObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
 			int precision,
-			GameCharacter personnage) {
+			GameCharacter character) {
 		middle = (begin + end) / 2;
-		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX() - precision) {
+		if (character.getX() + character.getWidth() < tab.get(middle).getX() - precision) {
 			end = middle;
 			if (begin < end)
-				return marioBetweenObject(tab, begin, end, middle, precision, personnage);
+				return marioBetweenObject(tab, begin, end, middle, precision, character);
 			else {
 				int array[] = new int[2];
 				array[0] = -1;
 				array[1] = begin;
 				return array;
 			}
-		} else if (personnage.getX() > tab.get(middle).getX() + tab.get(middle).getWidth() + precision) {
+		} else if (character.getX() > tab.get(middle).getX() + tab.get(middle).getWidth() + precision) {
 			begin = middle;
 			if (begin < end - 1)
-				return marioBetweenObject(tab, begin, end, middle, precision, personnage);
+				return marioBetweenObject(tab, begin, end, middle, precision, character);
 			else if (begin == end - 1) {
 				int array[] = new int[2];
 				array[0] = begin;
@@ -213,32 +254,51 @@ public class Collision {
 		}
 	}
 
+	/**
+	 * Checks if a character and game item have overlapping y-axis positions.
+	 *
+	 * @param character the game character to check
+	 * @param gameItem  the game item to check for y-axis collision
+	 * @return true if the character and item overlap on the y-axis, false otherwise
+	 */
 	public static boolean yCollision(GameCharacter character, GameItem gameItem) {
 		return character.getY() + character.getHeight() > gameItem.getY()
 				&& character.getY() < gameItem.getY() + gameItem.getHeight();
 	}
 
-	/*
-	 * this function gives the x-axis position two the objects which enclose an
-	 * antogonist to achieve that it uses the principle of dichotomous search
+	/**
+	 * Uses binary search to find game objects that enclose or are adjacent to an
+	 * antagonist.
+	 * Returns the x-axis positions of blocking objects on either side of the
+	 * antagonist.
+	 *
+	 * @param tab       the sorted list of game items to search through
+	 * @param begin     the starting index for the binary search
+	 * @param end       the ending index for the binary search
+	 * @param middle    the middle index for the current binary search iteration
+	 * @param xMax      the maximum x-axis coordinate boundary
+	 * @param character the antagonist character to find enclosing objects for
+	 * @return an array containing two x-axis positions: the right boundary of the
+	 *         left blocking object and the left boundary of the right blocking
+	 *         object
 	 */
 	public static int[] antagonistBetweenObject(ArrayList<? extends GameItem> tab, int begin, int end, int middle,
 			int xMax,
-			GameCharacter personnage) {
+			GameCharacter character) {
 		middle = (begin + end) / 2;
-		if (personnage.getX() + personnage.getWidth() <= tab.get(middle).getX()) {
+		if (character.getX() + character.getWidth() <= tab.get(middle).getX()) {
 			end = middle;
 			if (begin < end) {
 				if (middle > 0) {
-					if (personnage.getX() >= tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth()) {
+					if (character.getX() >= tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth()) {
 						int array[] = new int[2];
-						if (yCollision(personnage, tab.get(middle - 1))) {
+						if (yCollision(character, tab.get(middle - 1))) {
 							array[0] = tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth();
 						} else {
 							array[0] = 0;
 						}
 
-						if (yCollision(personnage, tab.get(middle))) {
+						if (yCollision(character, tab.get(middle))) {
 							array[1] = tab.get(middle).getX();
 						} else {
 							array[1] = xMax;
@@ -247,48 +307,48 @@ public class Collision {
 					}
 				}
 
-				return antagonistBetweenObject(tab, begin, end, middle, xMax, personnage);
+				return antagonistBetweenObject(tab, begin, end, middle, xMax, character);
 			} else {
 				int array[] = new int[2];
 				array[0] = 0;
-				if (yCollision(personnage, tab.get(begin))) {
+				if (yCollision(character, tab.get(begin))) {
 					array[1] = tab.get(begin).getX();
 				} else {
 					array[1] = xMax;
 				}
 				return array;
 			}
-		} else if (personnage.getX() >= tab.get(middle).getX() + tab.get(middle).getWidth()) {
+		} else if (character.getX() >= tab.get(middle).getX() + tab.get(middle).getWidth()) {
 			begin = middle;
 			if (begin < end - 1) {
-				if (personnage.getX() + personnage.getWidth() <= tab.get(middle + 1).getX()) {
+				if (character.getX() + character.getWidth() <= tab.get(middle + 1).getX()) {
 					int array[] = new int[2];
 
-					if (yCollision(personnage, tab.get(middle))) {
+					if (yCollision(character, tab.get(middle))) {
 						array[0] = tab.get(middle).getX() + tab.get(middle).getWidth();
 					} else {
 						array[0] = 0;
 					}
 
-					if (yCollision(personnage, tab.get(middle + 1))) {
+					if (yCollision(character, tab.get(middle + 1))) {
 						array[1] = tab.get(middle + 1).getX();
 					} else {
 						array[1] = xMax;
 					}
 					return array;
 				}
-				return antagonistBetweenObject(tab, begin, end, middle, xMax, personnage);
+				return antagonistBetweenObject(tab, begin, end, middle, xMax, character);
 			} else if (begin == end - 1) {
-				if (tab.get(begin).getX() + tab.get(begin).getWidth() <= personnage.getX()
-						&& personnage.getX() + personnage.getWidth() <= tab.get(end).getX()) {
+				if (tab.get(begin).getX() + tab.get(begin).getWidth() <= character.getX()
+						&& character.getX() + character.getWidth() <= tab.get(end).getX()) {
 					int array[] = new int[2];
-					if (yCollision(personnage, tab.get(begin))) {
+					if (yCollision(character, tab.get(begin))) {
 						array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
 					} else {
 						array[0] = 0;
 					}
 
-					if (yCollision(personnage, tab.get(end))) {
+					if (yCollision(character, tab.get(end))) {
 						array[1] = tab.get(end).getX();
 					} else {
 						array[1] = xMax;
@@ -296,7 +356,7 @@ public class Collision {
 					return array;
 				} else {
 					int array[] = new int[2];
-					if (yCollision(personnage, tab.get(end))) {
+					if (yCollision(character, tab.get(end))) {
 						array[0] = tab.get(end).getX() + tab.get(end).getWidth();
 					} else {
 						array[0] = 0;
@@ -307,7 +367,7 @@ public class Collision {
 				}
 			} else {
 				int array[] = new int[2];
-				if (yCollision(personnage, tab.get(end))) {
+				if (yCollision(character, tab.get(end))) {
 					array[0] = tab.get(end).getX() + tab.get(end).getWidth();
 				} else {
 					array[0] = 0;
@@ -317,13 +377,13 @@ public class Collision {
 			}
 		} else {
 			int array[] = new int[2];
-			if (yCollision(personnage, tab.get(begin))) {
+			if (yCollision(character, tab.get(begin))) {
 				array[0] = tab.get(begin).getX() + tab.get(begin).getWidth();
 			} else {
 				array[0] = 0;
 			}
 
-			if (yCollision(personnage, tab.get(end))) {
+			if (yCollision(character, tab.get(end))) {
 				array[1] = tab.get(end).getX();
 			} else {
 				array[1] = xMax;
@@ -333,6 +393,11 @@ public class Collision {
 		}
 	}
 
+	/**
+	 * Removes antagonists marked for removal from the provided list.
+	 *
+	 * @param tab the list of antagonists to update by removing marked ones
+	 */
 	public static void updateTab(ArrayList<? extends Antagonist> tab) {
 		for (int i = 0; i < tab.size(); i++) {
 			if (tab.get(i).isRemove() == true)
@@ -340,18 +405,27 @@ public class Collision {
 		}
 	}
 
-	/*
-	 * this function give two the characters which enclose an character
-	 * to achieve that it uses the principle of dichotomous search
+	/**
+	 * Uses binary search to find antagonists positioned on either side of a given
+	 * character.
+	 * Returns the nearest antagonist to the left and right of the target character.
+	 *
+	 * @param tab        the sorted list of antagonists to search through
+	 * @param begin      the starting index for the binary search
+	 * @param end        the ending index for the binary search
+	 * @param middle     the middle index for the current binary search iteration
+	 * @param personnage the target character to find surrounding antagonists for
+	 * @return an array containing two antagonists: the nearest one behind (left)
+	 *         and the nearest one in front (right)
 	 */
 	public static Antagonist[] aroundCharacter(ArrayList<? extends Antagonist> tab, int begin, int end, int middle,
-			GameCharacter personnage) {
+			GameCharacter character) {
 		middle = (begin + end) / 2;
-		if (personnage.getX() + personnage.getWidth() < tab.get(middle).getX()) {
+		if (character.getX() + character.getWidth() < tab.get(middle).getX()) {
 			end = middle;
 			if (begin < end) {
 				if (middle > 0) {
-					if (personnage.getX() >= tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth()) {
+					if (character.getX() >= tab.get(middle - 1).getX() + tab.get(middle - 1).getWidth()) {
 						Antagonist array[] = new Antagonist[2];
 						array[0] = tab.get(middle - 1);
 						array[1] = tab.get(middle);
@@ -359,26 +433,26 @@ public class Collision {
 					}
 				}
 
-				return aroundCharacter(tab, begin, end, middle, personnage);
+				return aroundCharacter(tab, begin, end, middle, character);
 			} else {
 				Antagonist array[] = new Antagonist[2];
 				array[0] = null;
 				array[1] = tab.get(begin);
 				return array;
 			}
-		} else if (personnage.getX() > tab.get(middle).getX() + tab.get(middle).getWidth()) {
+		} else if (character.getX() > tab.get(middle).getX() + tab.get(middle).getWidth()) {
 			begin = middle;
 			if (begin < end - 1) {
-				if (personnage.getX() + personnage.getWidth() < tab.get(middle + 1).getX()) {
+				if (character.getX() + character.getWidth() < tab.get(middle + 1).getX()) {
 					Antagonist array[] = new Antagonist[2];
 					array[0] = tab.get(middle);
 					array[1] = tab.get(middle + 1);
 					return array;
 				}
-				return aroundCharacter(tab, begin, end, middle, personnage);
+				return aroundCharacter(tab, begin, end, middle, character);
 			} else if (begin == end - 1) {
-				if (tab.get(begin).getX() + tab.get(begin).getWidth() < personnage.getX()
-						&& personnage.getX() + personnage.getWidth() < tab.get(end).getX()) {
+				if (tab.get(begin).getX() + tab.get(begin).getWidth() < character.getX()
+						&& character.getX() + character.getWidth() < tab.get(end).getX()) {
 					Antagonist array[] = new Antagonist[2];
 					array[0] = tab.get(begin);
 					array[1] = tab.get(end);

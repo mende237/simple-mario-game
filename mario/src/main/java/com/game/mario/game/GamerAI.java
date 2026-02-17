@@ -1,5 +1,6 @@
 package com.game.mario.game;
 
+import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mario;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
@@ -8,10 +9,17 @@ public class GamerAI implements Runnable {
     private final int REACTION_TIME = 500; // milliseconds
     private Stage stage;
     private int contextItemWidth;
+    private int contextAntogonistWidth;
 
     public GamerAI(Stage stage, int contextItemWidth) {
         this.stage = stage;
         this.contextItemWidth = contextItemWidth;
+    }
+
+    private Antagonist[] getAntagonistContext() {
+        Antagonist[] antagonists = new Antagonist[this.contextAntogonistWidth];
+
+        return antagonists;
     }
 
     private GameItem[] getItemContext() {
