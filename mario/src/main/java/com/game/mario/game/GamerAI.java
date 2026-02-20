@@ -10,11 +10,13 @@ public class GamerAI implements Runnable {
     private Stage stage;
     private int contextItemWidth;
     private int contextAntogonistWidth;
+    private WindowFilter windowFilter;
 
-    public GamerAI(Stage stage, int contextItemWidth, int contextAntogonistWidth) {
+    public GamerAI(Stage stage, int contextItemWidth, int contextAntogonistWidth, WindowFilter windowFilter) {
         this.stage = stage;
         this.contextItemWidth = contextItemWidth;
         this.contextAntogonistWidth = contextAntogonistWidth;
+        this.windowFilter = windowFilter;
     }
 
     private Antagonist[] getAntagonistContext() {
@@ -159,6 +161,23 @@ public class GamerAI implements Runnable {
         }
 
         return gameItems;
+    }
+
+    private int[] filter(int xTab[]) {
+        int[] acceptedRange = new int[2];
+        acceptedRange[0] = -1;
+        acceptedRange[1] = -1;
+
+        for (int i = 0; i < xTab.length; i++) {
+            if (xTab[i] >= this.windowFilter.nim() && xTab[i] <= this.windowFilter.max()) {
+                if (acceptedRange[0] == -1) {
+                    acceptedRange[0] = i;
+                }
+                acceptedRange[1] = i;
+            }
+        }
+
+        return acceptedRange;
     }
 
     @Override
