@@ -50,8 +50,8 @@ public class Collision {
 				}
 			}
 		} else if (pieceTab.size() == 1) {
-			if (mario.contactCoin(pieceTab.get(0)) == true) {
-				pieceTab.remove(0);
+			if (mario.contactCoin(pieceTab.getFirst()) == true) {
+				pieceTab.removeFirst();
 				mario.setScore(mario.getScore() + 1);
 			}
 

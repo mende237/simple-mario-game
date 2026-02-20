@@ -6,7 +6,7 @@ public class Chrono implements Runnable {
 	private long end;
 
 	static {
-		setTimeElapse(String.format("%d min:%d s", 00, 00));
+		setTimeElapse("%d min:%d s".formatted(00, 00));
 	}
 
 	public Chrono() {
@@ -41,7 +41,7 @@ public class Chrono implements Runnable {
 			int minute = (int) (length / 60);
 			int seconde = (int) (length % 60);
 
-			setTimeElapse(String.format("%d min:%d s", minute, seconde));
+			setTimeElapse("%d min:%d s".formatted(minute, seconde));
 		}
 
 	}
