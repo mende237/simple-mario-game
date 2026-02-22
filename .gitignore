@@ -3,6 +3,7 @@
 
 # Log files
 *.log
+**/__pycache__/
 
 # Maven build output
 /mario/target/
