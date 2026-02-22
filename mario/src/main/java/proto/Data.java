@@ -702,6 +702,1821 @@ public final class Data {
 
   }
 
+  public interface AntagonistOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Antagonist)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 x = 1;</code>
+     * @return The x.
+     */
+    int getX();
+
+    /**
+     * <code>int32 y = 2;</code>
+     * @return The y.
+     */
+    int getY();
+
+    /**
+     * <code>int32 height = 3;</code>
+     * @return The height.
+     */
+    int getHeight();
+
+    /**
+     * <code>int32 width = 4;</code>
+     * @return The width.
+     */
+    int getWidth();
+
+    /**
+     * <code>int32 speed = 5;</code>
+     * @return The speed.
+     */
+    int getSpeed();
+
+    /**
+     * <code>string name = 6;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 6;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>bool isdead = 7;</code>
+     * @return The isdead.
+     */
+    boolean getIsdead();
+  }
+  /**
+   * <pre>
+   * Represents an antagonist character.
+   * </pre>
+   *
+   * Protobuf type {@code proto.Antagonist}
+   */
+  public static final class Antagonist extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Antagonist)
+      AntagonistOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Antagonist.newBuilder() to construct.
+    private Antagonist(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Antagonist() {
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Antagonist();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.Data.internal_static_proto_Antagonist_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.Data.internal_static_proto_Antagonist_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.Data.Antagonist.class, proto.Data.Antagonist.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private int x_;
+    /**
+     * <code>int32 x = 1;</code>
+     * @return The x.
+     */
+    @java.lang.Override
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private int y_;
+    /**
+     * <code>int32 y = 2;</code>
+     * @return The y.
+     */
+    @java.lang.Override
+    public int getY() {
+      return y_;
+    }
+
+    public static final int HEIGHT_FIELD_NUMBER = 3;
+    private int height_;
+    /**
+     * <code>int32 height = 3;</code>
+     * @return The height.
+     */
+    @java.lang.Override
+    public int getHeight() {
+      return height_;
+    }
+
+    public static final int WIDTH_FIELD_NUMBER = 4;
+    private int width_;
+    /**
+     * <code>int32 width = 4;</code>
+     * @return The width.
+     */
+    @java.lang.Override
+    public int getWidth() {
+      return width_;
+    }
+
+    public static final int SPEED_FIELD_NUMBER = 5;
+    private int speed_;
+    /**
+     * <code>int32 speed = 5;</code>
+     * @return The speed.
+     */
+    @java.lang.Override
+    public int getSpeed() {
+      return speed_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 6;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 6;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ISDEAD_FIELD_NUMBER = 7;
+    private boolean isdead_;
+    /**
+     * <code>bool isdead = 7;</code>
+     * @return The isdead.
+     */
+    @java.lang.Override
+    public boolean getIsdead() {
+      return isdead_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x_ != 0) {
+        output.writeInt32(1, x_);
+      }
+      if (y_ != 0) {
+        output.writeInt32(2, y_);
+      }
+      if (height_ != 0) {
+        output.writeInt32(3, height_);
+      }
+      if (width_ != 0) {
+        output.writeInt32(4, width_);
+      }
+      if (speed_ != 0) {
+        output.writeInt32(5, speed_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, name_);
+      }
+      if (isdead_ != false) {
+        output.writeBool(7, isdead_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, x_);
+      }
+      if (y_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, y_);
+      }
+      if (height_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, height_);
+      }
+      if (width_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, width_);
+      }
+      if (speed_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, speed_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, name_);
+      }
+      if (isdead_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, isdead_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.Data.Antagonist)) {
+        return super.equals(obj);
+      }
+      proto.Data.Antagonist other = (proto.Data.Antagonist) obj;
+
+      if (getX()
+          != other.getX()) return false;
+      if (getY()
+          != other.getY()) return false;
+      if (getHeight()
+          != other.getHeight()) return false;
+      if (getWidth()
+          != other.getWidth()) return false;
+      if (getSpeed()
+          != other.getSpeed()) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getIsdead()
+          != other.getIsdead()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY();
+      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + getHeight();
+      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getWidth();
+      hash = (37 * hash) + SPEED_FIELD_NUMBER;
+      hash = (53 * hash) + getSpeed();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ISDEAD_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsdead());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.Data.Antagonist parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Antagonist parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Antagonist parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Antagonist parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.Data.Antagonist parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Antagonist parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.Data.Antagonist prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Represents an antagonist character.
+     * </pre>
+     *
+     * Protobuf type {@code proto.Antagonist}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Antagonist)
+        proto.Data.AntagonistOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.Data.internal_static_proto_Antagonist_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.Data.internal_static_proto_Antagonist_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.Data.Antagonist.class, proto.Data.Antagonist.Builder.class);
+      }
+
+      // Construct using proto.Data.Antagonist.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+
+        y_ = 0;
+
+        height_ = 0;
+
+        width_ = 0;
+
+        speed_ = 0;
+
+        name_ = "";
+
+        isdead_ = false;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.Data.internal_static_proto_Antagonist_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.Data.Antagonist getDefaultInstanceForType() {
+        return proto.Data.Antagonist.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.Data.Antagonist build() {
+        proto.Data.Antagonist result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.Data.Antagonist buildPartial() {
+        proto.Data.Antagonist result = new proto.Data.Antagonist(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        result.height_ = height_;
+        result.width_ = width_;
+        result.speed_ = speed_;
+        result.name_ = name_;
+        result.isdead_ = isdead_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.Data.Antagonist) {
+          return mergeFrom((proto.Data.Antagonist)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.Data.Antagonist other) {
+        if (other == proto.Data.Antagonist.getDefaultInstance()) return this;
+        if (other.getX() != 0) {
+          setX(other.getX());
+        }
+        if (other.getY() != 0) {
+          setY(other.getY());
+        }
+        if (other.getHeight() != 0) {
+          setHeight(other.getHeight());
+        }
+        if (other.getWidth() != 0) {
+          setWidth(other.getWidth());
+        }
+        if (other.getSpeed() != 0) {
+          setSpeed(other.getSpeed());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getIsdead() != false) {
+          setIsdead(other.getIsdead());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                x_ = input.readInt32();
+
+                break;
+              } // case 8
+              case 16: {
+                y_ = input.readInt32();
+
+                break;
+              } // case 16
+              case 24: {
+                height_ = input.readInt32();
+
+                break;
+              } // case 24
+              case 32: {
+                width_ = input.readInt32();
+
+                break;
+              } // case 32
+              case 40: {
+                speed_ = input.readInt32();
+
+                break;
+              } // case 40
+              case 50: {
+                name_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 50
+              case 56: {
+                isdead_ = input.readBool();
+
+                break;
+              } // case 56
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int x_ ;
+      /**
+       * <code>int32 x = 1;</code>
+       * @return The x.
+       */
+      @java.lang.Override
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @param value The x to set.
+       * @return This builder for chaining.
+       */
+      public Builder setX(int value) {
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearX() {
+        
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>int32 y = 2;</code>
+       * @return The y.
+       */
+      @java.lang.Override
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @param value The y to set.
+       * @return This builder for chaining.
+       */
+      public Builder setY(int value) {
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearY() {
+        
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int height_ ;
+      /**
+       * <code>int32 height = 3;</code>
+       * @return The height.
+       */
+      @java.lang.Override
+      public int getHeight() {
+        return height_;
+      }
+      /**
+       * <code>int32 height = 3;</code>
+       * @param value The height to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeight(int value) {
+        
+        height_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 height = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHeight() {
+        
+        height_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int width_ ;
+      /**
+       * <code>int32 width = 4;</code>
+       * @return The width.
+       */
+      @java.lang.Override
+      public int getWidth() {
+        return width_;
+      }
+      /**
+       * <code>int32 width = 4;</code>
+       * @param value The width to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWidth(int value) {
+        
+        width_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 width = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWidth() {
+        
+        width_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int speed_ ;
+      /**
+       * <code>int32 speed = 5;</code>
+       * @return The speed.
+       */
+      @java.lang.Override
+      public int getSpeed() {
+        return speed_;
+      }
+      /**
+       * <code>int32 speed = 5;</code>
+       * @param value The speed to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSpeed(int value) {
+        
+        speed_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 speed = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSpeed() {
+        
+        speed_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 6;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 6;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 6;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 6;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean isdead_ ;
+      /**
+       * <code>bool isdead = 7;</code>
+       * @return The isdead.
+       */
+      @java.lang.Override
+      public boolean getIsdead() {
+        return isdead_;
+      }
+      /**
+       * <code>bool isdead = 7;</code>
+       * @param value The isdead to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsdead(boolean value) {
+        
+        isdead_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isdead = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsdead() {
+        
+        isdead_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Antagonist)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Antagonist)
+    private static final proto.Data.Antagonist DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.Data.Antagonist();
+    }
+
+    public static proto.Data.Antagonist getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Antagonist>
+        PARSER = new com.google.protobuf.AbstractParser<Antagonist>() {
+      @java.lang.Override
+      public Antagonist parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Antagonist> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Antagonist> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.Data.Antagonist getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ItemOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Item)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 x = 1;</code>
+     * @return The x.
+     */
+    int getX();
+
+    /**
+     * <code>int32 y = 2;</code>
+     * @return The y.
+     */
+    int getY();
+
+    /**
+     * <code>int32 height = 3;</code>
+     * @return The height.
+     */
+    int getHeight();
+
+    /**
+     * <code>int32 width = 4;</code>
+     * @return The width.
+     */
+    int getWidth();
+
+    /**
+     * <code>string name = 5;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 5;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+  }
+  /**
+   * <pre>
+   * Represents an item in the game.
+   * </pre>
+   *
+   * Protobuf type {@code proto.Item}
+   */
+  public static final class Item extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Item)
+      ItemOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Item.newBuilder() to construct.
+    private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Item() {
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Item();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.Data.internal_static_proto_Item_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.Data.internal_static_proto_Item_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.Data.Item.class, proto.Data.Item.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private int x_;
+    /**
+     * <code>int32 x = 1;</code>
+     * @return The x.
+     */
+    @java.lang.Override
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private int y_;
+    /**
+     * <code>int32 y = 2;</code>
+     * @return The y.
+     */
+    @java.lang.Override
+    public int getY() {
+      return y_;
+    }
+
+    public static final int HEIGHT_FIELD_NUMBER = 3;
+    private int height_;
+    /**
+     * <code>int32 height = 3;</code>
+     * @return The height.
+     */
+    @java.lang.Override
+    public int getHeight() {
+      return height_;
+    }
+
+    public static final int WIDTH_FIELD_NUMBER = 4;
+    private int width_;
+    /**
+     * <code>int32 width = 4;</code>
+     * @return The width.
+     */
+    @java.lang.Override
+    public int getWidth() {
+      return width_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 5;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 5;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x_ != 0) {
+        output.writeInt32(1, x_);
+      }
+      if (y_ != 0) {
+        output.writeInt32(2, y_);
+      }
+      if (height_ != 0) {
+        output.writeInt32(3, height_);
+      }
+      if (width_ != 0) {
+        output.writeInt32(4, width_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, name_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, x_);
+      }
+      if (y_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, y_);
+      }
+      if (height_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, height_);
+      }
+      if (width_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, width_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, name_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.Data.Item)) {
+        return super.equals(obj);
+      }
+      proto.Data.Item other = (proto.Data.Item) obj;
+
+      if (getX()
+          != other.getX()) return false;
+      if (getY()
+          != other.getY()) return false;
+      if (getHeight()
+          != other.getHeight()) return false;
+      if (getWidth()
+          != other.getWidth()) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY();
+      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + getHeight();
+      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getWidth();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.Data.Item parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Item parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Item parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Item parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Item parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Item parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Item parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Item parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Item parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.Data.Item parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Item parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Item parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.Data.Item prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Represents an item in the game.
+     * </pre>
+     *
+     * Protobuf type {@code proto.Item}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Item)
+        proto.Data.ItemOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.Data.internal_static_proto_Item_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.Data.internal_static_proto_Item_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.Data.Item.class, proto.Data.Item.Builder.class);
+      }
+
+      // Construct using proto.Data.Item.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+
+        y_ = 0;
+
+        height_ = 0;
+
+        width_ = 0;
+
+        name_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.Data.internal_static_proto_Item_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.Data.Item getDefaultInstanceForType() {
+        return proto.Data.Item.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.Data.Item build() {
+        proto.Data.Item result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.Data.Item buildPartial() {
+        proto.Data.Item result = new proto.Data.Item(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        result.height_ = height_;
+        result.width_ = width_;
+        result.name_ = name_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.Data.Item) {
+          return mergeFrom((proto.Data.Item)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.Data.Item other) {
+        if (other == proto.Data.Item.getDefaultInstance()) return this;
+        if (other.getX() != 0) {
+          setX(other.getX());
+        }
+        if (other.getY() != 0) {
+          setY(other.getY());
+        }
+        if (other.getHeight() != 0) {
+          setHeight(other.getHeight());
+        }
+        if (other.getWidth() != 0) {
+          setWidth(other.getWidth());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                x_ = input.readInt32();
+
+                break;
+              } // case 8
+              case 16: {
+                y_ = input.readInt32();
+
+                break;
+              } // case 16
+              case 24: {
+                height_ = input.readInt32();
+
+                break;
+              } // case 24
+              case 32: {
+                width_ = input.readInt32();
+
+                break;
+              } // case 32
+              case 42: {
+                name_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int x_ ;
+      /**
+       * <code>int32 x = 1;</code>
+       * @return The x.
+       */
+      @java.lang.Override
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @param value The x to set.
+       * @return This builder for chaining.
+       */
+      public Builder setX(int value) {
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearX() {
+        
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>int32 y = 2;</code>
+       * @return The y.
+       */
+      @java.lang.Override
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @param value The y to set.
+       * @return This builder for chaining.
+       */
+      public Builder setY(int value) {
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearY() {
+        
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int height_ ;
+      /**
+       * <code>int32 height = 3;</code>
+       * @return The height.
+       */
+      @java.lang.Override
+      public int getHeight() {
+        return height_;
+      }
+      /**
+       * <code>int32 height = 3;</code>
+       * @param value The height to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeight(int value) {
+        
+        height_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 height = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHeight() {
+        
+        height_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int width_ ;
+      /**
+       * <code>int32 width = 4;</code>
+       * @return The width.
+       */
+      @java.lang.Override
+      public int getWidth() {
+        return width_;
+      }
+      /**
+       * <code>int32 width = 4;</code>
+       * @param value The width to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWidth(int value) {
+        
+        width_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 width = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWidth() {
+        
+        width_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 5;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 5;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 5;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 5;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Item)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Item)
+    private static final proto.Data.Item DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.Data.Item();
+    }
+
+    public static proto.Data.Item getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Item>
+        PARSER = new com.google.protobuf.AbstractParser<Item>() {
+      @java.lang.Override
+      public Item parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Item> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Item> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.Data.Item getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface GameDataOrBuilder extends
       // @@protoc_insertion_point(interface_extends:proto.GameData)
       com.google.protobuf.MessageOrBuilder {
@@ -722,70 +2537,70 @@ public final class Data {
     proto.Data.GameObjectOrBuilder getMarioOrBuilder();
 
     /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     * @return Whether the leftAntagonist field is set.
-     */
-    boolean hasLeftAntagonist();
-    /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     * @return The leftAntagonist.
-     */
-    proto.Data.GameObject getLeftAntagonist();
-    /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     */
-    proto.Data.GameObjectOrBuilder getLeftAntagonistOrBuilder();
-
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     * @return Whether the rightAntagonist field is set.
-     */
-    boolean hasRightAntagonist();
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     * @return The rightAntagonist.
-     */
-    proto.Data.GameObject getRightAntagonist();
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     */
-    proto.Data.GameObjectOrBuilder getRightAntagonistOrBuilder();
-
-    /**
-     * <code>int32 floor_level = 4;</code>
+     * <code>int32 floor_level = 2;</code>
      * @return The floorLevel.
      */
     int getFloorLevel();
 
     /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     * @return Whether the leftObject field is set.
+     * <code>int32 antagonist_context_width = 3;</code>
+     * @return The antagonistContextWidth.
      */
-    boolean hasLeftObject();
-    /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     * @return The leftObject.
-     */
-    proto.Data.GameObject getLeftObject();
-    /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     */
-    proto.Data.GameObjectOrBuilder getLeftObjectOrBuilder();
+    int getAntagonistContextWidth();
 
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
-     * @return Whether the rightObject field is set.
+     * <code>int32 item_context_width = 4;</code>
+     * @return The itemContextWidth.
      */
-    boolean hasRightObject();
+    int getItemContextWidth();
+
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
-     * @return The rightObject.
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
      */
-    proto.Data.GameObject getRightObject();
+    java.util.List<proto.Data.Antagonist> 
+        getAntagonistsList();
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
      */
-    proto.Data.GameObjectOrBuilder getRightObjectOrBuilder();
+    proto.Data.Antagonist getAntagonists(int index);
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    int getAntagonistsCount();
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    java.util.List<? extends proto.Data.AntagonistOrBuilder> 
+        getAntagonistsOrBuilderList();
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    proto.Data.AntagonistOrBuilder getAntagonistsOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    java.util.List<proto.Data.Item> 
+        getItemsList();
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    proto.Data.Item getItems(int index);
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    int getItemsCount();
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    java.util.List<? extends proto.Data.ItemOrBuilder> 
+        getItemsOrBuilderList();
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    proto.Data.ItemOrBuilder getItemsOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -804,6 +2619,8 @@ public final class Data {
       super(builder);
     }
     private GameData() {
+      antagonists_ = java.util.Collections.emptyList();
+      items_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -857,62 +2674,10 @@ public final class Data {
       return getMario();
     }
 
-    public static final int LEFT_ANTAGONIST_FIELD_NUMBER = 2;
-    private proto.Data.GameObject leftAntagonist_;
-    /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     * @return Whether the leftAntagonist field is set.
-     */
-    @java.lang.Override
-    public boolean hasLeftAntagonist() {
-      return leftAntagonist_ != null;
-    }
-    /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     * @return The leftAntagonist.
-     */
-    @java.lang.Override
-    public proto.Data.GameObject getLeftAntagonist() {
-      return leftAntagonist_ == null ? proto.Data.GameObject.getDefaultInstance() : leftAntagonist_;
-    }
-    /**
-     * <code>.proto.GameObject left_antagonist = 2;</code>
-     */
-    @java.lang.Override
-    public proto.Data.GameObjectOrBuilder getLeftAntagonistOrBuilder() {
-      return getLeftAntagonist();
-    }
-
-    public static final int RIGHT_ANTAGONIST_FIELD_NUMBER = 3;
-    private proto.Data.GameObject rightAntagonist_;
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     * @return Whether the rightAntagonist field is set.
-     */
-    @java.lang.Override
-    public boolean hasRightAntagonist() {
-      return rightAntagonist_ != null;
-    }
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     * @return The rightAntagonist.
-     */
-    @java.lang.Override
-    public proto.Data.GameObject getRightAntagonist() {
-      return rightAntagonist_ == null ? proto.Data.GameObject.getDefaultInstance() : rightAntagonist_;
-    }
-    /**
-     * <code>.proto.GameObject right_antagonist = 3;</code>
-     */
-    @java.lang.Override
-    public proto.Data.GameObjectOrBuilder getRightAntagonistOrBuilder() {
-      return getRightAntagonist();
-    }
-
-    public static final int FLOOR_LEVEL_FIELD_NUMBER = 4;
+    public static final int FLOOR_LEVEL_FIELD_NUMBER = 2;
     private int floorLevel_;
     /**
-     * <code>int32 floor_level = 4;</code>
+     * <code>int32 floor_level = 2;</code>
      * @return The floorLevel.
      */
     @java.lang.Override
@@ -920,56 +2685,106 @@ public final class Data {
       return floorLevel_;
     }
 
-    public static final int LEFT_OBJECT_FIELD_NUMBER = 5;
-    private proto.Data.GameObject leftObject_;
+    public static final int ANTAGONIST_CONTEXT_WIDTH_FIELD_NUMBER = 3;
+    private int antagonistContextWidth_;
     /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     * @return Whether the leftObject field is set.
+     * <code>int32 antagonist_context_width = 3;</code>
+     * @return The antagonistContextWidth.
      */
     @java.lang.Override
-    public boolean hasLeftObject() {
-      return leftObject_ != null;
-    }
-    /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     * @return The leftObject.
-     */
-    @java.lang.Override
-    public proto.Data.GameObject getLeftObject() {
-      return leftObject_ == null ? proto.Data.GameObject.getDefaultInstance() : leftObject_;
-    }
-    /**
-     * <code>.proto.GameObject left_object = 5;</code>
-     */
-    @java.lang.Override
-    public proto.Data.GameObjectOrBuilder getLeftObjectOrBuilder() {
-      return getLeftObject();
+    public int getAntagonistContextWidth() {
+      return antagonistContextWidth_;
     }
 
-    public static final int RIGHT_OBJECT_FIELD_NUMBER = 6;
-    private proto.Data.GameObject rightObject_;
+    public static final int ITEM_CONTEXT_WIDTH_FIELD_NUMBER = 4;
+    private int itemContextWidth_;
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
-     * @return Whether the rightObject field is set.
+     * <code>int32 item_context_width = 4;</code>
+     * @return The itemContextWidth.
      */
     @java.lang.Override
-    public boolean hasRightObject() {
-      return rightObject_ != null;
+    public int getItemContextWidth() {
+      return itemContextWidth_;
+    }
+
+    public static final int ANTAGONISTS_FIELD_NUMBER = 5;
+    private java.util.List<proto.Data.Antagonist> antagonists_;
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    @java.lang.Override
+    public java.util.List<proto.Data.Antagonist> getAntagonistsList() {
+      return antagonists_;
     }
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
-     * @return The rightObject.
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
      */
     @java.lang.Override
-    public proto.Data.GameObject getRightObject() {
-      return rightObject_ == null ? proto.Data.GameObject.getDefaultInstance() : rightObject_;
+    public java.util.List<? extends proto.Data.AntagonistOrBuilder> 
+        getAntagonistsOrBuilderList() {
+      return antagonists_;
     }
     /**
-     * <code>.proto.GameObject right_object = 6;</code>
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
      */
     @java.lang.Override
-    public proto.Data.GameObjectOrBuilder getRightObjectOrBuilder() {
-      return getRightObject();
+    public int getAntagonistsCount() {
+      return antagonists_.size();
+    }
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    @java.lang.Override
+    public proto.Data.Antagonist getAntagonists(int index) {
+      return antagonists_.get(index);
+    }
+    /**
+     * <code>repeated .proto.Antagonist antagonists = 5;</code>
+     */
+    @java.lang.Override
+    public proto.Data.AntagonistOrBuilder getAntagonistsOrBuilder(
+        int index) {
+      return antagonists_.get(index);
+    }
+
+    public static final int ITEMS_FIELD_NUMBER = 6;
+    private java.util.List<proto.Data.Item> items_;
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    @java.lang.Override
+    public java.util.List<proto.Data.Item> getItemsList() {
+      return items_;
+    }
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends proto.Data.ItemOrBuilder> 
+        getItemsOrBuilderList() {
+      return items_;
+    }
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    @java.lang.Override
+    public int getItemsCount() {
+      return items_.size();
+    }
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    @java.lang.Override
+    public proto.Data.Item getItems(int index) {
+      return items_.get(index);
+    }
+    /**
+     * <code>repeated .proto.Item items = 6;</code>
+     */
+    @java.lang.Override
+    public proto.Data.ItemOrBuilder getItemsOrBuilder(
+        int index) {
+      return items_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -989,20 +2804,20 @@ public final class Data {
       if (mario_ != null) {
         output.writeMessage(1, getMario());
       }
-      if (leftAntagonist_ != null) {
-        output.writeMessage(2, getLeftAntagonist());
-      }
-      if (rightAntagonist_ != null) {
-        output.writeMessage(3, getRightAntagonist());
-      }
       if (floorLevel_ != 0) {
-        output.writeInt32(4, floorLevel_);
+        output.writeInt32(2, floorLevel_);
       }
-      if (leftObject_ != null) {
-        output.writeMessage(5, getLeftObject());
+      if (antagonistContextWidth_ != 0) {
+        output.writeInt32(3, antagonistContextWidth_);
       }
-      if (rightObject_ != null) {
-        output.writeMessage(6, getRightObject());
+      if (itemContextWidth_ != 0) {
+        output.writeInt32(4, itemContextWidth_);
+      }
+      for (int i = 0; i < antagonists_.size(); i++) {
+        output.writeMessage(5, antagonists_.get(i));
+      }
+      for (int i = 0; i < items_.size(); i++) {
+        output.writeMessage(6, items_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -1017,25 +2832,25 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getMario());
       }
-      if (leftAntagonist_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getLeftAntagonist());
-      }
-      if (rightAntagonist_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getRightAntagonist());
-      }
       if (floorLevel_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, floorLevel_);
+          .computeInt32Size(2, floorLevel_);
       }
-      if (leftObject_ != null) {
+      if (antagonistContextWidth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getLeftObject());
+          .computeInt32Size(3, antagonistContextWidth_);
       }
-      if (rightObject_ != null) {
+      if (itemContextWidth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getRightObject());
+          .computeInt32Size(4, itemContextWidth_);
+      }
+      for (int i = 0; i < antagonists_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, antagonists_.get(i));
+      }
+      for (int i = 0; i < items_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, items_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1057,28 +2872,16 @@ public final class Data {
         if (!getMario()
             .equals(other.getMario())) return false;
       }
-      if (hasLeftAntagonist() != other.hasLeftAntagonist()) return false;
-      if (hasLeftAntagonist()) {
-        if (!getLeftAntagonist()
-            .equals(other.getLeftAntagonist())) return false;
-      }
-      if (hasRightAntagonist() != other.hasRightAntagonist()) return false;
-      if (hasRightAntagonist()) {
-        if (!getRightAntagonist()
-            .equals(other.getRightAntagonist())) return false;
-      }
       if (getFloorLevel()
           != other.getFloorLevel()) return false;
-      if (hasLeftObject() != other.hasLeftObject()) return false;
-      if (hasLeftObject()) {
-        if (!getLeftObject()
-            .equals(other.getLeftObject())) return false;
-      }
-      if (hasRightObject() != other.hasRightObject()) return false;
-      if (hasRightObject()) {
-        if (!getRightObject()
-            .equals(other.getRightObject())) return false;
-      }
+      if (getAntagonistContextWidth()
+          != other.getAntagonistContextWidth()) return false;
+      if (getItemContextWidth()
+          != other.getItemContextWidth()) return false;
+      if (!getAntagonistsList()
+          .equals(other.getAntagonistsList())) return false;
+      if (!getItemsList()
+          .equals(other.getItemsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1094,23 +2897,19 @@ public final class Data {
         hash = (37 * hash) + MARIO_FIELD_NUMBER;
         hash = (53 * hash) + getMario().hashCode();
       }
-      if (hasLeftAntagonist()) {
-        hash = (37 * hash) + LEFT_ANTAGONIST_FIELD_NUMBER;
-        hash = (53 * hash) + getLeftAntagonist().hashCode();
-      }
-      if (hasRightAntagonist()) {
-        hash = (37 * hash) + RIGHT_ANTAGONIST_FIELD_NUMBER;
-        hash = (53 * hash) + getRightAntagonist().hashCode();
-      }
       hash = (37 * hash) + FLOOR_LEVEL_FIELD_NUMBER;
       hash = (53 * hash) + getFloorLevel();
-      if (hasLeftObject()) {
-        hash = (37 * hash) + LEFT_OBJECT_FIELD_NUMBER;
-        hash = (53 * hash) + getLeftObject().hashCode();
+      hash = (37 * hash) + ANTAGONIST_CONTEXT_WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getAntagonistContextWidth();
+      hash = (37 * hash) + ITEM_CONTEXT_WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getItemContextWidth();
+      if (getAntagonistsCount() > 0) {
+        hash = (37 * hash) + ANTAGONISTS_FIELD_NUMBER;
+        hash = (53 * hash) + getAntagonistsList().hashCode();
       }
-      if (hasRightObject()) {
-        hash = (37 * hash) + RIGHT_OBJECT_FIELD_NUMBER;
-        hash = (53 * hash) + getRightObject().hashCode();
+      if (getItemsCount() > 0) {
+        hash = (37 * hash) + ITEMS_FIELD_NUMBER;
+        hash = (53 * hash) + getItemsList().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -1250,32 +3049,26 @@ public final class Data {
           mario_ = null;
           marioBuilder_ = null;
         }
-        if (leftAntagonistBuilder_ == null) {
-          leftAntagonist_ = null;
-        } else {
-          leftAntagonist_ = null;
-          leftAntagonistBuilder_ = null;
-        }
-        if (rightAntagonistBuilder_ == null) {
-          rightAntagonist_ = null;
-        } else {
-          rightAntagonist_ = null;
-          rightAntagonistBuilder_ = null;
-        }
         floorLevel_ = 0;
 
-        if (leftObjectBuilder_ == null) {
-          leftObject_ = null;
+        antagonistContextWidth_ = 0;
+
+        itemContextWidth_ = 0;
+
+        if (antagonistsBuilder_ == null) {
+          antagonists_ = java.util.Collections.emptyList();
         } else {
-          leftObject_ = null;
-          leftObjectBuilder_ = null;
+          antagonists_ = null;
+          antagonistsBuilder_.clear();
         }
-        if (rightObjectBuilder_ == null) {
-          rightObject_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (itemsBuilder_ == null) {
+          items_ = java.util.Collections.emptyList();
         } else {
-          rightObject_ = null;
-          rightObjectBuilder_ = null;
+          items_ = null;
+          itemsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1302,31 +3095,32 @@ public final class Data {
       @java.lang.Override
       public proto.Data.GameData buildPartial() {
         proto.Data.GameData result = new proto.Data.GameData(this);
+        int from_bitField0_ = bitField0_;
         if (marioBuilder_ == null) {
           result.mario_ = mario_;
         } else {
           result.mario_ = marioBuilder_.build();
         }
-        if (leftAntagonistBuilder_ == null) {
-          result.leftAntagonist_ = leftAntagonist_;
-        } else {
-          result.leftAntagonist_ = leftAntagonistBuilder_.build();
-        }
-        if (rightAntagonistBuilder_ == null) {
-          result.rightAntagonist_ = rightAntagonist_;
-        } else {
-          result.rightAntagonist_ = rightAntagonistBuilder_.build();
-        }
         result.floorLevel_ = floorLevel_;
-        if (leftObjectBuilder_ == null) {
-          result.leftObject_ = leftObject_;
+        result.antagonistContextWidth_ = antagonistContextWidth_;
+        result.itemContextWidth_ = itemContextWidth_;
+        if (antagonistsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            antagonists_ = java.util.Collections.unmodifiableList(antagonists_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.antagonists_ = antagonists_;
         } else {
-          result.leftObject_ = leftObjectBuilder_.build();
+          result.antagonists_ = antagonistsBuilder_.build();
         }
-        if (rightObjectBuilder_ == null) {
-          result.rightObject_ = rightObject_;
+        if (itemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            items_ = java.util.Collections.unmodifiableList(items_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.items_ = items_;
         } else {
-          result.rightObject_ = rightObjectBuilder_.build();
+          result.items_ = itemsBuilder_.build();
         }
         onBuilt();
         return result;
@@ -1379,20 +3173,66 @@ public final class Data {
         if (other.hasMario()) {
           mergeMario(other.getMario());
         }
-        if (other.hasLeftAntagonist()) {
-          mergeLeftAntagonist(other.getLeftAntagonist());
-        }
-        if (other.hasRightAntagonist()) {
-          mergeRightAntagonist(other.getRightAntagonist());
-        }
         if (other.getFloorLevel() != 0) {
           setFloorLevel(other.getFloorLevel());
         }
-        if (other.hasLeftObject()) {
-          mergeLeftObject(other.getLeftObject());
+        if (other.getAntagonistContextWidth() != 0) {
+          setAntagonistContextWidth(other.getAntagonistContextWidth());
         }
-        if (other.hasRightObject()) {
-          mergeRightObject(other.getRightObject());
+        if (other.getItemContextWidth() != 0) {
+          setItemContextWidth(other.getItemContextWidth());
+        }
+        if (antagonistsBuilder_ == null) {
+          if (!other.antagonists_.isEmpty()) {
+            if (antagonists_.isEmpty()) {
+              antagonists_ = other.antagonists_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureAntagonistsIsMutable();
+              antagonists_.addAll(other.antagonists_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.antagonists_.isEmpty()) {
+            if (antagonistsBuilder_.isEmpty()) {
+              antagonistsBuilder_.dispose();
+              antagonistsBuilder_ = null;
+              antagonists_ = other.antagonists_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              antagonistsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getAntagonistsFieldBuilder() : null;
+            } else {
+              antagonistsBuilder_.addAllMessages(other.antagonists_);
+            }
+          }
+        }
+        if (itemsBuilder_ == null) {
+          if (!other.items_.isEmpty()) {
+            if (items_.isEmpty()) {
+              items_ = other.items_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureItemsIsMutable();
+              items_.addAll(other.items_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.items_.isEmpty()) {
+            if (itemsBuilder_.isEmpty()) {
+              itemsBuilder_.dispose();
+              itemsBuilder_ = null;
+              items_ = other.items_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              itemsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getItemsFieldBuilder() : null;
+            } else {
+              itemsBuilder_.addAllMessages(other.items_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1427,37 +3267,45 @@ public final class Data {
 
                 break;
               } // case 10
-              case 18: {
-                input.readMessage(
-                    getLeftAntagonistFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
-                break;
-              } // case 18
-              case 26: {
-                input.readMessage(
-                    getRightAntagonistFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
-                break;
-              } // case 26
-              case 32: {
+              case 16: {
                 floorLevel_ = input.readInt32();
+
+                break;
+              } // case 16
+              case 24: {
+                antagonistContextWidth_ = input.readInt32();
+
+                break;
+              } // case 24
+              case 32: {
+                itemContextWidth_ = input.readInt32();
 
                 break;
               } // case 32
               case 42: {
-                input.readMessage(
-                    getLeftObjectFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
+                proto.Data.Antagonist m =
+                    input.readMessage(
+                        proto.Data.Antagonist.parser(),
+                        extensionRegistry);
+                if (antagonistsBuilder_ == null) {
+                  ensureAntagonistsIsMutable();
+                  antagonists_.add(m);
+                } else {
+                  antagonistsBuilder_.addMessage(m);
+                }
                 break;
               } // case 42
               case 50: {
-                input.readMessage(
-                    getRightObjectFieldBuilder().getBuilder(),
-                    extensionRegistry);
-
+                proto.Data.Item m =
+                    input.readMessage(
+                        proto.Data.Item.parser(),
+                        extensionRegistry);
+                if (itemsBuilder_ == null) {
+                  ensureItemsIsMutable();
+                  items_.add(m);
+                } else {
+                  itemsBuilder_.addMessage(m);
+                }
                 break;
               } // case 50
               default: {
@@ -1475,6 +3323,7 @@ public final class Data {
         } // finally
         return this;
       }
+      private int bitField0_;
 
       private proto.Data.GameObject mario_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1595,247 +3444,9 @@ public final class Data {
         return marioBuilder_;
       }
 
-      private proto.Data.GameObject leftAntagonist_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> leftAntagonistBuilder_;
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       * @return Whether the leftAntagonist field is set.
-       */
-      public boolean hasLeftAntagonist() {
-        return leftAntagonistBuilder_ != null || leftAntagonist_ != null;
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       * @return The leftAntagonist.
-       */
-      public proto.Data.GameObject getLeftAntagonist() {
-        if (leftAntagonistBuilder_ == null) {
-          return leftAntagonist_ == null ? proto.Data.GameObject.getDefaultInstance() : leftAntagonist_;
-        } else {
-          return leftAntagonistBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public Builder setLeftAntagonist(proto.Data.GameObject value) {
-        if (leftAntagonistBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          leftAntagonist_ = value;
-          onChanged();
-        } else {
-          leftAntagonistBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public Builder setLeftAntagonist(
-          proto.Data.GameObject.Builder builderForValue) {
-        if (leftAntagonistBuilder_ == null) {
-          leftAntagonist_ = builderForValue.build();
-          onChanged();
-        } else {
-          leftAntagonistBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public Builder mergeLeftAntagonist(proto.Data.GameObject value) {
-        if (leftAntagonistBuilder_ == null) {
-          if (leftAntagonist_ != null) {
-            leftAntagonist_ =
-              proto.Data.GameObject.newBuilder(leftAntagonist_).mergeFrom(value).buildPartial();
-          } else {
-            leftAntagonist_ = value;
-          }
-          onChanged();
-        } else {
-          leftAntagonistBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public Builder clearLeftAntagonist() {
-        if (leftAntagonistBuilder_ == null) {
-          leftAntagonist_ = null;
-          onChanged();
-        } else {
-          leftAntagonist_ = null;
-          leftAntagonistBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public proto.Data.GameObject.Builder getLeftAntagonistBuilder() {
-        
-        onChanged();
-        return getLeftAntagonistFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      public proto.Data.GameObjectOrBuilder getLeftAntagonistOrBuilder() {
-        if (leftAntagonistBuilder_ != null) {
-          return leftAntagonistBuilder_.getMessageOrBuilder();
-        } else {
-          return leftAntagonist_ == null ?
-              proto.Data.GameObject.getDefaultInstance() : leftAntagonist_;
-        }
-      }
-      /**
-       * <code>.proto.GameObject left_antagonist = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> 
-          getLeftAntagonistFieldBuilder() {
-        if (leftAntagonistBuilder_ == null) {
-          leftAntagonistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder>(
-                  getLeftAntagonist(),
-                  getParentForChildren(),
-                  isClean());
-          leftAntagonist_ = null;
-        }
-        return leftAntagonistBuilder_;
-      }
-
-      private proto.Data.GameObject rightAntagonist_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> rightAntagonistBuilder_;
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       * @return Whether the rightAntagonist field is set.
-       */
-      public boolean hasRightAntagonist() {
-        return rightAntagonistBuilder_ != null || rightAntagonist_ != null;
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       * @return The rightAntagonist.
-       */
-      public proto.Data.GameObject getRightAntagonist() {
-        if (rightAntagonistBuilder_ == null) {
-          return rightAntagonist_ == null ? proto.Data.GameObject.getDefaultInstance() : rightAntagonist_;
-        } else {
-          return rightAntagonistBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public Builder setRightAntagonist(proto.Data.GameObject value) {
-        if (rightAntagonistBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          rightAntagonist_ = value;
-          onChanged();
-        } else {
-          rightAntagonistBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public Builder setRightAntagonist(
-          proto.Data.GameObject.Builder builderForValue) {
-        if (rightAntagonistBuilder_ == null) {
-          rightAntagonist_ = builderForValue.build();
-          onChanged();
-        } else {
-          rightAntagonistBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public Builder mergeRightAntagonist(proto.Data.GameObject value) {
-        if (rightAntagonistBuilder_ == null) {
-          if (rightAntagonist_ != null) {
-            rightAntagonist_ =
-              proto.Data.GameObject.newBuilder(rightAntagonist_).mergeFrom(value).buildPartial();
-          } else {
-            rightAntagonist_ = value;
-          }
-          onChanged();
-        } else {
-          rightAntagonistBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public Builder clearRightAntagonist() {
-        if (rightAntagonistBuilder_ == null) {
-          rightAntagonist_ = null;
-          onChanged();
-        } else {
-          rightAntagonist_ = null;
-          rightAntagonistBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public proto.Data.GameObject.Builder getRightAntagonistBuilder() {
-        
-        onChanged();
-        return getRightAntagonistFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      public proto.Data.GameObjectOrBuilder getRightAntagonistOrBuilder() {
-        if (rightAntagonistBuilder_ != null) {
-          return rightAntagonistBuilder_.getMessageOrBuilder();
-        } else {
-          return rightAntagonist_ == null ?
-              proto.Data.GameObject.getDefaultInstance() : rightAntagonist_;
-        }
-      }
-      /**
-       * <code>.proto.GameObject right_antagonist = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> 
-          getRightAntagonistFieldBuilder() {
-        if (rightAntagonistBuilder_ == null) {
-          rightAntagonistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder>(
-                  getRightAntagonist(),
-                  getParentForChildren(),
-                  isClean());
-          rightAntagonist_ = null;
-        }
-        return rightAntagonistBuilder_;
-      }
-
       private int floorLevel_ ;
       /**
-       * <code>int32 floor_level = 4;</code>
+       * <code>int32 floor_level = 2;</code>
        * @return The floorLevel.
        */
       @java.lang.Override
@@ -1843,7 +3454,7 @@ public final class Data {
         return floorLevel_;
       }
       /**
-       * <code>int32 floor_level = 4;</code>
+       * <code>int32 floor_level = 2;</code>
        * @param value The floorLevel to set.
        * @return This builder for chaining.
        */
@@ -1854,7 +3465,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>int32 floor_level = 4;</code>
+       * <code>int32 floor_level = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearFloorLevel() {
@@ -1864,242 +3475,546 @@ public final class Data {
         return this;
       }
 
-      private proto.Data.GameObject leftObject_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> leftObjectBuilder_;
+      private int antagonistContextWidth_ ;
       /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       * @return Whether the leftObject field is set.
+       * <code>int32 antagonist_context_width = 3;</code>
+       * @return The antagonistContextWidth.
        */
-      public boolean hasLeftObject() {
-        return leftObjectBuilder_ != null || leftObject_ != null;
+      @java.lang.Override
+      public int getAntagonistContextWidth() {
+        return antagonistContextWidth_;
       }
       /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       * @return The leftObject.
+       * <code>int32 antagonist_context_width = 3;</code>
+       * @param value The antagonistContextWidth to set.
+       * @return This builder for chaining.
        */
-      public proto.Data.GameObject getLeftObject() {
-        if (leftObjectBuilder_ == null) {
-          return leftObject_ == null ? proto.Data.GameObject.getDefaultInstance() : leftObject_;
+      public Builder setAntagonistContextWidth(int value) {
+        
+        antagonistContextWidth_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 antagonist_context_width = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAntagonistContextWidth() {
+        
+        antagonistContextWidth_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int itemContextWidth_ ;
+      /**
+       * <code>int32 item_context_width = 4;</code>
+       * @return The itemContextWidth.
+       */
+      @java.lang.Override
+      public int getItemContextWidth() {
+        return itemContextWidth_;
+      }
+      /**
+       * <code>int32 item_context_width = 4;</code>
+       * @param value The itemContextWidth to set.
+       * @return This builder for chaining.
+       */
+      public Builder setItemContextWidth(int value) {
+        
+        itemContextWidth_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 item_context_width = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearItemContextWidth() {
+        
+        itemContextWidth_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<proto.Data.Antagonist> antagonists_ =
+        java.util.Collections.emptyList();
+      private void ensureAntagonistsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          antagonists_ = new java.util.ArrayList<proto.Data.Antagonist>(antagonists_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Antagonist, proto.Data.Antagonist.Builder, proto.Data.AntagonistOrBuilder> antagonistsBuilder_;
+
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public java.util.List<proto.Data.Antagonist> getAntagonistsList() {
+        if (antagonistsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(antagonists_);
         } else {
-          return leftObjectBuilder_.getMessage();
+          return antagonistsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>.proto.GameObject left_object = 5;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public Builder setLeftObject(proto.Data.GameObject value) {
-        if (leftObjectBuilder_ == null) {
+      public int getAntagonistsCount() {
+        if (antagonistsBuilder_ == null) {
+          return antagonists_.size();
+        } else {
+          return antagonistsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public proto.Data.Antagonist getAntagonists(int index) {
+        if (antagonistsBuilder_ == null) {
+          return antagonists_.get(index);
+        } else {
+          return antagonistsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public Builder setAntagonists(
+          int index, proto.Data.Antagonist value) {
+        if (antagonistsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          leftObject_ = value;
+          ensureAntagonistsIsMutable();
+          antagonists_.set(index, value);
           onChanged();
         } else {
-          leftObjectBuilder_.setMessage(value);
+          antagonistsBuilder_.setMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.proto.GameObject left_object = 5;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public Builder setLeftObject(
-          proto.Data.GameObject.Builder builderForValue) {
-        if (leftObjectBuilder_ == null) {
-          leftObject_ = builderForValue.build();
+      public Builder setAntagonists(
+          int index, proto.Data.Antagonist.Builder builderForValue) {
+        if (antagonistsBuilder_ == null) {
+          ensureAntagonistsIsMutable();
+          antagonists_.set(index, builderForValue.build());
           onChanged();
         } else {
-          leftObjectBuilder_.setMessage(builderForValue.build());
+          antagonistsBuilder_.setMessage(index, builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.proto.GameObject left_object = 5;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public Builder mergeLeftObject(proto.Data.GameObject value) {
-        if (leftObjectBuilder_ == null) {
-          if (leftObject_ != null) {
-            leftObject_ =
-              proto.Data.GameObject.newBuilder(leftObject_).mergeFrom(value).buildPartial();
-          } else {
-            leftObject_ = value;
-          }
-          onChanged();
-        } else {
-          leftObjectBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       */
-      public Builder clearLeftObject() {
-        if (leftObjectBuilder_ == null) {
-          leftObject_ = null;
-          onChanged();
-        } else {
-          leftObject_ = null;
-          leftObjectBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       */
-      public proto.Data.GameObject.Builder getLeftObjectBuilder() {
-        
-        onChanged();
-        return getLeftObjectFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       */
-      public proto.Data.GameObjectOrBuilder getLeftObjectOrBuilder() {
-        if (leftObjectBuilder_ != null) {
-          return leftObjectBuilder_.getMessageOrBuilder();
-        } else {
-          return leftObject_ == null ?
-              proto.Data.GameObject.getDefaultInstance() : leftObject_;
-        }
-      }
-      /**
-       * <code>.proto.GameObject left_object = 5;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> 
-          getLeftObjectFieldBuilder() {
-        if (leftObjectBuilder_ == null) {
-          leftObjectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder>(
-                  getLeftObject(),
-                  getParentForChildren(),
-                  isClean());
-          leftObject_ = null;
-        }
-        return leftObjectBuilder_;
-      }
-
-      private proto.Data.GameObject rightObject_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> rightObjectBuilder_;
-      /**
-       * <code>.proto.GameObject right_object = 6;</code>
-       * @return Whether the rightObject field is set.
-       */
-      public boolean hasRightObject() {
-        return rightObjectBuilder_ != null || rightObject_ != null;
-      }
-      /**
-       * <code>.proto.GameObject right_object = 6;</code>
-       * @return The rightObject.
-       */
-      public proto.Data.GameObject getRightObject() {
-        if (rightObjectBuilder_ == null) {
-          return rightObject_ == null ? proto.Data.GameObject.getDefaultInstance() : rightObject_;
-        } else {
-          return rightObjectBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.proto.GameObject right_object = 6;</code>
-       */
-      public Builder setRightObject(proto.Data.GameObject value) {
-        if (rightObjectBuilder_ == null) {
+      public Builder addAntagonists(proto.Data.Antagonist value) {
+        if (antagonistsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          rightObject_ = value;
+          ensureAntagonistsIsMutable();
+          antagonists_.add(value);
           onChanged();
         } else {
-          rightObjectBuilder_.setMessage(value);
+          antagonistsBuilder_.addMessage(value);
         }
-
         return this;
       }
       /**
-       * <code>.proto.GameObject right_object = 6;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public Builder setRightObject(
-          proto.Data.GameObject.Builder builderForValue) {
-        if (rightObjectBuilder_ == null) {
-          rightObject_ = builderForValue.build();
-          onChanged();
-        } else {
-          rightObjectBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.proto.GameObject right_object = 6;</code>
-       */
-      public Builder mergeRightObject(proto.Data.GameObject value) {
-        if (rightObjectBuilder_ == null) {
-          if (rightObject_ != null) {
-            rightObject_ =
-              proto.Data.GameObject.newBuilder(rightObject_).mergeFrom(value).buildPartial();
-          } else {
-            rightObject_ = value;
+      public Builder addAntagonists(
+          int index, proto.Data.Antagonist value) {
+        if (antagonistsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
           }
+          ensureAntagonistsIsMutable();
+          antagonists_.add(index, value);
           onChanged();
         } else {
-          rightObjectBuilder_.mergeFrom(value);
+          antagonistsBuilder_.addMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.proto.GameObject right_object = 6;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public Builder clearRightObject() {
-        if (rightObjectBuilder_ == null) {
-          rightObject_ = null;
+      public Builder addAntagonists(
+          proto.Data.Antagonist.Builder builderForValue) {
+        if (antagonistsBuilder_ == null) {
+          ensureAntagonistsIsMutable();
+          antagonists_.add(builderForValue.build());
           onChanged();
         } else {
-          rightObject_ = null;
-          rightObjectBuilder_ = null;
+          antagonistsBuilder_.addMessage(builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.proto.GameObject right_object = 6;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public proto.Data.GameObject.Builder getRightObjectBuilder() {
-        
-        onChanged();
-        return getRightObjectFieldBuilder().getBuilder();
+      public Builder addAntagonists(
+          int index, proto.Data.Antagonist.Builder builderForValue) {
+        if (antagonistsBuilder_ == null) {
+          ensureAntagonistsIsMutable();
+          antagonists_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          antagonistsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
       }
       /**
-       * <code>.proto.GameObject right_object = 6;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      public proto.Data.GameObjectOrBuilder getRightObjectOrBuilder() {
-        if (rightObjectBuilder_ != null) {
-          return rightObjectBuilder_.getMessageOrBuilder();
+      public Builder addAllAntagonists(
+          java.lang.Iterable<? extends proto.Data.Antagonist> values) {
+        if (antagonistsBuilder_ == null) {
+          ensureAntagonistsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, antagonists_);
+          onChanged();
         } else {
-          return rightObject_ == null ?
-              proto.Data.GameObject.getDefaultInstance() : rightObject_;
+          antagonistsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public Builder clearAntagonists() {
+        if (antagonistsBuilder_ == null) {
+          antagonists_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          antagonistsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public Builder removeAntagonists(int index) {
+        if (antagonistsBuilder_ == null) {
+          ensureAntagonistsIsMutable();
+          antagonists_.remove(index);
+          onChanged();
+        } else {
+          antagonistsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public proto.Data.Antagonist.Builder getAntagonistsBuilder(
+          int index) {
+        return getAntagonistsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public proto.Data.AntagonistOrBuilder getAntagonistsOrBuilder(
+          int index) {
+        if (antagonistsBuilder_ == null) {
+          return antagonists_.get(index);  } else {
+          return antagonistsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>.proto.GameObject right_object = 6;</code>
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> 
-          getRightObjectFieldBuilder() {
-        if (rightObjectBuilder_ == null) {
-          rightObjectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder>(
-                  getRightObject(),
+      public java.util.List<? extends proto.Data.AntagonistOrBuilder> 
+           getAntagonistsOrBuilderList() {
+        if (antagonistsBuilder_ != null) {
+          return antagonistsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(antagonists_);
+        }
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public proto.Data.Antagonist.Builder addAntagonistsBuilder() {
+        return getAntagonistsFieldBuilder().addBuilder(
+            proto.Data.Antagonist.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public proto.Data.Antagonist.Builder addAntagonistsBuilder(
+          int index) {
+        return getAntagonistsFieldBuilder().addBuilder(
+            index, proto.Data.Antagonist.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Antagonist antagonists = 5;</code>
+       */
+      public java.util.List<proto.Data.Antagonist.Builder> 
+           getAntagonistsBuilderList() {
+        return getAntagonistsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Antagonist, proto.Data.Antagonist.Builder, proto.Data.AntagonistOrBuilder> 
+          getAntagonistsFieldBuilder() {
+        if (antagonistsBuilder_ == null) {
+          antagonistsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              proto.Data.Antagonist, proto.Data.Antagonist.Builder, proto.Data.AntagonistOrBuilder>(
+                  antagonists_,
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
-          rightObject_ = null;
+          antagonists_ = null;
         }
-        return rightObjectBuilder_;
+        return antagonistsBuilder_;
+      }
+
+      private java.util.List<proto.Data.Item> items_ =
+        java.util.Collections.emptyList();
+      private void ensureItemsIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          items_ = new java.util.ArrayList<proto.Data.Item>(items_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Item, proto.Data.Item.Builder, proto.Data.ItemOrBuilder> itemsBuilder_;
+
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public java.util.List<proto.Data.Item> getItemsList() {
+        if (itemsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(items_);
+        } else {
+          return itemsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public int getItemsCount() {
+        if (itemsBuilder_ == null) {
+          return items_.size();
+        } else {
+          return itemsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public proto.Data.Item getItems(int index) {
+        if (itemsBuilder_ == null) {
+          return items_.get(index);
+        } else {
+          return itemsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder setItems(
+          int index, proto.Data.Item value) {
+        if (itemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemsIsMutable();
+          items_.set(index, value);
+          onChanged();
+        } else {
+          itemsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder setItems(
+          int index, proto.Data.Item.Builder builderForValue) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          itemsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder addItems(proto.Data.Item value) {
+        if (itemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemsIsMutable();
+          items_.add(value);
+          onChanged();
+        } else {
+          itemsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder addItems(
+          int index, proto.Data.Item value) {
+        if (itemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemsIsMutable();
+          items_.add(index, value);
+          onChanged();
+        } else {
+          itemsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder addItems(
+          proto.Data.Item.Builder builderForValue) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.add(builderForValue.build());
+          onChanged();
+        } else {
+          itemsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder addItems(
+          int index, proto.Data.Item.Builder builderForValue) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          itemsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder addAllItems(
+          java.lang.Iterable<? extends proto.Data.Item> values) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, items_);
+          onChanged();
+        } else {
+          itemsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder clearItems() {
+        if (itemsBuilder_ == null) {
+          items_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          itemsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public Builder removeItems(int index) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.remove(index);
+          onChanged();
+        } else {
+          itemsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public proto.Data.Item.Builder getItemsBuilder(
+          int index) {
+        return getItemsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public proto.Data.ItemOrBuilder getItemsOrBuilder(
+          int index) {
+        if (itemsBuilder_ == null) {
+          return items_.get(index);  } else {
+          return itemsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public java.util.List<? extends proto.Data.ItemOrBuilder> 
+           getItemsOrBuilderList() {
+        if (itemsBuilder_ != null) {
+          return itemsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(items_);
+        }
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public proto.Data.Item.Builder addItemsBuilder() {
+        return getItemsFieldBuilder().addBuilder(
+            proto.Data.Item.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public proto.Data.Item.Builder addItemsBuilder(
+          int index) {
+        return getItemsFieldBuilder().addBuilder(
+            index, proto.Data.Item.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Item items = 6;</code>
+       */
+      public java.util.List<proto.Data.Item.Builder> 
+           getItemsBuilderList() {
+        return getItemsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Item, proto.Data.Item.Builder, proto.Data.ItemOrBuilder> 
+          getItemsFieldBuilder() {
+        if (itemsBuilder_ == null) {
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              proto.Data.Item, proto.Data.Item.Builder, proto.Data.ItemOrBuilder>(
+                  items_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          items_ = null;
+        }
+        return itemsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2649,6 +4564,16 @@ public final class Data {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_GameObject_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Antagonist_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Antagonist_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Item_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Item_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_GameData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2669,15 +4594,19 @@ public final class Data {
     java.lang.String[] descriptorData = {
       "\n\ndata.proto\022\005proto\"A\n\nGameObject\022\t\n\001x\030\001" +
       " \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width" +
-      "\030\004 \001(\005\"\353\001\n\010GameData\022 \n\005mario\030\001 \001(\0132\021.pro" +
-      "to.GameObject\022*\n\017left_antagonist\030\002 \001(\0132\021" +
-      ".proto.GameObject\022+\n\020right_antagonist\030\003 " +
-      "\001(\0132\021.proto.GameObject\022\023\n\013floor_level\030\004 " +
-      "\001(\005\022&\n\013left_object\030\005 \001(\0132\021.proto.GameObj" +
-      "ect\022\'\n\014right_object\030\006 \001(\0132\021.proto.GameOb" +
-      "ject\"\030\n\006Action\022\016\n\006action\030\001 \001(\0052<\n\013GameSe" +
-      "rvice\022-\n\tGetAction\022\017.proto.GameData\032\r.pr" +
-      "oto.Action\"\000b\006proto3"
+      "\030\004 \001(\005\"n\n\nAntagonist\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001" +
+      "(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\r\n\005spe" +
+      "ed\030\005 \001(\005\022\014\n\004name\030\006 \001(\t\022\016\n\006isdead\030\007 \001(\010\"I" +
+      "\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003" +
+      " \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 \001(\t\"\303\001\n\010Ga" +
+      "meData\022 \n\005mario\030\001 \001(\0132\021.proto.GameObject" +
+      "\022\023\n\013floor_level\030\002 \001(\005\022 \n\030antagonist_cont" +
+      "ext_width\030\003 \001(\005\022\032\n\022item_context_width\030\004 " +
+      "\001(\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.Antagon" +
+      "ist\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006Actio" +
+      "n\022\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n\tGetA" +
+      "ction\022\017.proto.GameData\032\r.proto.Action\"\000b" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2689,14 +4618,26 @@ public final class Data {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_GameObject_descriptor,
         new java.lang.String[] { "X", "Y", "Height", "Width", });
-    internal_static_proto_GameData_descriptor =
+    internal_static_proto_Antagonist_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_proto_Antagonist_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Antagonist_descriptor,
+        new java.lang.String[] { "X", "Y", "Height", "Width", "Speed", "Name", "Isdead", });
+    internal_static_proto_Item_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_proto_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Item_descriptor,
+        new java.lang.String[] { "X", "Y", "Height", "Width", "Name", });
+    internal_static_proto_GameData_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_proto_GameData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_GameData_descriptor,
-        new java.lang.String[] { "Mario", "LeftAntagonist", "RightAntagonist", "FloorLevel", "LeftObject", "RightObject", });
+        new java.lang.String[] { "Mario", "FloorLevel", "AntagonistContextWidth", "ItemContextWidth", "Antagonists", "Items", });
     internal_static_proto_Action_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_proto_Action_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Action_descriptor,

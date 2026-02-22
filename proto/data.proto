@@ -10,14 +10,34 @@ message GameObject {
     int32 width = 4;
 }
 
+// Represents an antagonist character.
+message Antagonist {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    int32 speed = 5;
+    string name = 6;
+    bool isdead = 7;
+}
+
+// Represents an item in the game.
+message Item {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    string name = 5;
+}
+
 // Request data containing the state of the game.
 message GameData {
     GameObject mario = 1;
-    GameObject left_antagonist = 2;
-    GameObject right_antagonist = 3;
-    int32 floor_level = 4;
-    GameObject left_object = 5;
-    GameObject right_object = 6;
+    int32 floor_level = 2;
+    int32 antagonist_context_width = 3;
+    int32 item_context_width = 4;
+    repeated Antagonist antagonists = 5;
+    repeated Item items = 6;
 }
 
 // Response data containing the action to be taken.

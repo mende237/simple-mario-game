@@ -163,21 +163,42 @@ public class GamerAI implements Runnable {
         return gameItems;
     }
 
-    private int[] filter(int xTab[]) {
-        int[] acceptedRange = new int[2];
-        acceptedRange[0] = -1;
-        acceptedRange[1] = -1;
+    // private int[] filter(int xTab[]) {
+    // int[] acceptedRange = new int[2];
+    // acceptedRange[0] = -1;
+    // acceptedRange[1] = -1;
 
-        for (int i = 0; i < xTab.length; i++) {
-            if (xTab[i] >= this.windowFilter.nim() && xTab[i] <= this.windowFilter.max()) {
-                if (acceptedRange[0] == -1) {
-                    acceptedRange[0] = i;
-                }
-                acceptedRange[1] = i;
+    // for (int i = 0; i < xTab.length; i++) {
+    // if (xTab[i] >= this.windowFilter.nim() && xTab[i] <= this.windowFilter.max())
+    // {
+    // if (acceptedRange[0] == -1) {
+    // acceptedRange[0] = i;
+    // }
+    // acceptedRange[1] = i;
+    // }
+    // }
+
+    // return acceptedRange;
+    // }
+
+    private void filterAntogonist(Antagonist antagonists[]) {
+
+        for (int i = 0; i < antagonists.length; i++) {
+            if (!(antagonists[i].getX() >= this.windowFilter.nim()
+                    && antagonists[i].getX() <= this.windowFilter.max())) {
+                antagonists[i] = null;
             }
         }
+    }
 
-        return acceptedRange;
+    private void filterItem(GameItem gameItems[]) {
+
+        for (int i = 0; i < gameItems.length; i++) {
+            if (!(gameItems[i].getX() >= this.windowFilter.nim()
+                    && gameItems[i].getX() <= this.windowFilter.max())) {
+                gameItems[i] = null;
+            }
+        }
     }
 
     @Override
@@ -196,6 +217,8 @@ public class GamerAI implements Runnable {
             // System.out.println();
 
             Antagonist[] antagonists = getAntagonistContext();
+
+            filterAntogonist(antagonists);
 
             for (Antagonist antagonist : antagonists) {
                 if (antagonist != null) {
