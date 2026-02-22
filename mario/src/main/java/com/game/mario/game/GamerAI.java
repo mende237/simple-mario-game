@@ -5,6 +5,15 @@ import com.game.mario.character.Mario;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import proto.Data;
+import proto.GameServiceGrpc;
+
+import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GamerAI implements Runnable {
     private final int REACTION_TIME = 500; // milliseconds
     private Stage stage;
@@ -12,11 +21,24 @@ public class GamerAI implements Runnable {
     private int contextAntogonistWidth;
     private WindowFilter windowFilter;
 
+    private final ManagedChannel channel;
+    private final GameServiceGrpc.GameServiceBlockingStub blockingStub;
+
     public GamerAI(Stage stage, int contextItemWidth, int contextAntogonistWidth, WindowFilter windowFilter) {
         this.stage = stage;
         this.contextItemWidth = contextItemWidth;
         this.contextAntogonistWidth = contextAntogonistWidth;
         this.windowFilter = windowFilter;
+
+        // Initialize gRPC client
+        this.channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+                .usePlaintext() // Use plaintext for local testing
+                .build();
+        this.blockingStub = GameServiceGrpc.newBlockingStub(channel);
+    }
+
+    public void shutdown() throws InterruptedException {
+        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
     private Antagonist[] getAntagonistContext() {
@@ -205,28 +227,77 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            // GameItem[] gameItems = getItemContext();
-
-            // System.out.print("Mario " + this.stage.getMario().getX());
-            // for (GameItem gameItem : gameItems) {
-            // if (gameItem != null) {
-            // System.out.print(" Name " + gameItem.getName() + " x : " + gameItem.getX() +
-            // " ");
-            // }
-            // }
-            // System.out.println();
-
             Antagonist[] antagonists = getAntagonistContext();
+            GameItem[] gameItems = getItemContext();
 
             filterAntogonist(antagonists);
+            filterItem(gameItems);
 
-            for (Antagonist antagonist : antagonists) {
-                if (antagonist != null) {
-                    System.out.print(antagonist.getName() + " x : " + antagonist.getX() + " ");
+            // Build GameData
+            Mario mario = stage.getMario();
+            Data.GameObject marioObject = Data.GameObject.newBuilder()
+                    .setX(mario.getX())
+                    .setY(mario.getY())
+                    .setHeight(mario.getHeight())
+                    .setWidth(mario.getWidth())
+                    .build();
+
+            List<Data.Antagonist> protoAntagonists = new ArrayList<>();
+            if (antagonists != null) {
+                for (Antagonist ant : antagonists) {
+                    if (ant != null) {
+                        protoAntagonists.add(Data.Antagonist.newBuilder()
+                                .setX(ant.getX())
+                                .setY(ant.getY())
+                                .setHeight(ant.getHeight())
+                                .setWidth(ant.getWidth())
+                                .setSpeed(0) // Assuming speed is not directly available or 0 for now
+                                .setName(ant.getName() != null ? ant.getName() : "unknown")
+                                .setIsdead(!ant.isLiving()) // Assuming isLiving means not dead
+                                .build());
+                    }
                 }
             }
 
-            System.out.println();
+            List<Data.Item> protoItems = new ArrayList<>();
+            if (gameItems != null) {
+                for (GameItem item : gameItems) {
+                    if (item != null) {
+                        protoItems.add(Data.Item.newBuilder()
+                                .setX(item.getX())
+                                .setY(item.getY())
+                                .setHeight(item.getHeight())
+                                .setWidth(item.getWidth())
+                                .setName(item.getName() != null ? item.getName() : "unknown")
+                                .build());
+                    }
+                }
+            }
+
+            Data.GameData gameData = Data.GameData.newBuilder()
+                    .setMario(marioObject)
+                    .setFloorLevel(stage.getYFloor())
+                    .setAntagonistContextWidth(contextAntogonistWidth)
+                    .setItemContextWidth(contextItemWidth)
+                    .addAllAntagonists(protoAntagonists)
+                    .addAllItems(protoItems)
+                    .build();
+
+            // Send GameData and get Action
+            try {
+                Data.Action action = blockingStub.getAction(gameData);
+                System.out.println("Received action from Python server: " + action.getAction());
+            } catch (Exception e) {
+                System.err.println("gRPC call failed: " + e.getMessage());
+            }
+
+            // for (Antagonist antagonist : antagonists) {
+            // if (antagonist != null) {
+            // System.out.print(antagonist.getName() + " x : " + antagonist.getX() + " ");
+            // }
+            // }
+
+            // System.out.println();
 
             try {
                 Thread.sleep(REACTION_TIME);

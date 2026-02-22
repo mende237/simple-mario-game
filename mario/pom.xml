@@ -83,6 +83,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com.game.mario.App</mainClass>
+                            <module>com.game.mario</module>
                         </configuration>
                     </execution>
                 </executions>
