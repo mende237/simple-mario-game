@@ -9,6 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
 import com.game.mario.item.GameItem;
+import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
 public class Champignon extends Antagonist implements Runnable {
@@ -211,12 +212,14 @@ public class Champignon extends Antagonist implements Runnable {
 		if (mario.near(this) == true && super.isLiving() == true && mario.isLiving() == true) {
 			// dans ce cas c'est mario qui tu le champignon
 			if (mario.bottomCollision(this) == true && (mario.isJump() == true || mario.isFall() == true)) {
+				Mario.setState(MarioState.KILLING_ANTAGONIST);
 				// System.out.println("tuer champ");
 				super.setLiving(false);
 				super.remove = true;
 				// Audio.playSong("/audio/ecrasePersonnage.wav");
 				// System.out.println("mario mort");
 			} else {
+				Mario.setState(MarioState.HIT_BY_ANTAGONIST);
 				// System.out.println("tuer mario");
 				mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 				mario.setLiving(false);
@@ -225,6 +228,7 @@ public class Champignon extends Antagonist implements Runnable {
 				GameManager.setState(TransitionState.DIE);
 				if (mario.getNumberOfLive() <= 0) {
 					GameManager.setState(TransitionState.GAMEOVER);
+					Mario.setState(MarioState.DEAD);
 				}
 			}
 		}

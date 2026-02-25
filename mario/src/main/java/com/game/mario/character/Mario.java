@@ -3,6 +3,7 @@ package com.game.mario.character;
 import com.game.mario.App;
 import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
+import com.game.mario.util.MarioState;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +22,7 @@ public class Mario extends GameCharacter {
 	private static int numberOfLive;
 	private static int score;
 	private static boolean isLiving = true;
+	private static MarioState state = MarioState.STANDING;
 
 	// ********************************constructor******************************************//
 	public Mario(int x, int y) {
@@ -73,6 +75,10 @@ public class Mario extends GameCharacter {
 		return isLiving;
 	}
 
+	public static MarioState getState() {
+		return state;
+	}
+
 	// *******************************************setter************************************//
 	public void setJump(boolean jump) {
 		this.jump = jump;
@@ -99,6 +105,10 @@ public class Mario extends GameCharacter {
 		Mario.isLiving = isLiving;
 	}
 
+	public static void setState(MarioState state) {
+		Mario.state = state;
+	}
+
 	// ********************************************method************************************//
 	public Image jump(int begin) {
 		// ImageIcon ico;
@@ -108,6 +118,7 @@ public class Mario extends GameCharacter {
 		if (super.isLiving() == true) {
 			// monter du saut
 			if (this.counter <= 10) {
+				state = MarioState.JUMPING;
 				if (super.getY() > App.scene.getHeightRoof() && begin - super.getHeight() - super.getY() <= 130) {
 					super.setY(this.getY() - 4);
 				} else {
@@ -122,7 +133,7 @@ public class Mario extends GameCharacter {
 				// descente du saut
 
 			} else if (super.getY() + super.getHeight() < App.scene.getYFloor()) {
-
+				state = MarioState.FALLING;
 				super.setY(super.getY() + 1);
 
 				if (super.isToRight() == true)
@@ -131,7 +142,7 @@ public class Mario extends GameCharacter {
 					str = "images/marioSautGauche.png";
 				// end of jump
 			} else {
-
+				state = MarioState.STANDING;
 				if (super.isToRight() == true)
 					str = "images/marioArretDroite.png";
 				else
@@ -155,6 +166,7 @@ public class Mario extends GameCharacter {
 		if (super.isLiving() == true) {
 			// descente
 			if (super.getY() + super.getHeight() < App.scene.getYFloor()) {
+				state = MarioState.FALLING;
 				super.setY(super.getY() + 1);
 
 				if (super.isToRight() == true)
@@ -163,6 +175,7 @@ public class Mario extends GameCharacter {
 					str = "images/marioSautGauche.png";
 				// fin de la descente
 			} else {
+				state = MarioState.STANDING;
 				if (super.isToRight() == true)
 					str = "images/marioArretDroite.png";
 				else
@@ -170,6 +183,7 @@ public class Mario extends GameCharacter {
 				this.fall = false;
 			}
 		} else {
+			state = MarioState.HIT_BY_ANTAGONIST;
 			str = "images/marioSautDroite.png";
 		}
 		// ico = new ImageIcon(getClass().getResource(str));
@@ -184,16 +198,19 @@ public class Mario extends GameCharacter {
 		if ((super.frontCollision(
 				gameItem) == true && this.isToRight() == true)
 				|| (super.backCollision(gameItem) == true && this.isToRight() == false) && merge == false) {
+			state = MarioState.BLOCKING_BY_OBJECT_HORIZONTAL;
 			this.setWalke(false);
 			App.scene.setDx(0);
 		}
 
 		// bottom contact
 		if (super.bottomCollision(gameItem) == true) {// mario jump on an object
+			state = MarioState.ON_OBJECT;
 			App.scene.setYFloor(gameItem.getY());
 			this.isOnObject = true;
 			this.yObjectCollision = gameItem.getY();
 		} else if (super.bottomCollision(gameItem) == false && merge == false) {// mario fall on the initial floor
+			state = MarioState.STANDING;
 			App.scene.setYFloor(293);// altitude initiale
 			if (this.jump == false)
 				this.fall = true;
@@ -203,9 +220,12 @@ public class Mario extends GameCharacter {
 
 		// top contact
 		if (super.topCollision(gameItem) == true) {
+			state = MarioState.BLOCKING_BY_OBJECT_VERTICAL;
 			App.scene.setHeightRoof(gameItem.getHeight() + gameItem.getY());// roof become bottom of object
-		} else if (super.topCollision(gameItem) == false && this.jump == false)
+		} else if (super.topCollision(gameItem) == false && this.jump == false) {
+			state = MarioState.BLOCKING_BY_SKY;
 			App.scene.setHeightRoof(0);// altitude initiale du plafond (ciel)
+		}
 	}
 
 	@Override
@@ -215,11 +235,19 @@ public class Mario extends GameCharacter {
 		Image img;
 
 		if (super.isWalke() == false || App.scene.getxPos() <= 0 || App.scene.getxPos() >= 4100) {
+			if (App.scene.getxPos() <= 0) {
+				state = MarioState.BLOCKING_BY_HORIZONTAL_BEGINNING_MAP;
+			} else if (App.scene.getxPos() >= 4100) {
+				state = MarioState.BLOCKING_BY_HORIZONTAL_END_MAP;
+			} else {
+				state = MarioState.STANDING;
+			}
 			if (super.isToRight() == true)
 				str = "images/" + name + "ArretDroite.png";
 			else
 				str = "images/" + name + "ArretGauche.png";
 		} else {
+			state = MarioState.WALKING;
 			super.setCounter(super.getCounter() + 1);
 			if (super.getCounter() / frequency == 0) {
 				if (super.isToRight() == true)
@@ -243,6 +271,7 @@ public class Mario extends GameCharacter {
 
 	public boolean contactCoin(Coin coin) {
 		if (this.near(coin) == true) {
+			state = MarioState.HIT_COIN;
 			return true;
 		} else
 			return false;

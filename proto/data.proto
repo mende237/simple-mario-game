@@ -3,11 +3,12 @@ syntax = "proto3";
 package proto;
 
 // Represents a game object with position and dimensions.
-message GameObject {
+message Mario {
     int32 x = 1;
     int32 y = 2;
     int32 height = 3;
     int32 width = 4;
+    string state = 5;
 }
 
 // Represents an antagonist character.
@@ -32,7 +33,7 @@ message Item {
 
 // Request data containing the state of the game.
 message GameData {
-    GameObject mario = 1;
+    Mario mario = 1;
     int32 floor_level = 2;
     int32 antagonist_context_width = 3;
     int32 item_context_width = 4;

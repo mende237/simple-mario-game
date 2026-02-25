@@ -14,8 +14,8 @@ public final class Data {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface GameObjectOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:proto.GameObject)
+  public interface MarioOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Mario)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -41,31 +41,44 @@ public final class Data {
      * @return The width.
      */
     int getWidth();
+
+    /**
+     * <code>string state = 5;</code>
+     * @return The state.
+     */
+    java.lang.String getState();
+    /**
+     * <code>string state = 5;</code>
+     * @return The bytes for state.
+     */
+    com.google.protobuf.ByteString
+        getStateBytes();
   }
   /**
    * <pre>
    * Represents a game object with position and dimensions.
    * </pre>
    *
-   * Protobuf type {@code proto.GameObject}
+   * Protobuf type {@code proto.Mario}
    */
-  public static final class GameObject extends
+  public static final class Mario extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:proto.GameObject)
-      GameObjectOrBuilder {
+      // @@protoc_insertion_point(message_implements:proto.Mario)
+      MarioOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GameObject.newBuilder() to construct.
-    private GameObject(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Mario.newBuilder() to construct.
+    private Mario(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GameObject() {
+    private Mario() {
+      state_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new GameObject();
+      return new Mario();
     }
 
     @java.lang.Override
@@ -75,15 +88,15 @@ public final class Data {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return proto.Data.internal_static_proto_GameObject_descriptor;
+      return proto.Data.internal_static_proto_Mario_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return proto.Data.internal_static_proto_GameObject_fieldAccessorTable
+      return proto.Data.internal_static_proto_Mario_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              proto.Data.GameObject.class, proto.Data.GameObject.Builder.class);
+              proto.Data.Mario.class, proto.Data.Mario.Builder.class);
     }
 
     public static final int X_FIELD_NUMBER = 1;
@@ -130,6 +143,44 @@ public final class Data {
       return width_;
     }
 
+    public static final int STATE_FIELD_NUMBER = 5;
+    private volatile java.lang.Object state_;
+    /**
+     * <code>string state = 5;</code>
+     * @return The state.
+     */
+    @java.lang.Override
+    public java.lang.String getState() {
+      java.lang.Object ref = state_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        state_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string state = 5;</code>
+     * @return The bytes for state.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getStateBytes() {
+      java.lang.Object ref = state_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        state_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -156,6 +207,9 @@ public final class Data {
       if (width_ != 0) {
         output.writeInt32(4, width_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(state_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, state_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -181,6 +235,9 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, width_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(state_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, state_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -191,10 +248,10 @@ public final class Data {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof proto.Data.GameObject)) {
+      if (!(obj instanceof proto.Data.Mario)) {
         return super.equals(obj);
       }
-      proto.Data.GameObject other = (proto.Data.GameObject) obj;
+      proto.Data.Mario other = (proto.Data.Mario) obj;
 
       if (getX()
           != other.getX()) return false;
@@ -204,6 +261,8 @@ public final class Data {
           != other.getHeight()) return false;
       if (getWidth()
           != other.getWidth()) return false;
+      if (!getState()
+          .equals(other.getState())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -223,74 +282,76 @@ public final class Data {
       hash = (53 * hash) + getHeight();
       hash = (37 * hash) + WIDTH_FIELD_NUMBER;
       hash = (53 * hash) + getWidth();
+      hash = (37 * hash) + STATE_FIELD_NUMBER;
+      hash = (53 * hash) + getState().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static proto.Data.GameObject parseFrom(byte[] data)
+    public static proto.Data.Mario parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static proto.Data.GameObject parseFrom(java.io.InputStream input)
+    public static proto.Data.Mario parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static proto.Data.GameObject parseDelimitedFrom(java.io.InputStream input)
+    public static proto.Data.Mario parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static proto.Data.GameObject parseDelimitedFrom(
+    public static proto.Data.Mario parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static proto.Data.GameObject parseFrom(
+    public static proto.Data.Mario parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -303,7 +364,7 @@ public final class Data {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(proto.Data.GameObject prototype) {
+    public static Builder newBuilder(proto.Data.Mario prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -323,26 +384,26 @@ public final class Data {
      * Represents a game object with position and dimensions.
      * </pre>
      *
-     * Protobuf type {@code proto.GameObject}
+     * Protobuf type {@code proto.Mario}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:proto.GameObject)
-        proto.Data.GameObjectOrBuilder {
+        // @@protoc_insertion_point(builder_implements:proto.Mario)
+        proto.Data.MarioOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return proto.Data.internal_static_proto_GameObject_descriptor;
+        return proto.Data.internal_static_proto_Mario_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return proto.Data.internal_static_proto_GameObject_fieldAccessorTable
+        return proto.Data.internal_static_proto_Mario_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                proto.Data.GameObject.class, proto.Data.GameObject.Builder.class);
+                proto.Data.Mario.class, proto.Data.Mario.Builder.class);
       }
 
-      // Construct using proto.Data.GameObject.newBuilder()
+      // Construct using proto.Data.Mario.newBuilder()
       private Builder() {
 
       }
@@ -363,23 +424,25 @@ public final class Data {
 
         width_ = 0;
 
+        state_ = "";
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return proto.Data.internal_static_proto_GameObject_descriptor;
+        return proto.Data.internal_static_proto_Mario_descriptor;
       }
 
       @java.lang.Override
-      public proto.Data.GameObject getDefaultInstanceForType() {
-        return proto.Data.GameObject.getDefaultInstance();
+      public proto.Data.Mario getDefaultInstanceForType() {
+        return proto.Data.Mario.getDefaultInstance();
       }
 
       @java.lang.Override
-      public proto.Data.GameObject build() {
-        proto.Data.GameObject result = buildPartial();
+      public proto.Data.Mario build() {
+        proto.Data.Mario result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -387,12 +450,13 @@ public final class Data {
       }
 
       @java.lang.Override
-      public proto.Data.GameObject buildPartial() {
-        proto.Data.GameObject result = new proto.Data.GameObject(this);
+      public proto.Data.Mario buildPartial() {
+        proto.Data.Mario result = new proto.Data.Mario(this);
         result.x_ = x_;
         result.y_ = y_;
         result.height_ = height_;
         result.width_ = width_;
+        result.state_ = state_;
         onBuilt();
         return result;
       }
@@ -431,16 +495,16 @@ public final class Data {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof proto.Data.GameObject) {
-          return mergeFrom((proto.Data.GameObject)other);
+        if (other instanceof proto.Data.Mario) {
+          return mergeFrom((proto.Data.Mario)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(proto.Data.GameObject other) {
-        if (other == proto.Data.GameObject.getDefaultInstance()) return this;
+      public Builder mergeFrom(proto.Data.Mario other) {
+        if (other == proto.Data.Mario.getDefaultInstance()) return this;
         if (other.getX() != 0) {
           setX(other.getX());
         }
@@ -452,6 +516,10 @@ public final class Data {
         }
         if (other.getWidth() != 0) {
           setWidth(other.getWidth());
+        }
+        if (!other.getState().isEmpty()) {
+          state_ = other.state_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -499,6 +567,11 @@ public final class Data {
 
                 break;
               } // case 32
+              case 42: {
+                state_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 42
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -638,6 +711,82 @@ public final class Data {
         onChanged();
         return this;
       }
+
+      private java.lang.Object state_ = "";
+      /**
+       * <code>string state = 5;</code>
+       * @return The state.
+       */
+      public java.lang.String getState() {
+        java.lang.Object ref = state_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          state_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string state = 5;</code>
+       * @return The bytes for state.
+       */
+      public com.google.protobuf.ByteString
+          getStateBytes() {
+        java.lang.Object ref = state_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          state_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string state = 5;</code>
+       * @param value The state to set.
+       * @return This builder for chaining.
+       */
+      public Builder setState(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        state_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string state = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearState() {
+        
+        state_ = getDefaultInstance().getState();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string state = 5;</code>
+       * @param value The bytes for state to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        state_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -651,23 +800,23 @@ public final class Data {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:proto.GameObject)
+      // @@protoc_insertion_point(builder_scope:proto.Mario)
     }
 
-    // @@protoc_insertion_point(class_scope:proto.GameObject)
-    private static final proto.Data.GameObject DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:proto.Mario)
+    private static final proto.Data.Mario DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new proto.Data.GameObject();
+      DEFAULT_INSTANCE = new proto.Data.Mario();
     }
 
-    public static proto.Data.GameObject getDefaultInstance() {
+    public static proto.Data.Mario getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GameObject>
-        PARSER = new com.google.protobuf.AbstractParser<GameObject>() {
+    private static final com.google.protobuf.Parser<Mario>
+        PARSER = new com.google.protobuf.AbstractParser<Mario>() {
       @java.lang.Override
-      public GameObject parsePartialFrom(
+      public Mario parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -686,17 +835,17 @@ public final class Data {
       }
     };
 
-    public static com.google.protobuf.Parser<GameObject> parser() {
+    public static com.google.protobuf.Parser<Mario> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GameObject> getParserForType() {
+    public com.google.protobuf.Parser<Mario> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public proto.Data.GameObject getDefaultInstanceForType() {
+    public proto.Data.Mario getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2522,19 +2671,19 @@ public final class Data {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      * @return Whether the mario field is set.
      */
     boolean hasMario();
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      * @return The mario.
      */
-    proto.Data.GameObject getMario();
+    proto.Data.Mario getMario();
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      */
-    proto.Data.GameObjectOrBuilder getMarioOrBuilder();
+    proto.Data.MarioOrBuilder getMarioOrBuilder();
 
     /**
      * <code>int32 floor_level = 2;</code>
@@ -2649,9 +2798,9 @@ public final class Data {
     }
 
     public static final int MARIO_FIELD_NUMBER = 1;
-    private proto.Data.GameObject mario_;
+    private proto.Data.Mario mario_;
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      * @return Whether the mario field is set.
      */
     @java.lang.Override
@@ -2659,18 +2808,18 @@ public final class Data {
       return mario_ != null;
     }
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      * @return The mario.
      */
     @java.lang.Override
-    public proto.Data.GameObject getMario() {
-      return mario_ == null ? proto.Data.GameObject.getDefaultInstance() : mario_;
+    public proto.Data.Mario getMario() {
+      return mario_ == null ? proto.Data.Mario.getDefaultInstance() : mario_;
     }
     /**
-     * <code>.proto.GameObject mario = 1;</code>
+     * <code>.proto.Mario mario = 1;</code>
      */
     @java.lang.Override
-    public proto.Data.GameObjectOrBuilder getMarioOrBuilder() {
+    public proto.Data.MarioOrBuilder getMarioOrBuilder() {
       return getMario();
     }
 
@@ -3325,31 +3474,31 @@ public final class Data {
       }
       private int bitField0_;
 
-      private proto.Data.GameObject mario_;
+      private proto.Data.Mario mario_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> marioBuilder_;
+          proto.Data.Mario, proto.Data.Mario.Builder, proto.Data.MarioOrBuilder> marioBuilder_;
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        * @return Whether the mario field is set.
        */
       public boolean hasMario() {
         return marioBuilder_ != null || mario_ != null;
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        * @return The mario.
        */
-      public proto.Data.GameObject getMario() {
+      public proto.Data.Mario getMario() {
         if (marioBuilder_ == null) {
-          return mario_ == null ? proto.Data.GameObject.getDefaultInstance() : mario_;
+          return mario_ == null ? proto.Data.Mario.getDefaultInstance() : mario_;
         } else {
           return marioBuilder_.getMessage();
         }
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
-      public Builder setMario(proto.Data.GameObject value) {
+      public Builder setMario(proto.Data.Mario value) {
         if (marioBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3363,10 +3512,10 @@ public final class Data {
         return this;
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
       public Builder setMario(
-          proto.Data.GameObject.Builder builderForValue) {
+          proto.Data.Mario.Builder builderForValue) {
         if (marioBuilder_ == null) {
           mario_ = builderForValue.build();
           onChanged();
@@ -3377,13 +3526,13 @@ public final class Data {
         return this;
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
-      public Builder mergeMario(proto.Data.GameObject value) {
+      public Builder mergeMario(proto.Data.Mario value) {
         if (marioBuilder_ == null) {
           if (mario_ != null) {
             mario_ =
-              proto.Data.GameObject.newBuilder(mario_).mergeFrom(value).buildPartial();
+              proto.Data.Mario.newBuilder(mario_).mergeFrom(value).buildPartial();
           } else {
             mario_ = value;
           }
@@ -3395,7 +3544,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
       public Builder clearMario() {
         if (marioBuilder_ == null) {
@@ -3409,33 +3558,33 @@ public final class Data {
         return this;
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
-      public proto.Data.GameObject.Builder getMarioBuilder() {
+      public proto.Data.Mario.Builder getMarioBuilder() {
         
         onChanged();
         return getMarioFieldBuilder().getBuilder();
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
-      public proto.Data.GameObjectOrBuilder getMarioOrBuilder() {
+      public proto.Data.MarioOrBuilder getMarioOrBuilder() {
         if (marioBuilder_ != null) {
           return marioBuilder_.getMessageOrBuilder();
         } else {
           return mario_ == null ?
-              proto.Data.GameObject.getDefaultInstance() : mario_;
+              proto.Data.Mario.getDefaultInstance() : mario_;
         }
       }
       /**
-       * <code>.proto.GameObject mario = 1;</code>
+       * <code>.proto.Mario mario = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder> 
+          proto.Data.Mario, proto.Data.Mario.Builder, proto.Data.MarioOrBuilder> 
           getMarioFieldBuilder() {
         if (marioBuilder_ == null) {
           marioBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.Data.GameObject, proto.Data.GameObject.Builder, proto.Data.GameObjectOrBuilder>(
+              proto.Data.Mario, proto.Data.Mario.Builder, proto.Data.MarioOrBuilder>(
                   getMario(),
                   getParentForChildren(),
                   isClean());
@@ -4559,10 +4708,10 @@ public final class Data {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_GameObject_descriptor;
+    internal_static_proto_Mario_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_proto_GameObject_fieldAccessorTable;
+      internal_static_proto_Mario_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_Antagonist_descriptor;
   private static final 
@@ -4592,32 +4741,32 @@ public final class Data {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ndata.proto\022\005proto\"A\n\nGameObject\022\t\n\001x\030\001" +
-      " \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width" +
-      "\030\004 \001(\005\"n\n\nAntagonist\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001" +
-      "(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\r\n\005spe" +
-      "ed\030\005 \001(\005\022\014\n\004name\030\006 \001(\t\022\016\n\006isdead\030\007 \001(\010\"I" +
-      "\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003" +
-      " \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 \001(\t\"\303\001\n\010Ga" +
-      "meData\022 \n\005mario\030\001 \001(\0132\021.proto.GameObject" +
-      "\022\023\n\013floor_level\030\002 \001(\005\022 \n\030antagonist_cont" +
-      "ext_width\030\003 \001(\005\022\032\n\022item_context_width\030\004 " +
-      "\001(\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.Antagon" +
-      "ist\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006Actio" +
-      "n\022\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n\tGetA" +
-      "ction\022\017.proto.GameData\032\r.proto.Action\"\000b" +
-      "\006proto3"
+      "\n\ndata.proto\022\005proto\"K\n\005Mario\022\t\n\001x\030\001 \001(\005\022" +
+      "\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(" +
+      "\005\022\r\n\005state\030\005 \001(\t\"n\n\nAntagonist\022\t\n\001x\030\001 \001(" +
+      "\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 " +
+      "\001(\005\022\r\n\005speed\030\005 \001(\005\022\014\n\004name\030\006 \001(\t\022\016\n\006isde" +
+      "ad\030\007 \001(\010\"I\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016" +
+      "\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 " +
+      "\001(\t\"\276\001\n\010GameData\022\033\n\005mario\030\001 \001(\0132\014.proto." +
+      "Mario\022\023\n\013floor_level\030\002 \001(\005\022 \n\030antagonist" +
+      "_context_width\030\003 \001(\005\022\032\n\022item_context_wid" +
+      "th\030\004 \001(\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.An" +
+      "tagonist\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006" +
+      "Action\022\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n" +
+      "\tGetAction\022\017.proto.GameData\032\r.proto.Acti" +
+      "on\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_proto_GameObject_descriptor =
+    internal_static_proto_Mario_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_proto_GameObject_fieldAccessorTable = new
+    internal_static_proto_Mario_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_proto_GameObject_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", });
+        internal_static_proto_Mario_descriptor,
+        new java.lang.String[] { "X", "Y", "Height", "Width", "State", });
     internal_static_proto_Antagonist_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_proto_Antagonist_fieldAccessorTable = new
