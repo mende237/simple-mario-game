@@ -54,6 +54,12 @@
             <artifactId>guava</artifactId>
             <version>31.1-jre</version>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20251224</version>
+        </dependency>
     </dependencies>
     <build>
         <extensions>
@@ -82,8 +88,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.game.mario.App</mainClass>
-                            <module>com.game.mario</module>
+                            <mainClass>com.game.mario/com.game.mario.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>

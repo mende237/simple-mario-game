@@ -272,7 +272,7 @@ public class Turtle extends Antagonist implements Runnable {
 			if (mario.bottomCollision(this) == true) {
 				if (mario.isJump() == true || mario.isFall() == true) {
 					if (super.isLiving() == true) {
-						Mario.setState(MarioState.KILLING_ANTAGONIST);
+						mario.setState(MarioState.KILLING_ANTAGONIST);
 						super.nbreOfLive -= 1;
 						super.setLiving(false);
 						this.justDie = true;
@@ -282,7 +282,7 @@ public class Turtle extends Antagonist implements Runnable {
 						// dans le cas ou la tortue ne vient pas de mourir elle passe a l'etat zombie
 						// in the case that turtle is dead since a long time it become zombi
 					} else if (this.justDie == false) {
-						Mario.setState(MarioState.ZOMBIFIYING_ANTAGONIST);
+						mario.setState(MarioState.ZOMBIFIYING_ANTAGONIST);
 						this.zombie = true;
 						super.setToRight(mario.isToRight());
 						int zoneMin, zoneMax;
@@ -308,7 +308,7 @@ public class Turtle extends Antagonist implements Runnable {
 			if (mario.isJump() == false && mario.isFall() == false && (this.zombie == true || super.isLiving() == true)
 					&& justDie == false) {
 				if (mario.frontCollision(this) == true || mario.backCollision(this) == true) {
-					Mario.setState(MarioState.HIT_BY_ANTAGONIST);
+					mario.setState(MarioState.HIT_BY_ANTAGONIST);
 					// System.out.println(this.zombie);
 					mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 					// System.out.println("nombre de vie: "+mario.getNumberOfLive());
@@ -318,7 +318,7 @@ public class Turtle extends Antagonist implements Runnable {
 					GameManager.setState(TransitionState.DIE);
 					if (mario.getNumberOfLive() <= 0) {
 						GameManager.setState(TransitionState.GAMEOVER);
-						Mario.setState(MarioState.DEAD);
+						mario.setState(MarioState.DEAD);
 					}
 
 				}

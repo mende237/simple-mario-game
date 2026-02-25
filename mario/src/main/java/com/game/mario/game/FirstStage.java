@@ -19,6 +19,7 @@ import com.game.mario.character.Antagonist;
 import com.game.mario.character.Champignon;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
+import com.game.mario.util.Config;
 
 public class FirstStage extends Stage {
 	private Thread gamerAI_Thread;
@@ -190,7 +191,8 @@ public class FirstStage extends Stage {
 		SceneUpdater.update(getGraphicsContext2D());
 
 		if (aiMode) {
-			GamerAI gamerAI = new GamerAI(this, 5, 6, new WindowFilter(0, 800));
+			GamerAI gamerAI = new GamerAI(this, Config.CONTEXT_ITEM_WIDTH, Config.CONTEXT_ANTAGONIST_WIDTH,
+					new WindowFilter(Config.WINDOW_FILTER_MIN, Config.WINDOW_FILTER_MAX));
 			this.gamerAI_Thread = new Thread(gamerAI);
 			this.gamerAI_Thread.start();
 		}

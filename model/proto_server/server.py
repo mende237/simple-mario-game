@@ -11,7 +11,7 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
     def GetAction(self, request, context):
         # For now, just return a default action.
         # In a real scenario, this would contain AI logic.
-        print(f"Received GameData: Mario at ({request.mario.x}, {request.mario.y})")
+        print(f"Received GameData: Mario at ({request.mario.x}, {request.mario.y}, {request.mario.state})")
         for antagonist in request.antagonists:
             print(f"  Antagonist: {antagonist.name} at ({antagonist.x}, {antagonist.y})")
         for item in request.items:

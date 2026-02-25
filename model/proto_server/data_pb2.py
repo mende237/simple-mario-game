@@ -24,23 +24,23 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ndata.proto\x12\x05proto\"A\n\nGameObject\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\"n\n\nAntagonist\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\r\n\x05speed\x18\x05 \x01(\x05\x12\x0c\n\x04name\x18\x06 \x01(\t\x12\x0e\n\x06isdead\x18\x07 \x01(\x08\"I\n\x04Item\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\x0c\n\x04name\x18\x05 \x01(\t\"\xc3\x01\n\x08GameData\x12 \n\x05mario\x18\x01 \x01(\x0b\x32\x11.proto.GameObject\x12\x13\n\x0b\x66loor_level\x18\x02 \x01(\x05\x12 \n\x18\x61ntagonist_context_width\x18\x03 \x01(\x05\x12\x1a\n\x12item_context_width\x18\x04 \x01(\x05\x12&\n\x0b\x61ntagonists\x18\x05 \x03(\x0b\x32\x11.proto.Antagonist\x12\x1a\n\x05items\x18\x06 \x03(\x0b\x32\x0b.proto.Item\"\x18\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x01(\x05\x32<\n\x0bGameService\x12-\n\tGetAction\x12\x0f.proto.GameData\x1a\r.proto.Action\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ndata.proto\x12\x05proto\"K\n\x05Mario\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\r\n\x05state\x18\x05 \x01(\t\"n\n\nAntagonist\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\r\n\x05speed\x18\x05 \x01(\x05\x12\x0c\n\x04name\x18\x06 \x01(\t\x12\x0e\n\x06isdead\x18\x07 \x01(\x08\"I\n\x04Item\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\x0c\n\x04name\x18\x05 \x01(\t\"\xbe\x01\n\x08GameData\x12\x1b\n\x05mario\x18\x01 \x01(\x0b\x32\x0c.proto.Mario\x12\x13\n\x0b\x66loor_level\x18\x02 \x01(\x05\x12 \n\x18\x61ntagonist_context_width\x18\x03 \x01(\x05\x12\x1a\n\x12item_context_width\x18\x04 \x01(\x05\x12&\n\x0b\x61ntagonists\x18\x05 \x03(\x0b\x32\x11.proto.Antagonist\x12\x1a\n\x05items\x18\x06 \x03(\x0b\x32\x0b.proto.Item\"\x18\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x01(\x05\x32<\n\x0bGameService\x12-\n\tGetAction\x12\x0f.proto.GameData\x1a\r.proto.Action\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'data_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_GAMEOBJECT']._serialized_start=21
-  _globals['_GAMEOBJECT']._serialized_end=86
-  _globals['_ANTAGONIST']._serialized_start=88
-  _globals['_ANTAGONIST']._serialized_end=198
-  _globals['_ITEM']._serialized_start=200
-  _globals['_ITEM']._serialized_end=273
-  _globals['_GAMEDATA']._serialized_start=276
-  _globals['_GAMEDATA']._serialized_end=471
-  _globals['_ACTION']._serialized_start=473
-  _globals['_ACTION']._serialized_end=497
-  _globals['_GAMESERVICE']._serialized_start=499
-  _globals['_GAMESERVICE']._serialized_end=559
+  _globals['_MARIO']._serialized_start=21
+  _globals['_MARIO']._serialized_end=96
+  _globals['_ANTAGONIST']._serialized_start=98
+  _globals['_ANTAGONIST']._serialized_end=208
+  _globals['_ITEM']._serialized_start=210
+  _globals['_ITEM']._serialized_end=283
+  _globals['_GAMEDATA']._serialized_start=286
+  _globals['_GAMEDATA']._serialized_end=476
+  _globals['_ACTION']._serialized_start=478
+  _globals['_ACTION']._serialized_end=502
+  _globals['_GAMESERVICE']._serialized_start=504
+  _globals['_GAMESERVICE']._serialized_end=564
 # @@protoc_insertion_point(module_scope)

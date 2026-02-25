@@ -8,6 +8,7 @@ module com.game.mario {
     requires java.annotation;
     requires com.google.common;
     requires io.grpc.protobuf;
+    requires org.json;
 
     opens com.game.mario to javafx.fxml;
     opens com.game.mario.character to javafx.fxml;

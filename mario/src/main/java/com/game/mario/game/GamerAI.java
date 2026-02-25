@@ -222,7 +222,7 @@ public class GamerAI implements Runnable {
                     .setY(mario.getY())
                     .setHeight(mario.getHeight())
                     .setWidth(mario.getWidth())
-                    .setState(Mario.getState().name())
+                    .setState(mario.getState().name())
                     .build();
 
             List<Data.Antagonist> protoAntagonists = new ArrayList<>();

@@ -1,0 +1,8 @@
+{
+    "contextItemWidth": 5,
+    "contextAntogonistWidth": 6,
+    "windowFilter": {
+        "min": 0,
+        "max": 800
+    }
+}

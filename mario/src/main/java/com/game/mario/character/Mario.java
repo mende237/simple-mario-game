@@ -22,7 +22,7 @@ public class Mario extends GameCharacter {
 	private static int numberOfLive;
 	private static int score;
 	private static boolean isLiving = true;
-	private static MarioState state = MarioState.STANDING;
+	private MarioState state = MarioState.STANDING;
 
 	// ********************************constructor******************************************//
 	public Mario(int x, int y) {
@@ -75,8 +75,8 @@ public class Mario extends GameCharacter {
 		return isLiving;
 	}
 
-	public static MarioState getState() {
-		return state;
+	public MarioState getState() {
+		return this.state;
 	}
 
 	// *******************************************setter************************************//
@@ -105,8 +105,8 @@ public class Mario extends GameCharacter {
 		Mario.isLiving = isLiving;
 	}
 
-	public static void setState(MarioState state) {
-		Mario.state = state;
+	public void setState(MarioState state) {
+		this.state = state;
 	}
 
 	// ********************************************method************************************//
@@ -223,7 +223,6 @@ public class Mario extends GameCharacter {
 			state = MarioState.BLOCKING_BY_OBJECT_VERTICAL;
 			App.scene.setHeightRoof(gameItem.getHeight() + gameItem.getY());// roof become bottom of object
 		} else if (super.topCollision(gameItem) == false && this.jump == false) {
-			state = MarioState.BLOCKING_BY_SKY;
 			App.scene.setHeightRoof(0);// altitude initiale du plafond (ciel)
 		}
 	}
