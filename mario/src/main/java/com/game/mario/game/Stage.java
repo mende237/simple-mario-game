@@ -11,6 +11,7 @@ public abstract class Stage extends Scene {
     protected ArrayList<Antagonist> antagonists;
     protected ArrayList<Coin> coins;
     protected int xMax;
+    private int aiAction = -1; // Default to no action
 
     public Stage(int yFloor, int heightRoof, int xPos, int xMax, ArrayList<GameItem> gameItems,
             ArrayList<Antagonist> antagonists,
@@ -20,19 +21,14 @@ public abstract class Stage extends Scene {
         this.antagonists = antagonists;
         this.coins = coins;
         this.xMax = xMax;
+    }
 
-        // System.out.println("//////////////////////////////////////////" + this.xMax);
+    public int getAiAction() {
+        return aiAction;
+    }
 
-        // for (GameItem gameItem : gameItems) {
-        // System.out.println(gameItem.getX());
-        // System.out.println("*****************************************");
-        // }
-
-        // System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-
-        // for (Antagonist antagonist : antagonists) {
-        // System.out.println("+++++++++++++++++++++++++++++ " + antagonist.getX());
-        // }
+    public void setAiAction(int aiAction) {
+        this.aiAction = aiAction;
     }
 
     public ArrayList<GameItem> getGameItems() {

@@ -1,5 +1,6 @@
 package com.game.mario.game;
 
+import com.game.mario.App;
 import javafx.scene.input.KeyEvent;
 
 public class Clavier {
@@ -10,6 +11,11 @@ public class Clavier {
 	}
 
 	public void handleKeyPressed(KeyEvent event) {
+		// Only process keyboard input if AI is not providing an action
+		if (App.scene instanceof Stage && ((Stage) App.scene).getAiAction() != -1) {
+			return;
+		}
+
 		switch (event.getCode()) {
 			case NUMPAD6:
 				scene.mario.setWalke(true);
@@ -32,6 +38,10 @@ public class Clavier {
 	}
 
 	public void handleKeyReleased(KeyEvent event) {
+		// Only process keyboard input if AI is not providing an action
+		if (App.scene instanceof Stage && ((Stage) App.scene).getAiAction() != -1) {
+			return;
+		}
 		scene.mario.setWalke(false);
 		scene.setDx(0); // immobilization of background
 	}

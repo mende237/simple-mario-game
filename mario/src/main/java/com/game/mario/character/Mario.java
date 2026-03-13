@@ -210,9 +210,11 @@ public class Mario extends GameCharacter {
 			this.isOnObject = true;
 			this.yObjectCollision = gameItem.getY();
 		} else if (super.bottomCollision(gameItem) == false && merge == false) {// mario fall on the initial floor
-			state = MarioState.STANDING;
+			if (state != MarioState.BLOCKING_BY_OBJECT_HORIZONTAL) {
+				state = MarioState.STANDING;
+			}
 			App.scene.setYFloor(293);// altitude initiale
-			if (this.jump == false)
+			if (this.jump == false && this.getY() + this.getHeight() < App.scene.getYFloor())
 				this.fall = true;
 
 			this.isOnObject = false;
@@ -238,7 +240,7 @@ public class Mario extends GameCharacter {
 				state = MarioState.BLOCKING_BY_HORIZONTAL_BEGINNING_MAP;
 			} else if (App.scene.getxPos() >= 4100) {
 				state = MarioState.BLOCKING_BY_HORIZONTAL_END_MAP;
-			} else {
+			} else if (state != MarioState.BLOCKING_BY_OBJECT_HORIZONTAL) {
 				state = MarioState.STANDING;
 			}
 			if (super.isToRight() == true)

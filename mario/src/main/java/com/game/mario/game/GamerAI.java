@@ -270,6 +270,7 @@ public class GamerAI implements Runnable {
             try {
                 Data.Action action = blockingStub.getAction(gameData);
                 System.out.println("Received action from Python server: " + action.getAction());
+                stage.setAiAction(action.getAction()); // Set the AI's action in the Stage
             } catch (Exception e) {
                 System.err.println("gRPC call failed: " + e.getMessage());
             }
