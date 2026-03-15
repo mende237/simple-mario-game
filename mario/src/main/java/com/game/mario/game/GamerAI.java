@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamerAI implements Runnable {
-    private final int REACTION_TIME = 9; // milliseconds
+    private final int REACTION_TIME = 16; // milliseconds
     private Stage stage;
     private int contextItemWidth;
     private int contextAntogonistWidth;
