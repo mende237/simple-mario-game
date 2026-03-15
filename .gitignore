@@ -36,3 +36,6 @@ Thumbs.db
 
 # Java crash logs
 hs_err_pid*
+
+# Model weights
+*weights.h5

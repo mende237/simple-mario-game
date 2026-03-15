@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamerAI implements Runnable {
-    private final int REACTION_TIME = 500; // milliseconds
+    private final int REACTION_TIME = 9; // milliseconds
     private Stage stage;
     private int contextItemWidth;
     private int contextAntogonistWidth;
@@ -267,9 +267,12 @@ public class GamerAI implements Runnable {
                     .build();
 
             // Send GameData and get Action
+            long startTime = System.currentTimeMillis();
             try {
                 Data.Action action = blockingStub.getAction(gameData);
-                System.out.println("Received action from Python server: " + action.getAction());
+                long endTime = System.currentTimeMillis();
+                System.out.println("Received action from Python server: " + action.getAction() + " in "
+                        + (endTime - startTime) + "ms");
                 stage.setAiAction(action.getAction()); // Set the AI's action in the Stage
             } catch (Exception e) {
                 System.err.println("gRPC call failed: " + e.getMessage());
