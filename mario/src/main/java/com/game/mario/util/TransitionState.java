@@ -1,5 +1,5 @@
 package com.game.mario.util;
 
 public enum TransitionState {
-	DIE , ENDSTAGE , GAMEOVER , RETRY
+	REDUCING_LIVE, DYING, PLAYING, ENDSTAGE, GAMEOVER, RETRY
 }

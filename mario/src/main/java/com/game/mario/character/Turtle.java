@@ -69,7 +69,7 @@ public class Turtle extends Antagonist implements Runnable {
 			e.printStackTrace();
 		}
 
-		while (true) {
+		while (!super.getThread().isInterrupted()) {
 			if (this.zombie == true)
 				PAUSE = 5;
 			else
@@ -84,7 +84,7 @@ public class Turtle extends Antagonist implements Runnable {
 			try {
 				Thread.sleep(PAUSE);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
 		}
 	}
@@ -314,10 +314,9 @@ public class Turtle extends Antagonist implements Runnable {
 					// System.out.println("nombre de vie: "+mario.getNumberOfLive());
 					mario.setLiving(false);
 					// Audio.playSong("/audio/game-over.wav");
-					GameManager.setInterupt(true);
-					GameManager.setState(TransitionState.DIE);
+					GameManager.setState(TransitionState.REDUCING_LIVE);
 					if (mario.getNumberOfLive() <= 0) {
-						GameManager.setState(TransitionState.GAMEOVER);
+						System.out.println("tutle position x " + this.getX());
 						mario.setState(MarioState.DEAD);
 					}
 

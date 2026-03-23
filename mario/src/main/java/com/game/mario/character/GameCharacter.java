@@ -26,22 +26,6 @@ public abstract class GameCharacter {
 		this.walke = false;
 	}
 
-	// public GameCharacter(int x, int y, int width, int height, Image imgCharacter)
-	// {
-	// this.x = x;
-	// this.y = y;
-	// this.height = height;
-	// this.width = width;
-	// this.toRight = false;
-	// this.walke = false;
-	// this.icoCharacter = new ImageView(imgCharacter);
-	// this.icoCharacter.setX(x);
-	// this.icoCharacter.setY(y);
-	// this.icoCharacter.setFitWidth(width);
-	// this.icoCharacter.setFitHeight(height);
-
-	// }
-
 	// **************************************getter******************************************//
 	public int getHeight() {
 		return height;
@@ -114,9 +98,6 @@ public abstract class GameCharacter {
 
 	public void setImgCharacter(Image imgCharacter) {
 		this.imgCharacter = imgCharacter;
-		// if (icoCharacter != null) {
-		// icoCharacter.setImage(imgCharacter);
-		// }
 	}
 
 	// *************************************methods****************************************//

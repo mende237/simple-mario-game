@@ -3,10 +3,15 @@ package com.game.mario.game;
 import java.util.ArrayList;
 
 import com.game.mario.character.Antagonist;
+import com.game.mario.character.Mario;
 import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
 
 public abstract class Stage extends Scene {
+    public static final int MARIO_BEGIN_X = 300;
+    public static final int Y_FLOOR = 293;
+    public static final int MARIO_BEGIN_Y = Y_FLOOR - Mario.HEIGHT;
+
     protected ArrayList<GameItem> gameItems;
     protected ArrayList<Antagonist> antagonists;
     protected ArrayList<Coin> coins;

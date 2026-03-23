@@ -1,9 +1,12 @@
 package com.game.mario.character;
 
 import com.game.mario.App;
+import com.game.mario.game.GameManager;
 import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
+import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
+import com.game.mario.util.TransitionState;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,27 +20,23 @@ public class Mario extends GameCharacter {
 	private boolean isOnObject;
 	private int yObjectCollision;
 	private int counter;// determine the duration and height of jump
-	private int dieCounter; // permet de soulever mario lorsqu'il est mort
 	private boolean fall; // is true when mario is jumping
 	private static int numberOfLive;
 	private static int score;
 	private static boolean isLiving = true;
 	private MarioState state = MarioState.STANDING;
+	public static final int HEIGHT = 50;
 
 	// ********************************constructor******************************************//
 	public Mario(int x, int y) {
-		super(x, y, 28, 50);
-		// this.icoMario = new
-		// ImageIcon(getClass().getResource("/images/marioMarcheDroite.png"));
-		// this.imgMario = this.icoMario.getImage();
+		super(x, y, 28, HEIGHT);
 		this.imgMario = new Image(getClass().getResource("images/marioMarcheDroite.png").toExternalForm());
 		this.icoMario = new ImageView(this.imgMario);
 		super.setLiving(true);
 		this.jump = false;
 		this.counter = 0;
-		this.dieCounter = 0;
 		this.fall = false;
-		Mario.numberOfLive = 3;
+		Mario.numberOfLive = Config.MARIO_NUMBER_OF_LIVES;
 		Mario.score = 0;
 	}
 
@@ -278,16 +277,24 @@ public class Mario extends GameCharacter {
 			return false;
 	}
 
+	public void init(int x, int y, int nbrLive) {
+		setX(x);
+		setY(y);
+		setWalke(false);
+		isLiving = true;
+		numberOfLive = nbrLive;
+	}
+
 	@Override
 	public Image die() {
-		if (this.dieCounter < 300) {
+		if (this.getY() > -this.getHeight()) {
 			super.setY(super.getY() - 1);
-			this.dieCounter++;
+			GameManager.setState(TransitionState.DYING);
+		} else {
+			GameManager.setInterupt(true);
+			GameManager.setState(TransitionState.GAMEOVER);
 		}
 
-		// ImageIcon icoMarioDie = new
-		// ImageIcon(getClass().getResource("/images/marioMeurt.png"));
-		// Image imageMarioDie = icoMarioDie.getImage();
 		Image imageMarioDie = new Image(getClass().getResource("images/marioMeurt.png").toExternalForm());
 		return imageMarioDie;
 	}

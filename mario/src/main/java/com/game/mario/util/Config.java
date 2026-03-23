@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 import org.json.JSONObject;
 
 public class Config {
+    public static final int MARIO_NUMBER_OF_LIVES = 1;
+    public static final int X_MAX = 5000;
+
     public static int CONTEXT_ITEM_WIDTH;
     public static int CONTEXT_ANTAGONIST_WIDTH;
     public static int WINDOW_FILTER_MIN;

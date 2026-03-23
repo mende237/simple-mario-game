@@ -20,6 +20,7 @@ import com.game.mario.character.Champignon;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
+import com.game.mario.util.TransitionState;
 
 public class FirstStage extends Stage {
 	private Thread gamerAI_Thread;
@@ -39,9 +40,9 @@ public class FirstStage extends Stage {
 	private ImageView icoChateauFin;
 	private ImageView icoDrapeau;
 
-	private static ArrayList<Coin> coinTab;
-	private static ArrayList<Antagonist> antagonistTab;
-	private static ArrayList<GameItem> gameItems;
+	private static ArrayList<Coin> coinTab = null;
+	private static ArrayList<Antagonist> antagonistTab = null;
+	private static ArrayList<GameItem> gameItems = null;
 
 	private Font font;
 	private static Champignon champignon1;
@@ -58,33 +59,43 @@ public class FirstStage extends Stage {
 	private static Turtle tortue5;
 	private static Turtle tortue6;
 
-	private int xFond1;
-	private int xFond2;
+	private static int xFond1;
+	private static int xFond2;
 
 	static {
+		init(0);
+	}
+
+	private static void init(int position) {
+		if (antagonistTab != null) {
+			for (Antagonist antagonist : antagonistTab) {
+				antagonist.getThread().interrupt();
+			}
+		}
+
 		coinTab = new ArrayList<Coin>();
 		antagonistTab = new ArrayList<Antagonist>();
 		gameItems = new ArrayList<GameItem>();
 
 		int pas = 0;
 		for (int i = 0; i < 7; i++) {
-			gameItems.add(new Pipe(600 + pas, 228));
+			gameItems.add(new Pipe(600 + pas + position, 228));
 			pas = pas + 500;
 		}
 		pas = 0;
 		for (int i = 0; i < 4; i++) {
-			gameItems.add(new Block(800 + pas, 180));
+			gameItems.add(new Block(800 + pas + position, 180));
 			pas = pas + 30;
 		}
 
 		pas = 0;
 		for (int i = 4; i < 8; i++) {
-			gameItems.add(new Block(1700 + pas, 180));
+			gameItems.add(new Block(1700 + pas + position, 180));
 			pas = pas + 30;
 		}
 
 		for (int i = 8; i < 11; i++) {
-			gameItems.add(new Block(1800 + pas, 140));
+			gameItems.add(new Block(1800 + pas + position, 140));
 			pas = pas + 30;
 		}
 
@@ -98,19 +109,19 @@ public class FirstStage extends Stage {
 
 		pas = 0;
 		for (int i = 0; i < 4; i++) {
-			coinTab.add(new Coin(800 + pas, 145));
+			coinTab.add(new Coin(800 + pas + position, 145));
 			pas += 30;
 		}
 
 		pas = 0;
 		for (int i = 0; i < 4; i++) {
-			coinTab.add(new Coin(1700 + pas, 145));
+			coinTab.add(new Coin(1700 + pas + position, 145));
 			pas += 30;
 		}
 
 		pas = 0;
 		for (int i = 0; i < 3; i++) {
-			coinTab.add(new Coin(1910 + pas, 100));
+			coinTab.add(new Coin(1910 + pas + position, 100));
 			pas += 40;
 		}
 
@@ -150,20 +161,20 @@ public class FirstStage extends Stage {
 		antagonistTab.add(champignon5);
 		antagonistTab.add(champignon6);
 
+		coinTab.sort((a, b) -> Integer.compare(a.getX(), b.getY()));
 		antagonistTab.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
 		gameItems.sort((a, b) -> Integer.compare(a.getX(), b.getX()));
 
+		initBackground();
 	}
 
 	// *************************************constructor***************************************//
 	public FirstStage(boolean aiMode) {
 
 		// super(293, 0, 0);
-		super(293, 0, 0, 5000, gameItems, antagonistTab, coinTab);
-
-		this.xFond1 = -50;
-		this.xFond2 = 750;
-		mario = new Mario(300, super.getYFloor() - 50);
+		super(Y_FLOOR, 0, 0, Config.X_MAX, gameItems, antagonistTab, coinTab);
+		initBackground();
+		mario = new Mario(MARIO_BEGIN_X, MARIO_BEGIN_Y);
 
 		this.font = Font.loadFont(getClass().getResourceAsStream("/com/game/mario/police/SuperMario256.ttf"), 20);
 
@@ -198,39 +209,30 @@ public class FirstStage extends Stage {
 		}
 	}
 
-	// ****************************************setter*******************************//
-	public void setxFond1(int xFond1) {
-		this.xFond1 = xFond1;
-	}
-
-	public void setxFond2(int xFond2) {
-		this.xFond2 = xFond2;
-	}
-
 	// ****************************************methods********************************//
 	public void backgroundDisplacement() {
 		if (super.getxPos() >= 0 && super.getxPos() <= 4100) {
 			super.setxPos(super.getxPos() + super.getDx());
-			this.xFond1 = this.xFond1 - super.getDx();
-			this.xFond2 = this.xFond2 - super.getDx();
+			xFond1 = xFond1 - super.getDx();
+			xFond2 = xFond2 - super.getDx();
 		} else if (this.getxPos() >= 4100 && this.mario.isToRight() == false) {
 			super.setxPos(super.getxPos() + super.getDx());
-			this.xFond1 = this.xFond1 - super.getDx();
-			this.xFond2 = this.xFond2 - super.getDx();
+			xFond1 = xFond1 - super.getDx();
+			xFond2 = xFond2 - super.getDx();
 		} else if (super.getxPos() <= 0 && super.mario.isToRight() == true) {
 			super.setxPos(super.getxPos() + super.getDx());
-			this.xFond1 = this.xFond1 - super.getDx();
-			this.xFond2 = this.xFond2 - super.getDx();
+			xFond1 = xFond1 - super.getDx();
+			xFond2 = xFond2 - super.getDx();
 		}
 
-		if (this.xFond1 == -800)
-			this.xFond1 = 800;
-		else if (this.xFond2 == -800)
-			this.xFond2 = 800;
-		else if (this.xFond1 == 800)
-			this.xFond1 = -800;
-		else if (this.xFond2 == 800)
-			this.xFond2 = -800;
+		if (xFond1 == -800)
+			xFond1 = 800;
+		else if (xFond2 == -800)
+			xFond2 = 800;
+		else if (xFond1 == 800)
+			xFond1 = -800;
+		else if (xFond2 == 800)
+			xFond2 = -800;
 	}
 
 	@Override
@@ -238,30 +240,28 @@ public class FirstStage extends Stage {
 
 		gc.setFont(this.font);
 		gc.setFill(Color.WHITE);
-		/*
-		 * ici on gere la collision de chaque champignon du tableau de champignon avec
-		 * chaque tortue du tableau de tortue . et meme avec mario
-		 */
+
 		if (GameManager.isInterupt() == true) {
-
 			gc = Transition.transition(this, gc, GameManager.getState());
-			GameManager.setInterupt(false);
-			System.out.println("affichage de la transition");
 
+			if (GameManager.getState() == TransitionState.PLAYING) {
+				init(0);
+				setxPos(0);
+				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES);
+			}
+			System.out.println(GameManager.getState());
 		} else {
-			if (App.scene.mario.isLiving() == false && App.scene.mario.getNumberOfLive() > 0) {
-				// System.out.println("enter");
-				App.scene.restart(App.scene.getxPos());
-				App.scene.mario.setIsOnObject(false);
-				App.scene.mario.setWalke(false);
-
+			if (super.mario.isLiving() == false && super.mario.getNumberOfLive() > 0) {
+				restart(getxPos());
+				super.mario.setIsOnObject(false);
+				super.mario.setWalke(false);
 			}
 
 			Collision.updateTab(antagonistTab);
 
-			Collision.piece(coinTab, this.mario);
+			Collision.piece(coinTab, super.mario);
 
-			if (Collision.mario(gameItems, 0, this.mario) == false) {
+			if (Collision.mario(gameItems, 0, super.mario) == false) {
 				App.scene.setHeightRoof(0);
 				App.scene.setYFloor(293);
 			}
@@ -286,8 +286,8 @@ public class FirstStage extends Stage {
 			GameManager.setBegin(true);
 
 			// ***********************paint of backgrounds' game***********************//
-			gc.drawImage(this.imgFond1, this.xFond1, 0);
-			gc.drawImage(this.imgFond2, this.xFond2, 0);
+			gc.drawImage(this.imgFond1, xFond1, 0);
+			gc.drawImage(this.imgFond2, xFond2, 0);
 
 			// ------paint of chateau
 			gc.drawImage(this.imgChateau1, 10 - super.getxPos(), 95);
@@ -321,9 +321,9 @@ public class FirstStage extends Stage {
 							antagonistTab.get(i).getWalkFrequency()), antagonistTab.get(i).getX(),
 							antagonistTab.get(i).getY());
 				} else {
-					if (antagonistTab.get(i).getName().equalsIgnoreCase("tortue")) {
+					if (antagonistTab.get(i) instanceof Turtle) {
 						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(),
-								(293 - antagonistTab.get(i).getHeight()));
+								(Y_FLOOR - antagonistTab.get(i).getHeight()));
 					} else {
 						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(), 282);
 					}
@@ -336,7 +336,7 @@ public class FirstStage extends Stage {
 				if (super.mario.isJump() == true && super.mario.isFall() == false) {
 					if (super.mario.isOnObject() == false) {
 						// --------------when mario jumps to suffer from an object
-						gc.drawImage(super.mario.jump(293), super.mario.getX(), super.mario.getY());
+						gc.drawImage(super.mario.jump(Y_FLOOR), super.mario.getX(), super.mario.getY());
 
 					} else {
 						// --------------when mario jumps to suffer from the floor
@@ -372,14 +372,17 @@ public class FirstStage extends Stage {
 
 	}
 
+	private static void initBackground() {
+		xFond1 = -50;
+		xFond2 = 750;
+	}
+
 	@Override
 	// this function puts all the object of the scene in their initial position
 	public void restart(int position) {
-		this.xFond1 = -50;
-		this.xFond2 = 750;
-		super.mario.setX(300);
-		super.mario.setWalke(false);
-		super.mario.setLiving(true);
+		initBackground();
+
+		super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, super.mario.getNumberOfLive());
 
 		for (int i = 0; i < gameItems.size(); i++) {
 			gameItems.get(i).setX(gameItems.get(i).getX() + position);

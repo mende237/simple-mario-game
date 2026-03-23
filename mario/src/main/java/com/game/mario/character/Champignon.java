@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
-import com.game.mario.item.GameItem;
 import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
@@ -30,10 +29,6 @@ public class Champignon extends Antagonist implements Runnable {
 		super.nbreOfLive = 1;
 		super.setToRight(true);
 		super.setWalke(true);
-
-		// this.icoChamp = new
-		// ImageIcon(getClass().getResource("/images/champArretDroite.png"));
-		// this.imageChamp = icoChamp.getImage();
 
 		this.imageChamp = new Image(getClass().getResource("images/champArretDroite.png").toExternalForm());
 		this.icoChamp = new ImageView(imageChamp);
@@ -65,7 +60,7 @@ public class Champignon extends Antagonist implements Runnable {
 			e.printStackTrace();
 		}
 
-		while (true) {
+		while (!super.getThread().isInterrupted()) {
 			if (super.isLiving() == true)
 				this.move();
 			else {
@@ -76,7 +71,7 @@ public class Champignon extends Antagonist implements Runnable {
 			try {
 				Thread.sleep(PAUSE);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
 		}
 
@@ -224,10 +219,9 @@ public class Champignon extends Antagonist implements Runnable {
 				mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 				mario.setLiving(false);
 				// Audio.playSong("/audio/game-over.wav");
-				GameManager.setInterupt(true);
-				GameManager.setState(TransitionState.DIE);
+				GameManager.setState(TransitionState.REDUCING_LIVE);
 				if (mario.getNumberOfLive() <= 0) {
-					GameManager.setState(TransitionState.GAMEOVER);
+					System.out.println("champ position x " + this.getX());
 					mario.setState(MarioState.DEAD);
 				}
 			}
@@ -242,9 +236,6 @@ public class Champignon extends Antagonist implements Runnable {
 		} else {
 			str = "champEcraseGauche.png";
 		}
-		// ImageIcon icoChampMort = new ImageIcon(getClass().getResource("/images/" +
-		// str));
-		// Image imgChamp = icoChampMort.getImage();
 
 		Image imgChamp = new Image(getClass().getResource("images/" + str).toExternalForm());
 
