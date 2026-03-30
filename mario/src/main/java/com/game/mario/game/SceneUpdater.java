@@ -3,13 +3,18 @@ package com.game.mario.game;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
+
 import com.game.mario.App;
+import com.game.mario.util.Config;
+
 import javafx.util.Duration;
 
 public class SceneUpdater {
-	private final static double pause = 4; // waiting time between two loops turn
+	private final static double pause = (1 / (double) Config.FPS) * 1000; // waiting time between two loops turn
 
 	public static void update(GraphicsContext gc) {
+		System.out.println(pause);
+
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(pause), event -> {
 			// Process AI action
 			if (App.scene instanceof Stage) {

@@ -4,6 +4,9 @@ import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mario;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
+import com.game.mario.util.Config;
+import com.game.mario.util.MarioState;
+import com.game.mario.util.GameStateLogger;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -15,7 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamerAI implements Runnable {
-    private final int REACTION_TIME = 16; // milliseconds
+    // The AI will react to the new game state after rendering of 4 frames
+    // (4*4=16ms)
+    private final int REACTION_TIME = (int) (Config.AI_REACTION_FREQUENCY * ((1 / (double) Config.FPS) * 1000)); // milliseconds.
+
+    // the new game state
     private Stage stage;
     private int contextItemWidth;
     private int contextAntogonistWidth;
@@ -218,76 +225,72 @@ public class GamerAI implements Runnable {
             filterAntogonist(antagonists);
             filterItem(gameItems);
 
-            // Build GameData
-            Mario mario = stage.getMario();
-            Data.Mario marioObject = Data.Mario.newBuilder()
-                    .setX(mario.getX())
-                    .setY(mario.getY())
-                    .setHeight(mario.getHeight())
-                    .setWidth(mario.getWidth())
-                    .setState(mario.getState().name())
-                    .build();
+            // Log Mario state to file
+            GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            
+            // // Build GameData
+            // Mario mario = stage.getMario();
+            // Data.Mario marioObject = Data.Mario.newBuilder()
+            // .setX(mario.getX())
+            // .setY(mario.getY())
+            // .setHeight(mario.getHeight())
+            // .setWidth(mario.getWidth())
+            // .setState(mario.getState().name())
+            // .build();
 
-            List<Data.Antagonist> protoAntagonists = new ArrayList<>();
-            if (antagonists != null) {
-                for (Antagonist ant : antagonists) {
-                    if (ant != null) {
-                        protoAntagonists.add(Data.Antagonist.newBuilder()
-                                .setX(ant.getX())
-                                .setY(ant.getY())
-                                .setHeight(ant.getHeight())
-                                .setWidth(ant.getWidth())
-                                .setSpeed(0) // Assuming speed is not directly available or 0 for now
-                                .setName(ant.getName() != null ? ant.getName() : "unknown")
-                                .setIsdead(!ant.isLiving()) // Assuming isLiving means not dead
-                                .build());
-                    }
-                }
-            }
-
-            List<Data.Item> protoItems = new ArrayList<>();
-            if (gameItems != null) {
-                for (GameItem item : gameItems) {
-                    if (item != null) {
-                        protoItems.add(Data.Item.newBuilder()
-                                .setX(item.getX())
-                                .setY(item.getY())
-                                .setHeight(item.getHeight())
-                                .setWidth(item.getWidth())
-                                .setName(item.getName() != null ? item.getName() : "unknown")
-                                .build());
-                    }
-                }
-            }
-
-            Data.GameData gameData = Data.GameData.newBuilder()
-                    .setMario(marioObject)
-                    .setFloorLevel(stage.getYFloor())
-                    .setAntagonistContextWidth(contextAntogonistWidth)
-                    .setItemContextWidth(contextItemWidth)
-                    .addAllAntagonists(protoAntagonists)
-                    .addAllItems(protoItems)
-                    .build();
-
-            // Send GameData and get Action
-            long startTime = System.currentTimeMillis();
-            try {
-                Data.Action action = blockingStub.getAction(gameData);
-                long endTime = System.currentTimeMillis();
-                System.out.println("Received action from Python server: " + action.getAction() + " in "
-                        + (endTime - startTime) + "ms");
-                stage.setAiAction(action.getAction()); // Set the AI's action in the Stage
-            } catch (Exception e) {
-                System.err.println("gRPC call failed: " + e.getMessage());
-            }
-
-            // for (Antagonist antagonist : antagonists) {
-            // if (antagonist != null) {
-            // System.out.print(antagonist.getName() + " x : " + antagonist.getX() + " ");
+            // List<Data.Antagonist> protoAntagonists = new ArrayList<>();
+            // if (antagonists != null) {
+            // for (Antagonist ant : antagonists) {
+            // if (ant != null) {
+            // protoAntagonists.add(Data.Antagonist.newBuilder()
+            // .setX(ant.getX())
+            // .setY(ant.getY())
+            // .setHeight(ant.getHeight())
+            // .setWidth(ant.getWidth())
+            // .setSpeed(0) // Assuming speed is not directly available or 0 for now
+            // .setName(ant.getName() != null ? ant.getName() : "unknown")
+            // .setIsdead(!ant.isLiving())
+            // .build());
+            // }
             // }
             // }
 
-            // System.out.println();
+            // List<Data.Item> protoItems = new ArrayList<>();
+            // if (gameItems != null) {
+            // for (GameItem item : gameItems) {
+            // if (item != null) {
+            // protoItems.add(Data.Item.newBuilder()
+            // .setX(item.getX())
+            // .setY(item.getY())
+            // .setHeight(item.getHeight())
+            // .setWidth(item.getWidth())
+            // .setName(item.getName() != null ? item.getName() : "unknown")
+            // .build());
+            // }
+            // }
+            // }
+
+            // Data.GameData gameData = Data.GameData.newBuilder()
+            // .setMario(marioObject)
+            // .setFloorLevel(stage.getYFloor())
+            // .setAntagonistContextWidth(contextAntogonistWidth)
+            // .setItemContextWidth(contextItemWidth)
+            // .addAllAntagonists(protoAntagonists)
+            // .addAllItems(protoItems)
+            // .build();
+
+            // // Send GameData and get Action
+            // long startTime = System.currentTimeMillis();
+            // try {
+            // Data.Action action = blockingStub.getAction(gameData);
+            // long endTime = System.currentTimeMillis();
+            // System.out.println("Received action from Python server: " +
+            // action.getAction() + " in "
+            // + (endTime - startTime) + "ms");
+            // stage.setAiAction(action.getAction()); // Set the AI's action in the Stage
+            // } catch (Exception e) {
+            // System.err.println("gRPC call failed: " + e.getMessage());
+            // }
 
             try {
                 Thread.sleep(REACTION_TIME);

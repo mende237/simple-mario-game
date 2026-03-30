@@ -3,6 +3,8 @@ package com.game.mario.util;
 public enum MarioState {
     STANDING,
     WALKING,
+    MOVING_FORWARD, // when jumping or falling while moving forward
+    MOVING_BACKWARD, // when jumping or falling while moving backward
     JUMPING,
     FALLING,
     DEAD,

@@ -207,14 +207,14 @@ public class Champignon extends Antagonist implements Runnable {
 		if (mario.near(this) == true && super.isLiving() == true && mario.isLiving() == true) {
 			// dans ce cas c'est mario qui tu le champignon
 			if (mario.bottomCollision(this) == true && (mario.isJump() == true || mario.isFall() == true)) {
-				mario.setState(MarioState.KILLING_ANTAGONIST);
+				mario.updateState(MarioState.KILLING_ANTAGONIST, true);
 				// System.out.println("tuer champ");
 				super.setLiving(false);
 				super.remove = true;
 				// Audio.playSong("/audio/ecrasePersonnage.wav");
 				// System.out.println("mario mort");
 			} else {
-				mario.setState(MarioState.HIT_BY_ANTAGONIST);
+				mario.updateState(MarioState.HIT_BY_ANTAGONIST, true);
 				// System.out.println("tuer mario");
 				mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 				mario.setLiving(false);
@@ -222,7 +222,7 @@ public class Champignon extends Antagonist implements Runnable {
 				GameManager.setState(TransitionState.REDUCING_LIVE);
 				if (mario.getNumberOfLive() <= 0) {
 					System.out.println("champ position x " + this.getX());
-					mario.setState(MarioState.DEAD);
+					mario.updateState(MarioState.DEAD, true);
 				}
 			}
 		}

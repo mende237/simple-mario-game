@@ -6,8 +6,13 @@ import java.nio.file.Paths;
 import org.json.JSONObject;
 
 public class Config {
-    public static final int MARIO_NUMBER_OF_LIVES = 1;
-    public static final int X_MAX = 5000;
+    public static final int FPS = 250;
+    public static final int AI_REACTION_FREQUENCY = 4; // the AI will react to the new game state after rendering of 4
+                                                       // frames (4*4=16ms)
+
+    public static final int MARIO_NUMBER_OF_LIVES = 3;
+    public static final int X_MAX = 4100;
+    public static final int Y_MAX = 293;
 
     public static int CONTEXT_ITEM_WIDTH;
     public static int CONTEXT_ANTAGONIST_WIDTH;

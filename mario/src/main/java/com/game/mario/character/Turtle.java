@@ -255,8 +255,7 @@ public class Turtle extends Antagonist implements Runnable {
 			if (super.getCounter() == 2 * frequency)
 				super.setCounter(0);
 		}
-		// ico = new ImageIcon(getClass().getResource(str));
-		// img = ico.getImage();
+
 		img = new Image(getClass().getResource(str).toExternalForm());
 		return img;
 	}
@@ -272,7 +271,7 @@ public class Turtle extends Antagonist implements Runnable {
 			if (mario.bottomCollision(this) == true) {
 				if (mario.isJump() == true || mario.isFall() == true) {
 					if (super.isLiving() == true) {
-						mario.setState(MarioState.KILLING_ANTAGONIST);
+						mario.updateState(MarioState.KILLING_ANTAGONIST, true);
 						super.nbreOfLive -= 1;
 						super.setLiving(false);
 						this.justDie = true;
@@ -282,7 +281,7 @@ public class Turtle extends Antagonist implements Runnable {
 						// dans le cas ou la tortue ne vient pas de mourir elle passe a l'etat zombie
 						// in the case that turtle is dead since a long time it become zombi
 					} else if (this.justDie == false) {
-						mario.setState(MarioState.ZOMBIFIYING_ANTAGONIST);
+						mario.updateState(MarioState.ZOMBIFIYING_ANTAGONIST, true);
 						this.zombie = true;
 						super.setToRight(mario.isToRight());
 						int zoneMin, zoneMax;
@@ -308,7 +307,7 @@ public class Turtle extends Antagonist implements Runnable {
 			if (mario.isJump() == false && mario.isFall() == false && (this.zombie == true || super.isLiving() == true)
 					&& justDie == false) {
 				if (mario.frontCollision(this) == true || mario.backCollision(this) == true) {
-					mario.setState(MarioState.HIT_BY_ANTAGONIST);
+					mario.updateState(MarioState.HIT_BY_ANTAGONIST, true);
 					// System.out.println(this.zombie);
 					mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 					// System.out.println("nombre de vie: "+mario.getNumberOfLive());
@@ -317,7 +316,7 @@ public class Turtle extends Antagonist implements Runnable {
 					GameManager.setState(TransitionState.REDUCING_LIVE);
 					if (mario.getNumberOfLive() <= 0) {
 						System.out.println("tutle position x " + this.getX());
-						mario.setState(MarioState.DEAD);
+						mario.updateState(MarioState.DEAD, true);
 					}
 
 				}

@@ -211,11 +211,11 @@ public class FirstStage extends Stage {
 
 	// ****************************************methods********************************//
 	public void backgroundDisplacement() {
-		if (super.getxPos() >= 0 && super.getxPos() <= 4100) {
+		if (super.getxPos() >= 0 && super.getxPos() <= Config.X_MAX) {
 			super.setxPos(super.getxPos() + super.getDx());
 			xFond1 = xFond1 - super.getDx();
 			xFond2 = xFond2 - super.getDx();
-		} else if (this.getxPos() >= 4100 && this.mario.isToRight() == false) {
+		} else if (this.getxPos() >= Config.X_MAX && this.mario.isToRight() == false) {
 			super.setxPos(super.getxPos() + super.getDx());
 			xFond1 = xFond1 - super.getDx();
 			xFond2 = xFond2 - super.getDx();
@@ -251,6 +251,8 @@ public class FirstStage extends Stage {
 			}
 			System.out.println(GameManager.getState());
 		} else {
+			mario.updateStateValidityFrames();
+
 			if (super.mario.isLiving() == false && super.mario.getNumberOfLive() > 0) {
 				restart(getxPos());
 				super.mario.setIsOnObject(false);
@@ -309,9 +311,9 @@ public class FirstStage extends Stage {
 			}
 
 			// -----paint flag
-			gc.drawImage(imgDrapeau, 4000 - super.getxPos(), 115);
+			gc.drawImage(imgDrapeau, Config.X_MAX - super.getxPos(), 115);
 			// -----paint of chateau end
-			gc.drawImage(imgChateauFin, 4100 - super.getxPos(), 145);
+			gc.drawImage(imgChateauFin, Config.X_MAX - super.getxPos(), 145);
 
 			// print of all champignons of the game
 			for (int i = 0; i < antagonistTab.size(); i++) {
