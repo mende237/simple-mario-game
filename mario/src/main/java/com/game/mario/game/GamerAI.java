@@ -227,7 +227,7 @@ public class GamerAI implements Runnable {
 
             // Log Mario state to file
             GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
-            
+
             // // Build GameData
             // Mario mario = stage.getMario();
             // Data.Mario marioObject = Data.Mario.newBuilder()
