@@ -19,13 +19,12 @@ public class Champignon extends Antagonist implements Runnable {
 	private Image imageChamp;
 
 	private int dxChamp;
-	private final int PAUSE = 20;// the duration of break
 
 	/**************************************
 	 * constructor
 	 *****************************************/
 	public Champignon(int x, int y) {
-		super(x, y, 27, 30, "champ", 50);
+		super(x, y, 27, 30, "champ", 20, 50);
 		super.nbreOfLive = 1;
 		super.setToRight(true);
 		super.setWalke(true);
@@ -69,7 +68,7 @@ public class Champignon extends Antagonist implements Runnable {
 			}
 
 			try {
-				Thread.sleep(PAUSE);
+				Thread.sleep(super.breakDuration);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

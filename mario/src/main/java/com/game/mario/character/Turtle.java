@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
 import com.game.mario.util.Axe;
+import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
@@ -21,14 +22,13 @@ public class Turtle extends Antagonist implements Runnable {
 	private ImageView icoTurtle;
 	private Image imageTurtle;
 	private int dxTortue;
-	private int PAUSE = 50;// the duration of break
 	private boolean justDie = false;
 
 	/**************************************
 	 * constructor
 	 *****************************************/
 	public Turtle(int x, int y) {
-		super(x, y, 43, 50, "tortue", 100);
+		super(x, y, 43, 50, "tortue", 50, 100);
 		super.nbreOfLive = 2;
 		super.setToRight(true);
 		super.setWalke(true);
@@ -71,9 +71,9 @@ public class Turtle extends Antagonist implements Runnable {
 
 		while (!super.getThread().isInterrupted()) {
 			if (this.zombie == true)
-				PAUSE = 5;
+				super.breakDuration = 5;
 			else
-				PAUSE = 50;
+				super.breakDuration = 50;
 			// when the character is dead we stop its thread
 			if (super.remove == true) {
 				super.getThread().interrupt();
@@ -82,7 +82,7 @@ public class Turtle extends Antagonist implements Runnable {
 
 			this.move();
 			try {
-				Thread.sleep(PAUSE);
+				Thread.sleep(super.breakDuration);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
@@ -262,7 +262,6 @@ public class Turtle extends Antagonist implements Runnable {
 
 	@Override
 	public void kill(Mario mario) {
-		// super.pause = true;
 		int precision = 0;
 		if (super.isLiving() == false)
 			precision = 27;
@@ -277,8 +276,7 @@ public class Turtle extends Antagonist implements Runnable {
 						this.justDie = true;
 						super.setHeight(23);
 						super.setWidth(25);
-						super.setY(293 - super.getHeight());
-						// dans le cas ou la tortue ne vient pas de mourir elle passe a l'etat zombie
+						super.setY(Config.Y_MAX - super.getHeight());
 						// in the case that turtle is dead since a long time it become zombi
 					} else if (this.justDie == false) {
 						mario.updateState(MarioState.ZOMBIFIYING_ANTAGONIST, true);
@@ -288,16 +286,16 @@ public class Turtle extends Antagonist implements Runnable {
 						zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
 						zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 						if (mario.isToRight() == true) {
-							if (super.getX() + 29 > zoneMax) {
+							if (super.getX() + mario.getWidth() > zoneMax) {
 								super.setX(super.getX() + zoneMax - (super.getX() + super.getWidth()) - 1);
 							} else
-								super.setX(super.getX() + 29);
+								super.setX(super.getX() + mario.getWidth());
 
 						} else {
-							if (super.getX() - 29 < zoneMin) {
+							if (super.getX() - mario.getWidth() < zoneMin) {
 								super.setX(zoneMin + 1);
 							} else {
-								super.setX(super.getX() - 29);
+								super.setX(super.getX() - mario.getWidth());
 							}
 						}
 					}
@@ -323,17 +321,12 @@ public class Turtle extends Antagonist implements Runnable {
 			}
 		} else
 			this.justDie = false;
-
-		// super.pause = false;
 	}
 
 	@Override
 	public Image die() {
 		super.setHeight(23);
 		super.setWidth(25);
-		// ImageIcon icoTortueMort = new
-		// ImageIcon(getClass().getResource("/images/tortueFermee.png"));
-		// Image imgTortue = icoTortueMort.getImage();
 		Image imgTortue = new Image(getClass().getResource("images/tortueFermee.png").toExternalForm());
 		return imgTortue;
 	}

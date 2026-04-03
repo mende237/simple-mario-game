@@ -8,7 +8,8 @@ message Mario {
     int32 y = 2;
     int32 height = 3;
     int32 width = 4;
-    string state = 5;
+    int32 numberOfLive = 5;
+    map<string, bool> state = 6;
 }
 
 // Represents an antagonist character.
@@ -20,6 +21,7 @@ message Antagonist {
     int32 speed = 5;
     string name = 6;
     bool isdead = 7;
+    bool isZombie = 8;
 }
 
 // Represents an item in the game.

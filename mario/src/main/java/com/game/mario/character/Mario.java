@@ -45,7 +45,7 @@ public class Mario extends GameCharacter {
 		Mario.numberOfLive = Config.MARIO_NUMBER_OF_LIVES;
 		Mario.score = 0;
 		for (MarioState stateItem : MarioState.values()) {
-			state.put(stateItem, new StateValidityFrame(stateItem, false, 1 + Config.AI_REACTION_FREQUENCY));
+			state.put(stateItem, new StateValidityFrame(stateItem, false, Config.FRAME_STATE_VALIDITY));
 		}
 
 		StateValidityFrame standingState = state.get(MarioState.STANDING);
@@ -322,15 +322,15 @@ public class Mario extends GameCharacter {
 		isLiving = true;
 		numberOfLive = nbrLive;
 
-		for (MarioState stateItem : MarioState.values()) {
-			StateValidityFrame stateValidityFrame = this.state.get(stateItem);
-			stateValidityFrame.setValue(false);
-			this.state.put(stateItem, stateValidityFrame);
-		}
+		// for (MarioState stateItem : MarioState.values()) {
+		// StateValidityFrame stateValidityFrame = this.state.get(stateItem);
+		// stateValidityFrame.setValue(false);
+		// this.state.put(stateItem, stateValidityFrame);
+		// }
 
-		StateValidityFrame standingState = state.get(MarioState.STANDING);
-		standingState.setValue(true);
-		this.state.put(MarioState.STANDING, standingState);
+		// StateValidityFrame standingState = state.get(MarioState.STANDING);
+		// standingState.setValue(true);
+		// this.state.put(MarioState.STANDING, standingState);
 	}
 
 	@Override

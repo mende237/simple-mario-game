@@ -14,7 +14,7 @@ public abstract class Antagonist extends GameCharacter {
 	protected int behindObject = 5000;
 	protected Antagonist frontCharacter = null;// contient le personnage qui est devant ce personnage;
 	protected Antagonist behindCharacter = null;// contient le personnage qui est deriere ce personnage
-	protected boolean zombie;
+	protected boolean zombie = false;
 	protected boolean characterDirectlyFront = false;
 	protected boolean characterDirectlyBehind = false;
 	protected int nbreOfLive = 2;
@@ -22,10 +22,12 @@ public abstract class Antagonist extends GameCharacter {
 	protected String name;
 	protected int walkFrequency;
 	protected ReentrantLock positionLocker;
+	protected int breakDuration;
 
-	public Antagonist(int x, int y, int width, int height, String name, int walkFrequency) {
+	public Antagonist(int x, int y, int width, int height, String name, int breakDuration, int walkFrequency) {
 		super(x, y, width, height);
 		this.name = name;
+		this.breakDuration = breakDuration;
 		this.walkFrequency = walkFrequency;
 		positionLocker = new ReentrantLock(true);
 	}
@@ -67,6 +69,14 @@ public abstract class Antagonist extends GameCharacter {
 
 	public ReentrantLock getPositionLocker() {
 		return this.positionLocker;
+	}
+
+	public int getBreakDuration() {
+		return this.breakDuration;
+	}
+
+	public boolean isZombie() {
+		return this.zombie;
 	}
 
 	/***********************************

@@ -10,6 +10,7 @@ public class GameManager {
 	private static int sem = 1;
 	private static ReentrantLock allAntagonistPositionReaderLocker = new ReentrantLock();
 	private static ReentrantLock allAntagonistPositionWriterLocker = new ReentrantLock();
+	private static ReentrantLock marioStateLocker = new ReentrantLock();
 
 	/******************************** getter *********************************/
 	public static TransitionState getState() {
@@ -43,6 +44,10 @@ public class GameManager {
 
 	public static ReentrantLock getAllAntagonistPositionWriterLocker() {
 		return allAntagonistPositionWriterLocker;
+	}
+
+	public static ReentrantLock getMarioStateLocker() {
+		return marioStateLocker;
 	}
 
 	/************************** methods *************************************/

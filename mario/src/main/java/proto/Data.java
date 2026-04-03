@@ -43,16 +43,44 @@ public final class Data {
     int getWidth();
 
     /**
-     * <code>string state = 5;</code>
-     * @return The state.
+     * <code>int32 numberOfLive = 5;</code>
+     * @return The numberOfLive.
      */
-    java.lang.String getState();
+    int getNumberOfLive();
+
     /**
-     * <code>string state = 5;</code>
-     * @return The bytes for state.
+     * <code>map&lt;string, bool&gt; state = 6;</code>
      */
-    com.google.protobuf.ByteString
-        getStateBytes();
+    int getStateCount();
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+    boolean containsState(
+        java.lang.String key);
+    /**
+     * Use {@link #getStateMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.Boolean>
+    getState();
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.Boolean>
+    getStateMap();
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+
+    boolean getStateOrDefault(
+        java.lang.String key,
+        boolean defaultValue);
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+
+    boolean getStateOrThrow(
+        java.lang.String key);
   }
   /**
    * <pre>
@@ -71,7 +99,6 @@ public final class Data {
       super(builder);
     }
     private Mario() {
-      state_ = "";
     }
 
     @java.lang.Override
@@ -91,6 +118,18 @@ public final class Data {
       return proto.Data.internal_static_proto_Mario_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 6:
+          return internalGetState();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -143,42 +182,96 @@ public final class Data {
       return width_;
     }
 
-    public static final int STATE_FIELD_NUMBER = 5;
-    private volatile java.lang.Object state_;
+    public static final int NUMBEROFLIVE_FIELD_NUMBER = 5;
+    private int numberOfLive_;
     /**
-     * <code>string state = 5;</code>
-     * @return The state.
+     * <code>int32 numberOfLive = 5;</code>
+     * @return The numberOfLive.
      */
     @java.lang.Override
-    public java.lang.String getState() {
-      java.lang.Object ref = state_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        state_ = s;
-        return s;
+    public int getNumberOfLive() {
+      return numberOfLive_;
+    }
+
+    public static final int STATE_FIELD_NUMBER = 6;
+    private static final class StateDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.Boolean> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.Boolean>newDefaultInstance(
+                  proto.Data.internal_static_proto_Mario_StateEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.BOOL,
+                  false);
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.Boolean> state_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.Boolean>
+    internalGetState() {
+      if (state_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            StateDefaultEntryHolder.defaultEntry);
       }
+      return state_;
+    }
+
+    public int getStateCount() {
+      return internalGetState().getMap().size();
     }
     /**
-     * <code>string state = 5;</code>
-     * @return The bytes for state.
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+
+    @java.lang.Override
+    public boolean containsState(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      return internalGetState().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getStateMap()} instead.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getStateBytes() {
-      java.lang.Object ref = state_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        state_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.Boolean> getState() {
+      return getStateMap();
+    }
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+    @java.lang.Override
+
+    public java.util.Map<java.lang.String, java.lang.Boolean> getStateMap() {
+      return internalGetState().getMap();
+    }
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+    @java.lang.Override
+
+    public boolean getStateOrDefault(
+        java.lang.String key,
+        boolean defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Boolean> map =
+          internalGetState().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, bool&gt; state = 6;</code>
+     */
+    @java.lang.Override
+
+    public boolean getStateOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new NullPointerException("map key"); }
+      java.util.Map<java.lang.String, java.lang.Boolean> map =
+          internalGetState().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
       }
+      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -207,9 +300,15 @@ public final class Data {
       if (width_ != 0) {
         output.writeInt32(4, width_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(state_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, state_);
+      if (numberOfLive_ != 0) {
+        output.writeInt32(5, numberOfLive_);
       }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetState(),
+          StateDefaultEntryHolder.defaultEntry,
+          6);
       getUnknownFields().writeTo(output);
     }
 
@@ -235,8 +334,19 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, width_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(state_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, state_);
+      if (numberOfLive_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, numberOfLive_);
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.Boolean> entry
+           : internalGetState().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
+        state__ = StateDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(6, state__);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -261,8 +371,10 @@ public final class Data {
           != other.getHeight()) return false;
       if (getWidth()
           != other.getWidth()) return false;
-      if (!getState()
-          .equals(other.getState())) return false;
+      if (getNumberOfLive()
+          != other.getNumberOfLive()) return false;
+      if (!internalGetState().equals(
+          other.internalGetState())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -282,8 +394,12 @@ public final class Data {
       hash = (53 * hash) + getHeight();
       hash = (37 * hash) + WIDTH_FIELD_NUMBER;
       hash = (53 * hash) + getWidth();
-      hash = (37 * hash) + STATE_FIELD_NUMBER;
-      hash = (53 * hash) + getState().hashCode();
+      hash = (37 * hash) + NUMBEROFLIVE_FIELD_NUMBER;
+      hash = (53 * hash) + getNumberOfLive();
+      if (!internalGetState().getMap().isEmpty()) {
+        hash = (37 * hash) + STATE_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetState().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -395,6 +511,28 @@ public final class Data {
         return proto.Data.internal_static_proto_Mario_descriptor;
       }
 
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 6:
+            return internalGetState();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 6:
+            return internalGetMutableState();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
@@ -424,8 +562,9 @@ public final class Data {
 
         width_ = 0;
 
-        state_ = "";
+        numberOfLive_ = 0;
 
+        internalGetMutableState().clear();
         return this;
       }
 
@@ -452,11 +591,14 @@ public final class Data {
       @java.lang.Override
       public proto.Data.Mario buildPartial() {
         proto.Data.Mario result = new proto.Data.Mario(this);
+        int from_bitField0_ = bitField0_;
         result.x_ = x_;
         result.y_ = y_;
         result.height_ = height_;
         result.width_ = width_;
-        result.state_ = state_;
+        result.numberOfLive_ = numberOfLive_;
+        result.state_ = internalGetState();
+        result.state_.makeImmutable();
         onBuilt();
         return result;
       }
@@ -517,10 +659,11 @@ public final class Data {
         if (other.getWidth() != 0) {
           setWidth(other.getWidth());
         }
-        if (!other.getState().isEmpty()) {
-          state_ = other.state_;
-          onChanged();
+        if (other.getNumberOfLive() != 0) {
+          setNumberOfLive(other.getNumberOfLive());
         }
+        internalGetMutableState().mergeFrom(
+            other.internalGetState());
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -567,11 +710,19 @@ public final class Data {
 
                 break;
               } // case 32
-              case 42: {
-                state_ = input.readStringRequireUtf8();
+              case 40: {
+                numberOfLive_ = input.readInt32();
 
                 break;
-              } // case 42
+              } // case 40
+              case 50: {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
+                state__ = input.readMessage(
+                    StateDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableState().getMutableMap().put(
+                    state__.getKey(), state__.getValue());
+                break;
+              } // case 50
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -587,6 +738,7 @@ public final class Data {
         } // finally
         return this;
       }
+      private int bitField0_;
 
       private int x_ ;
       /**
@@ -712,79 +864,162 @@ public final class Data {
         return this;
       }
 
-      private java.lang.Object state_ = "";
+      private int numberOfLive_ ;
       /**
-       * <code>string state = 5;</code>
-       * @return The state.
+       * <code>int32 numberOfLive = 5;</code>
+       * @return The numberOfLive.
        */
-      public java.lang.String getState() {
-        java.lang.Object ref = state_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          state_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getNumberOfLive() {
+        return numberOfLive_;
       }
       /**
-       * <code>string state = 5;</code>
-       * @return The bytes for state.
-       */
-      public com.google.protobuf.ByteString
-          getStateBytes() {
-        java.lang.Object ref = state_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          state_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string state = 5;</code>
-       * @param value The state to set.
+       * <code>int32 numberOfLive = 5;</code>
+       * @param value The numberOfLive to set.
        * @return This builder for chaining.
        */
-      public Builder setState(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        state_ = value;
+      public Builder setNumberOfLive(int value) {
+        
+        numberOfLive_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string state = 5;</code>
+       * <code>int32 numberOfLive = 5;</code>
        * @return This builder for chaining.
        */
+      public Builder clearNumberOfLive() {
+        
+        numberOfLive_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.Boolean> state_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.Boolean>
+      internalGetState() {
+        if (state_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              StateDefaultEntryHolder.defaultEntry);
+        }
+        return state_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, java.lang.Boolean>
+      internalGetMutableState() {
+        onChanged();;
+        if (state_ == null) {
+          state_ = com.google.protobuf.MapField.newMapField(
+              StateDefaultEntryHolder.defaultEntry);
+        }
+        if (!state_.isMutable()) {
+          state_ = state_.copy();
+        }
+        return state_;
+      }
+
+      public int getStateCount() {
+        return internalGetState().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+
+      @java.lang.Override
+      public boolean containsState(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        return internalGetState().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getStateMap()} instead.
+       */
+      @java.lang.Override
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.Boolean> getState() {
+        return getStateMap();
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+      @java.lang.Override
+
+      public java.util.Map<java.lang.String, java.lang.Boolean> getStateMap() {
+        return internalGetState().getMap();
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+      @java.lang.Override
+
+      public boolean getStateOrDefault(
+          java.lang.String key,
+          boolean defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, java.lang.Boolean> map =
+            internalGetState().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+      @java.lang.Override
+
+      public boolean getStateOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        java.util.Map<java.lang.String, java.lang.Boolean> map =
+            internalGetState().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
       public Builder clearState() {
-        
-        state_ = getDefaultInstance().getState();
-        onChanged();
+        internalGetMutableState().getMutableMap()
+            .clear();
         return this;
       }
       /**
-       * <code>string state = 5;</code>
-       * @param value The bytes for state to set.
-       * @return This builder for chaining.
+       * <code>map&lt;string, bool&gt; state = 6;</code>
        */
-      public Builder setStateBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+
+      public Builder removeState(
+          java.lang.String key) {
+        if (key == null) { throw new NullPointerException("map key"); }
+        internalGetMutableState().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.Boolean>
+      getMutableState() {
+        return internalGetMutableState().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+      public Builder putState(
+          java.lang.String key,
+          boolean value) {
+        if (key == null) { throw new NullPointerException("map key"); }
         
-        state_ = value;
-        onChanged();
+        internalGetMutableState().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, bool&gt; state = 6;</code>
+       */
+
+      public Builder putAllState(
+          java.util.Map<java.lang.String, java.lang.Boolean> values) {
+        internalGetMutableState().getMutableMap()
+            .putAll(values);
         return this;
       }
       @java.lang.Override
@@ -902,6 +1137,12 @@ public final class Data {
      * @return The isdead.
      */
     boolean getIsdead();
+
+    /**
+     * <code>bool isZombie = 8;</code>
+     * @return The isZombie.
+     */
+    boolean getIsZombie();
   }
   /**
    * <pre>
@@ -1052,6 +1293,17 @@ public final class Data {
       return isdead_;
     }
 
+    public static final int ISZOMBIE_FIELD_NUMBER = 8;
+    private boolean isZombie_;
+    /**
+     * <code>bool isZombie = 8;</code>
+     * @return The isZombie.
+     */
+    @java.lang.Override
+    public boolean getIsZombie() {
+      return isZombie_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1086,6 +1338,9 @@ public final class Data {
       }
       if (isdead_ != false) {
         output.writeBool(7, isdead_);
+      }
+      if (isZombie_ != false) {
+        output.writeBool(8, isZombie_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1123,6 +1378,10 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, isdead_);
       }
+      if (isZombie_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, isZombie_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1152,6 +1411,8 @@ public final class Data {
           .equals(other.getName())) return false;
       if (getIsdead()
           != other.getIsdead()) return false;
+      if (getIsZombie()
+          != other.getIsZombie()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1178,6 +1439,9 @@ public final class Data {
       hash = (37 * hash) + ISDEAD_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsdead());
+      hash = (37 * hash) + ISZOMBIE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsZombie());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1324,6 +1588,8 @@ public final class Data {
 
         isdead_ = false;
 
+        isZombie_ = false;
+
         return this;
       }
 
@@ -1357,6 +1623,7 @@ public final class Data {
         result.speed_ = speed_;
         result.name_ = name_;
         result.isdead_ = isdead_;
+        result.isZombie_ = isZombie_;
         onBuilt();
         return result;
       }
@@ -1427,6 +1694,9 @@ public final class Data {
         if (other.getIsdead() != false) {
           setIsdead(other.getIsdead());
         }
+        if (other.getIsZombie() != false) {
+          setIsZombie(other.getIsZombie());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -1488,6 +1758,11 @@ public final class Data {
 
                 break;
               } // case 56
+              case 64: {
+                isZombie_ = input.readBool();
+
+                break;
+              } // case 64
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1762,6 +2037,37 @@ public final class Data {
       public Builder clearIsdead() {
         
         isdead_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isZombie_ ;
+      /**
+       * <code>bool isZombie = 8;</code>
+       * @return The isZombie.
+       */
+      @java.lang.Override
+      public boolean getIsZombie() {
+        return isZombie_;
+      }
+      /**
+       * <code>bool isZombie = 8;</code>
+       * @param value The isZombie to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsZombie(boolean value) {
+        
+        isZombie_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isZombie = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsZombie() {
+        
+        isZombie_ = false;
         onChanged();
         return this;
       }
@@ -4713,6 +5019,11 @@ public final class Data {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_Mario_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Mario_StateEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Mario_StateEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_Antagonist_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -4741,21 +5052,24 @@ public final class Data {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ndata.proto\022\005proto\"K\n\005Mario\022\t\n\001x\030\001 \001(\005\022" +
-      "\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(" +
-      "\005\022\r\n\005state\030\005 \001(\t\"n\n\nAntagonist\022\t\n\001x\030\001 \001(" +
-      "\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 " +
-      "\001(\005\022\r\n\005speed\030\005 \001(\005\022\014\n\004name\030\006 \001(\t\022\016\n\006isde" +
-      "ad\030\007 \001(\010\"I\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016" +
-      "\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 " +
-      "\001(\t\"\276\001\n\010GameData\022\033\n\005mario\030\001 \001(\0132\014.proto." +
-      "Mario\022\023\n\013floor_level\030\002 \001(\005\022 \n\030antagonist" +
-      "_context_width\030\003 \001(\005\022\032\n\022item_context_wid" +
-      "th\030\004 \001(\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.An" +
-      "tagonist\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006" +
-      "Action\022\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n" +
-      "\tGetAction\022\017.proto.GameData\032\r.proto.Acti" +
-      "on\"\000b\006proto3"
+      "\n\ndata.proto\022\005proto\"\250\001\n\005Mario\022\t\n\001x\030\001 \001(\005" +
+      "\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001" +
+      "(\005\022\024\n\014numberOfLive\030\005 \001(\005\022&\n\005state\030\006 \003(\0132" +
+      "\027.proto.Mario.StateEntry\032,\n\nStateEntry\022\013" +
+      "\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"\200\001\n\nAntag" +
+      "onist\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 " +
+      "\001(\005\022\r\n\005width\030\004 \001(\005\022\r\n\005speed\030\005 \001(\005\022\014\n\004nam" +
+      "e\030\006 \001(\t\022\016\n\006isdead\030\007 \001(\010\022\020\n\010isZombie\030\010 \001(" +
+      "\010\"I\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006heigh" +
+      "t\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 \001(\t\"\276\001\n" +
+      "\010GameData\022\033\n\005mario\030\001 \001(\0132\014.proto.Mario\022\023" +
+      "\n\013floor_level\030\002 \001(\005\022 \n\030antagonist_contex" +
+      "t_width\030\003 \001(\005\022\032\n\022item_context_width\030\004 \001(" +
+      "\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.Antagonis" +
+      "t\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006Action\022" +
+      "\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n\tGetAct" +
+      "ion\022\017.proto.GameData\032\r.proto.Action\"\000b\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4766,13 +5080,19 @@ public final class Data {
     internal_static_proto_Mario_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Mario_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", "State", });
+        new java.lang.String[] { "X", "Y", "Height", "Width", "NumberOfLive", "State", });
+    internal_static_proto_Mario_StateEntry_descriptor =
+      internal_static_proto_Mario_descriptor.getNestedTypes().get(0);
+    internal_static_proto_Mario_StateEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Mario_StateEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_proto_Antagonist_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_proto_Antagonist_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Antagonist_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", "Speed", "Name", "Isdead", });
+        new java.lang.String[] { "X", "Y", "Height", "Width", "Speed", "Name", "Isdead", "IsZombie", });
     internal_static_proto_Item_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_Item_fieldAccessorTable = new
