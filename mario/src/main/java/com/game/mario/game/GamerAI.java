@@ -216,8 +216,10 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            if (!stage.mario.isLiving() || GameManager.isInterupt())
+            if (!stage.mario.isLiving() || GameManager.isInterupt()) {
+                System.out.println("Living " + stage.mario.isLiving() + " Interrupt " + GameManager.isInterupt());
                 continue;
+            }
 
             Antagonist[] antagonists = getAntagonistContext();
             GameItem[] gameItems = getItemContext();

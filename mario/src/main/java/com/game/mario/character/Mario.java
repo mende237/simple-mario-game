@@ -321,6 +321,7 @@ public class Mario extends GameCharacter {
 		setWalke(false);
 		isLiving = true;
 		numberOfLive = nbrLive;
+		score = 0;
 
 		// for (MarioState stateItem : MarioState.values()) {
 		// StateValidityFrame stateValidityFrame = this.state.get(stateItem);

@@ -9,8 +9,8 @@ public class Config {
     public static final int FPS = 250;
     public static final int AI_REACTION_FREQUENCY = 4; // the AI will react to the new game state after rendering of 4
                                                        // frames
-    public static final int FRAME_STATE_VALIDITY = 5; // the state of Mario will be valid for 5 frames to ensure that
-                                                      // the AI has enough time to react to it
+    public static final int FRAME_STATE_VALIDITY = AI_REACTION_FREQUENCY + 1; // the state of Mario validity
+    // the AI has enough time to react to it
     public static final int MARIO_NUMBER_OF_LIVES = 1;
     public static final int X_MAX = 4100;
     public static final int Y_MAX = 293;

@@ -11,18 +11,10 @@ import threading
 import data_pb2
 import data_pb2_grpc
 from dqn import DQN
+from util.mario_state import MarioState
+from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_NAME, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
-# --- Configuration ---
-STATE_SIZE = 1 + 5 + 5  # Simplified state size
-ACTION_SIZE = 4  # 0: do nothing, 1: forward, 2: backward, 3: jump
-BATCH_SIZE = 32
-
-MODEL_DIR = "../dump"
-MODEL_NAME = "mario_dqn.weights.h5"
-MODEL_PATH = os.path.join(MODEL_DIR, MODEL_NAME)
-SAVE_FREQUENCY = 100 # Save model every 100 replay steps
 
 class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
     def __init__(self):
@@ -30,13 +22,6 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
         self.last_state = None
         self.last_action = None
         self.last_mario = None
-        self.mario_states = [
-            "STANDING", "WALKING", "JUMPING", "FALLING", "DEAD", "WIN", 
-            "ON_OBJECT", "BLOCKING_BY_OBJECT_HORIZONTAL", "BLOCKING_BY_OBJECT_VERTICAL",
-            "BLOCKING_BY_SKY", "BLOCKING_BY_HORIZONTAL_BEGINNING_MAP", 
-            "BLOCKING_BY_HORIZONTAL_END_MAP", "HIT_COIN", "KILLING_ANTAGONIST",
-            "ZOMBIFIYING_ANTAGONIST", "HIT_BY_ANTAGONIST"
-        ]
         
         # Initialize replay_counter BEFORE starting the thread
         self.replay_counter = 0 
@@ -71,37 +56,42 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
     def _get_state_from_request(self, request):
         mario = request.mario
         
-        # Normalize Mario's state
-        mario_state_one_hot = np.zeros(len(self.mario_states))
-        try:
-            state_index = self.mario_states.index(mario.state)
-            mario_state_one_hot[state_index] = 1
-        except ValueError:
-            pass # State not in list, remains all zeros
+        # Normalize Mario's state (one-hot encoding from the map)
+        mario_state_one_hot = np.zeros(len(MarioState))
+        for i, state_enum_member in enumerate(MarioState):
+            if state_enum_member.name in mario.state and mario.state[state_enum_member.name]:
+                mario_state_one_hot[i] = 1
 
-        # Simplified state: mario's y, and x relative to something could be useful
-        # For now, let's use a very simple state
         state = [mario.y]
 
-        # Add antagonist info
-        ant_features = np.zeros(5)
-        if request.antagonists:
-            # Get the closest antagonist
-            closest_ant = min(request.antagonists, key=lambda a: abs(a.x - mario.x))
-            ant_features[0] = closest_ant.x - mario.x
-            ant_features[1] = closest_ant.y - mario.y
-            ant_features[2] = 1 if closest_ant.isdead else 0
+        # Add antagonist and item distances in context
+        def euclidean_distance(x1, y1, x2, y2):
+            return np.hypot(x1 - x2, y1 - y2)
+
+        ant_features = np.zeros(CONTEXT_ANTAGONIST_WIDTH)
+        item_features = np.zeros(CONTEXT_ITEM_WIDTH)
+
+        ant_distances = [
+            euclidean_distance(ant.x, ant.y, mario.x, mario.y) if ant else float('inf')
+            for ant in request.antagonists
+        ]
         
-        # Add item info
-        item_features = np.zeros(5)
-        if request.items:
-            # Get the closest item
-            closest_item = min(request.items, key=lambda i: abs(i.x - mario.x))
-            item_features[0] = closest_item.x - mario.x
-            item_features[1] = closest_item.y - mario.y
+        item_distances = [
+            euclidean_distance(item.x, item.y, mario.x, mario.y) if item else float('inf')
+            for item in request.items
+        ]
+        
+        
+        for i, dist in enumerate(ant_distances[:CONTEXT_ANTAGONIST_WIDTH]):
+            ant_features[i] = dist
+            
+        
+        for i, dist in enumerate(item_distances[:CONTEXT_ITEM_WIDTH]):
+            item_features[i] = dist
+
 
         # Flatten and combine
-        flat_state = np.concatenate([state, ant_features, item_features]).ravel()
+        flat_state = np.concatenate([mario_state_one_hot, state, ant_features, item_features]).ravel()
         
         # Ensure state is correct size, pad if necessary
         if len(flat_state) < STATE_SIZE:
@@ -113,22 +103,34 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
         reward = 0
         # Reward for moving forward
         if current_mario.x > last_mario.x:
-            reward += 1
+            reward += 10
         # Penalty for moving backward
         elif current_mario.x < last_mario.x:
-            reward -= 1.5
+            reward -= 20
         
         # Big penalty for dying
-        if current_mario.state == "DEAD":
+        if current_mario.state[MarioState.DEAD.name] == MarioState.DEAD.name:
             reward -= 100
+            
+        if current_mario.state[MarioState.HIT_BY_ANTAGONIST.name] == MarioState.HIT_BY_ANTAGONIST.name:
+            reward -= 50
+            
+        if current_mario.state[MarioState.BLOCKING_BY_OBJECT_HORIZONTAL.name] == MarioState.BLOCKING_BY_OBJECT_HORIZONTAL.name:
+            reward -= 5
+            
+        if current_mario.state[MarioState.HIT_COIN.name] == MarioState.HIT_COIN.name:
+            reward += 15
         
         # Reward for jumping
-        if current_mario.state == "JUMPING" and last_mario.state != "JUMPING":
+        if current_mario.state[MarioState.JUMPING.name] == MarioState.JUMPING.name and last_mario.state[MarioState.JUMPING.name] != MarioState.JUMPING.name:
             reward += 0.5
+            
+        if current_mario.state[MarioState.ZOMBIFIYING_ANTAGONIST.name] == MarioState.ZOMBIFIYING_ANTAGONIST.name:
+            reward += 25
 
         # Reward for killing an antagonist (logic to be improved)
-        if current_mario.state == "KILLING_ANTAGONIST":
-            reward += 10
+        if current_mario.state[MarioState.KILLING_ANTAGONIST.name] == MarioState.KILLING_ANTAGONIST.name:
+            reward += 50
 
         return reward
 
