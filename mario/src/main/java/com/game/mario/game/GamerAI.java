@@ -6,6 +6,7 @@ import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
 import com.game.mario.util.GameStateLogger;
+import com.game.mario.util.MarioState;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -217,7 +218,8 @@ public class GamerAI implements Runnable {
 
         while (true) {
             if (!stage.mario.isLiving() || GameManager.isInterupt()) {
-                System.out.println("Living " + stage.mario.isLiving() + " Interrupt " + GameManager.isInterupt());
+                System.out.println("Living " + stage.mario.isLiving() + " Interrupt " +
+                        GameManager.isInterupt());
                 continue;
             }
 
@@ -227,8 +229,19 @@ public class GamerAI implements Runnable {
             filterAntogonist(antagonists);
             filterItem(gameItems);
 
+            this.stage.mario.lockAllState();
+
             // Log Mario state to file
-            GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            // GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+
+            if (this.stage.mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
+                GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+                System.out.println(stage.getMario().getState());
+            }
+
+            if (this.stage.mario.getState().get(MarioState.KILLING_ANTAGONIST).getValue()) {
+                GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            }
 
             // Build GameData
             Mario mario = stage.getMario();
@@ -242,6 +255,9 @@ public class GamerAI implements Runnable {
                             .collect(Collectors.toMap(state -> state.name(), state -> mario.getState().get(state)
                                     .getValue())))
                     .build();
+            this.stage.mario.unlockAllState();
+
+            this.stage.mario.marKAllStateAsRead();
 
             List<Data.Antagonist> protoAntagonists = new ArrayList<>();
             if (antagonists != null) {

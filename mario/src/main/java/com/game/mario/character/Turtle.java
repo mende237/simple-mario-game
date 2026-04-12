@@ -137,6 +137,7 @@ public class Turtle extends Antagonist implements Runnable {
 							 * in the zombi state
 							 */
 							if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 								super.behindCharacter.setLiving(false);
 								super.behindCharacter.remove = true;
 								this.remove = true;
@@ -154,6 +155,7 @@ public class Turtle extends Antagonist implements Runnable {
 								super.behindCharacter.setLiving(false);
 								super.behindCharacter.remove = true;
 								collision = true;
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							if (collision == true) {
@@ -163,6 +165,7 @@ public class Turtle extends Antagonist implements Runnable {
 									super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
 									super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
 								}
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 							super.setToRight(true);
 							this.dxTortue = 1;
@@ -181,6 +184,7 @@ public class Turtle extends Antagonist implements Runnable {
 								super.frontCharacter.remove = true;
 								super.remove = true;
 								collision = true;
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							/*
@@ -202,6 +206,7 @@ public class Turtle extends Antagonist implements Runnable {
 									super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
 									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
 								}
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							super.setToRight(false);

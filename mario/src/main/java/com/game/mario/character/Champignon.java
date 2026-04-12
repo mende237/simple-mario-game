@@ -123,6 +123,8 @@ public class Champignon extends Antagonist implements Runnable {
 									super.frontCharacter.behindCharacter = super.behindCharacter.behindCharacter;
 									super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
 								}
+
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							super.setToRight(true);
@@ -141,6 +143,8 @@ public class Champignon extends Antagonist implements Runnable {
 									super.behindCharacter.frontCharacter = super.frontCharacter.frontCharacter;
 									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
 								}
+								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
+
 							}
 
 							super.setToRight(false);

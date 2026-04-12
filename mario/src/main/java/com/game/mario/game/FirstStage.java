@@ -20,6 +20,8 @@ import com.game.mario.character.Champignon;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
+import com.game.mario.util.GameStateLogger;
+import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
 public class FirstStage extends Stage {
@@ -133,7 +135,7 @@ public class FirstStage extends Stage {
 		coinTab.add(new Coin(3300, 110));
 		coinTab.add(new Coin(3400, 150));
 
-		champignon1 = new Champignon(800, 263);
+		champignon1 = new Champignon(400, 263);
 		champignon2 = new Champignon(850, 263);
 		champignon3 = new Champignon(1500, 263);
 		champignon4 = new Champignon(3000, 263);
@@ -252,6 +254,10 @@ public class FirstStage extends Stage {
 			System.out.println(GameManager.getState());
 		} else {
 			mario.updateStateValidityFrames();
+
+			// if (mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
+			// GameStateLogger.logFullStateSnapshot(mario.getState());
+			// }
 
 			if (super.mario.isLiving() == false && super.mario.getNumberOfLive() > 0) {
 				restart(getxPos());

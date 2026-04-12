@@ -2,6 +2,7 @@ package com.game.mario.game;
 
 import com.game.mario.util.TransitionState;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class GameManager {
 	private static boolean interupt = false;
@@ -10,7 +11,7 @@ public class GameManager {
 	private static int sem = 1;
 	private static ReentrantLock allAntagonistPositionReaderLocker = new ReentrantLock();
 	private static ReentrantLock allAntagonistPositionWriterLocker = new ReentrantLock();
-	private static ReentrantLock marioStateLocker = new ReentrantLock();
+	private static ReentrantReadWriteLock marioStateLocker = new ReentrantReadWriteLock();
 
 	/******************************** getter *********************************/
 	public static TransitionState getState() {
@@ -46,7 +47,7 @@ public class GameManager {
 		return allAntagonistPositionWriterLocker;
 	}
 
-	public static ReentrantLock getMarioStateLocker() {
+	public static ReentrantReadWriteLock getMarioStateLocker() {
 		return marioStateLocker;
 	}
 

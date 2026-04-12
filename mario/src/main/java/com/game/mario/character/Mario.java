@@ -146,6 +146,24 @@ public class Mario extends GameCharacter {
 		}
 	}
 
+	public void lockAllState() {
+		for (MarioState marioState : this.state.keySet()) {
+			this.state.get(marioState).getStateLocker().lock();
+		}
+	}
+
+	public void unlockAllState() {
+		for (MarioState marioState : this.state.keySet()) {
+			this.state.get(marioState).getStateLocker().unlock();
+		}
+	}
+
+	public void marKAllStateAsRead() {
+		for (MarioState marioState : this.state.keySet()) {
+			this.state.get(marioState).setRead();
+		}
+	}
+
 	public Image jump(int begin) {
 		// ImageIcon ico;
 		Image img;
