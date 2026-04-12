@@ -104,6 +104,98 @@ This project includes a reinforcement learning (RL) model that can be trained to
 
 ---
 
+## 🏗️ Building Your Own Reinforcement Learning Model
+
+To build your own custom reinforcement learning model for this game, you will primarily interact with the following files:
+
+-   **`proto/data.proto`**: This Protocol Buffer definition file is critical as it defines the structure of the data exchanged between the Java game and your Python-based RL model.
+```protobuf
+syntax = "proto3";
+
+package proto;
+
+// Represents a game object with position and dimensions.
+message Mario {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    int32 numberOfLive = 5;
+    map<string, bool> state = 6;
+}
+
+// Represents an antagonist character.
+message Antagonist {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    int32 speed = 5;
+    string name = 6;
+    bool isdead = 7;
+    bool isZombie = 8;
+}
+
+// Represents an item in the game.
+message Item {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    string name = 5;
+}
+
+// Request data containing the state of the game.
+message GameData {
+    Mario mario = 1;
+    int32 floor_level = 2;
+    int32 antagonist_context_width = 3;
+    int32 item_context_width = 4;
+    repeated Antagonist antagonists = 5;
+    repeated Item items = 6;
+}
+
+// Response data containing the action to be taken.
+message Action {
+    int32 action = 1;
+}
+
+// The game service definition.
+service GameService {
+    // Sends game data and receives an action.
+    rpc GetAction(GameData) returns (Action) {}
+}
+```
+    - `GameData` message: This is the input your model will receive from the game, containing information about Mario, antagonists, items, and game context. Your model's observation space will be derived from this data.
+    - `Action` message: This is the output your model must produce, indicating the action to be taken in the game.
+    Understanding these message structures is fundamental to correctly interpret game states and generate valid actions.
+
+-   **`config/context.json`**: This configuration file provides essential context parameters that influence the game state and, consequently, the observations your model receives.
+```json
+{
+    "contextItemWidth": 5,
+    "contextAntogonistWidth": 6,
+    "windowFilter": {
+        "min": 0,
+        "max": 800
+    }
+}
+```
+    -   `contextItemWidth` and `contextAntogonistWidth`: These values define the width of the observation window around Mario for items and antagonists, respectively. When designing your model's state representation, you'll need to consider these parameters as they determine what entities are visible to the model at any given time.
+
+-   **`config/server.json`**: This file specifies the network configuration for the gRPC server that facilitates communication between the Java game and your Python model.
+```json
+{
+    "host": "localhost",
+    "port": 50051
+}
+```
+    -   `host` and `port`: These define where your gRPC server (e.g., `model/proto_server/server.py`) will listen for incoming game data requests. Ensure your custom model's server implementation uses these same host and port settings to establish a connection with the game.
+
+By understanding and utilizing these files, you can design a custom RL agent that processes game states, makes decisions, and interacts seamlessly with the Mario game environment.
+
+---
+
 ## 🔒 Synchronization Details
 
 The game uses `java.util.concurrent.locks.ReentrantLock` objects for thread synchronization, particularly for managing concurrent access to shared resources and character states among antagonists.
