@@ -166,9 +166,9 @@ service GameService {
     rpc GetAction(GameData) returns (Action) {}
 }
 ```
-    - `GameData` message: This is the input your model will receive from the game, containing information about Mario, antagonists, items, and game context. Your model's observation space will be derived from this data.
-    - `Action` message: This is the output your model must produce, indicating the action to be taken in the game.
-    Understanding these message structures is fundamental to correctly interpret game states and generate valid actions.
+- `GameData` message: This is the input your model will receive from the game, containing information about Mario, antagonists, items, and game context. Your model's observation space will be derived from this data.
+- `Action` message: This is the output your model must produce, indicating the action to be taken in the game.
+Understanding these message structures is fundamental to correctly interpret game states and generate valid actions.
 
 -   **`config/context.json`**: This configuration file provides essential context parameters that influence the game state and, consequently, the observations your model receives.
 ```json
@@ -181,7 +181,7 @@ service GameService {
     }
 }
 ```
-    -   `contextItemWidth` and `contextAntogonistWidth`: These values define the width of the observation window around Mario for items and antagonists, respectively. When designing your model's state representation, you'll need to consider these parameters as they determine what entities are visible to the model at any given time.
+-   `contextItemWidth` and `contextAntogonistWidth`: These values define the width of the observation window around Mario for items and antagonists, respectively. When designing your model's state representation, you'll need to consider these parameters as they determine what entities are visible to the model at any given time.
 
 -   **`config/server.json`**: This file specifies the network configuration for the gRPC server that facilitates communication between the Java game and your Python model.
 ```json
@@ -190,7 +190,7 @@ service GameService {
     "port": 50051
 }
 ```
-    -   `host` and `port`: These define where your gRPC server (e.g., `model/proto_server/server.py`) will listen for incoming game data requests. Ensure your custom model's server implementation uses these same host and port settings to establish a connection with the game.
+-   `host` and `port`: These define where your gRPC server (e.g., `model/proto_server/server.py`) will listen for incoming game data requests. Ensure your custom model's server implementation uses these same host and port settings to establish a connection with the game.
 
 By understanding and utilizing these files, you can design a custom RL agent that processes game states, makes decisions, and interacts seamlessly with the Mario game environment.
 
