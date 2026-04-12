@@ -8,29 +8,30 @@ import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
+import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
-public class Champignon extends Antagonist implements Runnable {
+public class Mushroom extends Antagonist implements Runnable {
 	/***************************************
 	 * property
 	 *******************************************/
-	private ImageView icoChamp;
-	private Image imageChamp;
+	private ImageView icoMushroom;
+	private Image imageMushroom;
 
-	private int dxChamp;
+	private int dxMushroom;
 
 	/**************************************
 	 * constructor
 	 *****************************************/
-	public Champignon(int x, int y) {
-		super(x, y, 27, 30, "champ", 20, 50);
+	public Mushroom(int x, int y) {
+		super(x, y, 27, 30, "champ", Config.MUSHROOM_THREAD_PAUSE, Config.MUSHROOM_WALK_FREQUENCY);
 		super.nbreOfLive = 1;
 		super.setToRight(true);
 		super.setWalke(true);
 
-		this.imageChamp = new Image(getClass().getResource("images/champArretDroite.png").toExternalForm());
-		this.icoChamp = new ImageView(imageChamp);
+		this.imageMushroom = new Image(getClass().getResource("images/champArretDroite.png").toExternalForm());
+		this.icoMushroom = new ImageView(imageMushroom);
 		super.setLiving(true);
 		super.setThread(new Thread(this));
 		super.getThread().start();
@@ -39,8 +40,8 @@ public class Champignon extends Antagonist implements Runnable {
 	/*********************************
 	 * getter
 	 *****************************************/
-	public Image getImageChamp() {
-		return imageChamp;
+	public Image getImageMushroom() {
+		return imageMushroom;
 	}
 
 	/****************************************
@@ -76,8 +77,8 @@ public class Champignon extends Antagonist implements Runnable {
 
 	}
 
-	public void setImageChamp(Image imageChamp) {
-		this.imageChamp = imageChamp;
+	public void setImageMushroom(Image imageMushroom) {
+		this.imageMushroom = imageMushroom;
 	}
 
 	public void move() {
@@ -105,11 +106,11 @@ public class Champignon extends Antagonist implements Runnable {
 					if (super.isWalke() == true && super.isLiving() == true) {
 						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zomeMin) {
 							if (super.isToRight() == true) {
-								this.dxChamp = 1;
-								super.setX(super.getX() + this.dxChamp);
+								this.dxMushroom = 1;
+								super.setX(super.getX() + this.dxMushroom);
 							} else {
-								this.dxChamp = -1;
-								super.setX(super.getX() + this.dxChamp);
+								this.dxMushroom = -1;
+								super.setX(super.getX() + this.dxMushroom);
 							}
 						}
 
@@ -128,8 +129,8 @@ public class Champignon extends Antagonist implements Runnable {
 							}
 
 							super.setToRight(true);
-							this.dxChamp = 1;
-							super.setX(super.getX() + this.dxChamp);
+							this.dxMushroom = 1;
+							super.setX(super.getX() + this.dxMushroom);
 							// super.setWalke(false);
 						}
 
@@ -148,8 +149,8 @@ public class Champignon extends Antagonist implements Runnable {
 							}
 
 							super.setToRight(false);
-							this.dxChamp = -1;
-							super.setX(super.getX() + this.dxChamp);
+							this.dxMushroom = -1;
+							super.setX(super.getX() + this.dxMushroom);
 
 						}
 					}
@@ -240,9 +241,9 @@ public class Champignon extends Antagonist implements Runnable {
 			str = "champEcraseGauche.png";
 		}
 
-		Image imgChamp = new Image(getClass().getResource("images/" + str).toExternalForm());
+		Image imgMushroom = new Image(getClass().getResource("images/" + str).toExternalForm());
 
-		return imgChamp;
+		return imgMushroom;
 	}
 
 }

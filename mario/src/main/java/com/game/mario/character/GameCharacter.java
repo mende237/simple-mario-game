@@ -16,6 +16,7 @@ public abstract class GameCharacter {
 	private boolean living;
 	protected ImageView icoCharacter;
 	protected Image imgCharacter;
+	protected int walkFrequency;
 
 	public GameCharacter(int x, int y, int width, int height) {
 		this.x = x;
@@ -61,6 +62,10 @@ public abstract class GameCharacter {
 
 	public Image getImgCharacter() {
 		return imgCharacter;
+	}
+
+	public int getWalkFrequency() {
+		return this.walkFrequency;
 	}
 
 	// **************************************setter****************************************//

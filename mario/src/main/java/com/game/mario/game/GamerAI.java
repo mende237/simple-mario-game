@@ -39,7 +39,7 @@ public class GamerAI implements Runnable {
         this.windowFilter = windowFilter;
 
         // Initialize gRPC client
-        this.channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+        this.channel = ManagedChannelBuilder.forAddress(Config.host, Config.port)
                 .usePlaintext() // Use plaintext for local testing
                 .build();
         this.blockingStub = GameServiceGrpc.newBlockingStub(channel);
@@ -234,14 +234,15 @@ public class GamerAI implements Runnable {
             // Log Mario state to file
             // GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
 
-            if (this.stage.mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
-                GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
-                System.out.println(stage.getMario().getState());
-            }
+            // if (this.stage.mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue())
+            // {
+            // GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            // }
 
-            if (this.stage.mario.getState().get(MarioState.KILLING_ANTAGONIST).getValue()) {
-                GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
-            }
+            // if
+            // (this.stage.mario.getState().get(MarioState.KILLING_ANTAGONIST).getValue()) {
+            // GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            // }
 
             // Build GameData
             Mario mario = stage.getMario();

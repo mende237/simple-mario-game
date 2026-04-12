@@ -12,7 +12,7 @@ import data_pb2
 import data_pb2_grpc
 from dqn import DQN
 from util.mario_state import MarioState
-from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_NAME, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH
+from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH, HOST, PORT
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -158,7 +158,7 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     data_pb2_grpc.add_GameServiceServicer_to_server(GameServiceServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:{}'.format(PORT))
     server.start()
     print("Server started, listening on port 50051")
     try:

@@ -16,7 +16,7 @@ import com.game.mario.item.GameItem;
 import com.game.mario.item.Pipe;
 import com.game.mario.character.Turtle;
 import com.game.mario.character.Antagonist;
-import com.game.mario.character.Champignon;
+import com.game.mario.character.Mushroom;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
@@ -47,12 +47,12 @@ public class FirstStage extends Stage {
 	private static ArrayList<GameItem> gameItems = null;
 
 	private Font font;
-	private static Champignon champignon1;
-	private static Champignon champignon2;
-	private static Champignon champignon3;
-	private static Champignon champignon4;
-	private static Champignon champignon5;
-	private static Champignon champignon6;
+	private static Mushroom champignon1;
+	private static Mushroom champignon2;
+	private static Mushroom champignon3;
+	private static Mushroom champignon4;
+	private static Mushroom champignon5;
+	private static Mushroom champignon6;
 
 	private static Turtle tortue1;
 	private static Turtle tortue2;
@@ -135,12 +135,12 @@ public class FirstStage extends Stage {
 		coinTab.add(new Coin(3300, 110));
 		coinTab.add(new Coin(3400, 150));
 
-		champignon1 = new Champignon(400, 263);
-		champignon2 = new Champignon(850, 263);
-		champignon3 = new Champignon(1500, 263);
-		champignon4 = new Champignon(3000, 263);
-		champignon5 = new Champignon(3200, 263);
-		champignon6 = new Champignon(3500, 263);
+		champignon1 = new Mushroom(400, 263);
+		champignon2 = new Mushroom(850, 263);
+		champignon3 = new Mushroom(1500, 263);
+		champignon4 = new Mushroom(3000, 263);
+		champignon5 = new Mushroom(3200, 263);
+		champignon6 = new Mushroom(3500, 263);
 
 		tortue1 = new Turtle(700, 243);
 		tortue2 = new Turtle(2000, 243);
@@ -249,15 +249,11 @@ public class FirstStage extends Stage {
 			if (GameManager.getState() == TransitionState.PLAYING) {
 				init(0);
 				setxPos(0);
-				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES);
+				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES, 0);
 			}
 			System.out.println(GameManager.getState());
 		} else {
 			mario.updateStateValidityFrames();
-
-			// if (mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
-			// GameStateLogger.logFullStateSnapshot(mario.getState());
-			// }
 
 			if (super.mario.isLiving() == false && super.mario.getNumberOfLive() > 0) {
 				restart(getxPos());
@@ -271,11 +267,11 @@ public class FirstStage extends Stage {
 
 			if (Collision.mario(gameItems, 0, super.mario) == false) {
 				App.scene.setHeightRoof(0);
-				App.scene.setYFloor(293);
+				App.scene.setYFloor(Config.Y_MAX);
 			}
 
 			this.backgroundDisplacement();
-			if (super.getxPos() >= 0 && super.getxPos() <= 4650) {
+			if (super.getxPos() >= 0 && super.getxPos() <= Config.X_MAX + 550) {
 
 				for (int i = 0; i < gameItems.size(); i++) {
 					gameItems.get(i).displacement();
@@ -333,7 +329,7 @@ public class FirstStage extends Stage {
 						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(),
 								(Y_FLOOR - antagonistTab.get(i).getHeight()));
 					} else {
-						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(), 282);
+						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(), Config.Y_MAX - 11);
 					}
 				}
 			}
@@ -358,7 +354,8 @@ public class FirstStage extends Stage {
 
 				} else {
 					// ---------------when he walk or immobilize
-					gc.drawImage(super.mario.walk("mario", 50), super.mario.getX(), super.mario.getY());
+					gc.drawImage(super.mario.walk("mario", super.mario.getWalkFrequency()), super.mario.getX(),
+							super.mario.getY());
 				}
 
 			} else {
@@ -390,7 +387,7 @@ public class FirstStage extends Stage {
 	public void restart(int position) {
 		initBackground();
 
-		super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, super.mario.getNumberOfLive());
+		super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, super.mario.getNumberOfLive(), super.mario.getScore());
 
 		for (int i = 0; i < gameItems.size(); i++) {
 			gameItems.get(i).setX(gameItems.get(i).getX() + position);

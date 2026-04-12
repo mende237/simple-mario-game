@@ -16,10 +16,20 @@ public class Config {
     public static final int X_MAX = 4100;
     public static final int Y_MAX = 293;
 
+    public static final int MARIO_WALK_FREQUENCY = 50;
+    public static final int MUSHROOM_WALK_FREQUENCY = 50;
+    public static final int TURTLE_WALK_FREQUENCY = 100;
+
+    public static final int MUSHROOM_THREAD_PAUSE = 20; // Duration in milli second
+    public static final int TURTLE_THREAD_PAUSE = 50; // Duration in milli second
+
     public static int CONTEXT_ITEM_WIDTH;
     public static int CONTEXT_ANTAGONIST_WIDTH;
     public static int WINDOW_FILTER_MIN;
     public static int WINDOW_FILTER_MAX;
+
+    public static String host;
+    public static int port;
 
     static {
         try {
@@ -30,6 +40,15 @@ public class Config {
             JSONObject windowFilter = json.getJSONObject("windowFilter");
             WINDOW_FILTER_MIN = windowFilter.getInt("min");
             WINDOW_FILTER_MAX = windowFilter.getInt("max");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get("../config/server.json")));
+            JSONObject json = new JSONObject(content);
+            host = json.getString("host");
+            port = json.getInt("port");
         } catch (IOException e) {
             e.printStackTrace();
         }

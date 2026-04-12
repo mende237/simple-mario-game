@@ -20,7 +20,6 @@ public abstract class Antagonist extends GameCharacter {
 	protected int nbreOfLive = 2;
 	protected boolean remove = false;
 	protected String name;
-	protected int walkFrequency;
 	protected ReentrantLock positionLocker;
 	protected int breakDuration;
 
@@ -61,10 +60,6 @@ public abstract class Antagonist extends GameCharacter {
 
 	public String getName() {
 		return this.name;
-	}
-
-	public int getWalkFrequency() {
-		return this.walkFrequency;
 	}
 
 	public ReentrantLock getPositionLocker() {

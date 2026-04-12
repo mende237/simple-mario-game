@@ -44,6 +44,7 @@ public class Mario extends GameCharacter {
 		this.fall = false;
 		Mario.numberOfLive = Config.MARIO_NUMBER_OF_LIVES;
 		Mario.score = 0;
+		super.walkFrequency = Config.MARIO_WALK_FREQUENCY;
 		for (MarioState stateItem : MarioState.values()) {
 			state.put(stateItem, new StateValidityFrame(stateItem, false, Config.FRAME_STATE_VALIDITY));
 		}
@@ -333,13 +334,13 @@ public class Mario extends GameCharacter {
 			return false;
 	}
 
-	public void init(int x, int y, int nbrLive) {
+	public void init(int x, int y, int nbrLive, int score) {
 		setX(x);
 		setY(y);
 		setWalke(false);
 		isLiving = true;
 		numberOfLive = nbrLive;
-		score = 0;
+		Mario.score = score;
 
 		// for (MarioState stateItem : MarioState.values()) {
 		// StateValidityFrame stateValidityFrame = this.state.get(stateItem);

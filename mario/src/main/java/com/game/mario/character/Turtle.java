@@ -21,14 +21,14 @@ public class Turtle extends Antagonist implements Runnable {
 	 *******************************************/
 	private ImageView icoTurtle;
 	private Image imageTurtle;
-	private int dxTortue;
+	private int dxTurtle;
 	private boolean justDie = false;
 
 	/**************************************
 	 * constructor
 	 *****************************************/
 	public Turtle(int x, int y) {
-		super(x, y, 43, 50, "tortue", 50, 100);
+		super(x, y, 43, 50, "tortue", Config.TURTLE_THREAD_PAUSE, Config.TURTLE_WALK_FREQUENCY);
 		super.nbreOfLive = 2;
 		super.setToRight(true);
 		super.setWalke(true);
@@ -120,11 +120,11 @@ public class Turtle extends Antagonist implements Runnable {
 					if (super.isWalke() == true && (super.isLiving() == true || this.zombie == true)) {
 						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
 							if (super.isToRight() == true) {
-								this.dxTortue = 1;
-								super.setX(super.getX() + this.dxTortue);
+								this.dxTurtle = 1;
+								super.setX(super.getX() + this.dxTurtle);
 							} else {
-								this.dxTortue = -1;
-								super.setX(super.getX() + this.dxTortue);
+								this.dxTurtle = -1;
+								super.setX(super.getX() + this.dxTurtle);
 							}
 						}
 
@@ -168,8 +168,8 @@ public class Turtle extends Antagonist implements Runnable {
 								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 							super.setToRight(true);
-							this.dxTortue = 1;
-							super.setX(super.getX() + this.dxTortue);
+							this.dxTurtle = 1;
+							super.setX(super.getX() + this.dxTurtle);
 						}
 
 						if (super.getX() + super.getWidth() >= zoneMax) {
@@ -210,8 +210,8 @@ public class Turtle extends Antagonist implements Runnable {
 							}
 
 							super.setToRight(false);
-							this.dxTortue = -1;
-							super.setX(super.getX() + this.dxTortue);
+							this.dxTurtle = -1;
+							super.setX(super.getX() + this.dxTurtle);
 
 						}
 					}
@@ -332,8 +332,8 @@ public class Turtle extends Antagonist implements Runnable {
 	public Image die() {
 		super.setHeight(23);
 		super.setWidth(25);
-		Image imgTortue = new Image(getClass().getResource("images/tortueFermee.png").toExternalForm());
-		return imgTortue;
+		Image imgTurtle = new Image(getClass().getResource("images/tortueFermee.png").toExternalForm());
+		return imgTurtle;
 	}
 
 }
