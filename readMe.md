@@ -340,7 +340,13 @@ This project is for educational purposes.
 
 ## 🔮 Perspectives
 
-A future prospect for this project is to train a reinforcement learning model to play this game automatically, as detailed in the "Reinforcement Learning Model Training Workflow" section. This will enable us to explore artificial intelligence applied to video games and improve the performance of agents in interactive environments.
+This project has several exciting future prospects:
+
+-   **Reinforcement Learning Model Training (Mario)**: Continue to train and improve the reinforcement learning model to play Mario automatically, as detailed in the "Reinforcement Learning Model Training Workflow" section. This will enable us to explore artificial intelligence applied to video games and improve the performance of agents in interactive environments.
+-   **Reinforcement Learning Model Training (Antagonists)**: Develop and train separate reinforcement learning models for antagonists, allowing them to exhibit more intelligent and adaptive behaviors, thereby increasing the challenge and dynamic nature of the game.
+-   **Enhanced Sound Effects**: Implement a more comprehensive sound effects system to enrich the gaming experience, including distinct sounds for actions, item collection, enemy interactions, and level events.
+-   **Custom Level Creation**: Introduce the ability for users to design and load custom game levels. This would involve defining the environment, precise positions of items, antagonists, and coins within a structured JSON file format, allowing for endless replayability and creative freedom.
+-   **AI-Powered Level Generation**: Explore the development of an AI model, potentially leveraging Large Language Models (LLMs), to automatically generate new and challenging game levels in the specified JSON format. This could lead to dynamic and infinitely varied gameplay experiences.
 
 ---
 Enjoy playing!
