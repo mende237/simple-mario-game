@@ -2,7 +2,6 @@ package com.game.mario.game;
 
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mario;
-import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
@@ -62,7 +61,6 @@ public class GamerAI implements Runnable {
                 stage.getAntagonists().size(), 0, stage.getMario());
 
         if (nearestAntagonist[0] == null || nearestAntagonist[1] == null) {
-            // System.out.println("--------------------------------------------");
             if (this.contextAntogonistWidth <= this.stage.getAntagonists().size()) {
                 if (nearestAntagonist[0] == null) {
                     for (int i = 0; i < this.contextAntogonistWidth; i++) {
@@ -92,8 +90,6 @@ public class GamerAI implements Runnable {
                 int nbrLeft = (this.contextAntogonistWidth - 2) / 2;
                 int nbrRight = (this.contextAntogonistWidth - 2) - nbrLeft;
 
-                // System.out.println("******* left " + nbrLeft + " *********** right " +
-                // nbrRight);
                 Antagonist current = (Antagonist) nearestAntagonist[0].getBehindCharacter();
                 int i = 0;
                 while (current != null && i < nbrLeft) {

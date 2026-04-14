@@ -8,6 +8,7 @@ with open("../../config/context.json", "r", encoding="utf-8") as f:
 
 CONTEXT_ANTAGONIST_WIDTH = data["contextAntogonistWidth"]
 CONTEXT_ITEM_WIDTH = data["contextItemWidth"]
+CONTEXT_COIN_WIDTH = data["contextCoinWidth"]
 
 with open("../../config/server.json", "r", encoding="utf-8") as f:
     data = json.load(f)
@@ -15,7 +16,7 @@ HOST = data["host"]
 PORT = data["port"]
 
 # DQN Configuration
-STATE_SIZE = len(MarioState) + 1 + CONTEXT_ANTAGONIST_WIDTH + CONTEXT_ITEM_WIDTH
+STATE_SIZE = len(MarioState) + 1 + CONTEXT_ANTAGONIST_WIDTH + CONTEXT_ITEM_WIDTH + CONTEXT_COIN_WIDTH # Mario state + y position + antagonist context + item context + coin context
 ACTION_SIZE = 4  # 0: do nothing, 1: forward, 2: backward, 3: jump
 BATCH_SIZE = 32
 

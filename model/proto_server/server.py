@@ -12,7 +12,7 @@ import data_pb2
 import data_pb2_grpc
 from dqn import DQN
 from util.mario_state import MarioState
-from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH, HOST, PORT
+from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH, CONTEXT_COIN_WIDTH, HOST, PORT
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -68,8 +68,9 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
         def euclidean_distance(x1, y1, x2, y2):
             return np.hypot(x1 - x2, y1 - y2)
 
-        ant_features = np.zeros(CONTEXT_ANTAGONIST_WIDTH)
-        item_features = np.zeros(CONTEXT_ITEM_WIDTH)
+        ant_features = np.full(CONTEXT_ANTAGONIST_WIDTH, np.inf)
+        item_features = np.full(CONTEXT_ITEM_WIDTH, np.inf)
+        coin_features = np.full(CONTEXT_COIN_WIDTH, np.inf)
 
         ant_distances = [
             euclidean_distance(ant.position.x, ant.position.y, mario.position.x, mario.position.y) if ant else float('inf')
@@ -81,17 +82,24 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
             for item in request.items
         ]
         
+        coin_distances = [
+            euclidean_distance(coin.position.x, coin.position.y, mario.position.x, mario.position.y) if coin else float('inf')
+            for coin in request.coins
+        ]
+        
         
         for i, dist in enumerate(ant_distances[:CONTEXT_ANTAGONIST_WIDTH]):
             ant_features[i] = dist
-            
         
         for i, dist in enumerate(item_distances[:CONTEXT_ITEM_WIDTH]):
             item_features[i] = dist
+            
+        for i, dist in enumerate(coin_distances[:CONTEXT_COIN_WIDTH]):
+            coin_features[i] = dist
 
 
         # Flatten and combine
-        flat_state = np.concatenate([mario_state_one_hot, state, ant_features, item_features]).ravel()
+        flat_state = np.concatenate([mario_state_one_hot, state, ant_features, item_features, coin_features]).ravel()
         
         # Ensure state is correct size, pad if necessary
         if len(flat_state) < STATE_SIZE:
