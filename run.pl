@@ -30,11 +30,13 @@ my $os = $^O;
 my $javafx_flag = "";
 my $venv_path = "";
 my $run_server = 0; # Flag to indicate if the Python server should be run
+my $enable_ai = 0; # Flag to enable AI in JavaFX app
 
 GetOptions(
     "venv=s" => \$venv_path,
     "run-server" => \$run_server,
-) or die "Error in command line arguments\n\nUsage: perl run.pl [OPTIONS]\nOptions:\n  --venv PATH       Path to Python virtual environment\n  --run-server      Start the Python gRPC server\n";
+    "enable-ai" => \$enable_ai,
+) or die "Error in command line arguments\n\nUsage: perl run.pl [OPTIONS]\nOptions:\n  --venv PATH       Path to Python virtual environment\n  --run-server      Start the Python gRPC server\n  --enable-ai       Enable the AI RL model in the JavaFX app\n";
 
 if ($os eq 'linux') {
     my $session = $ENV{'XDG_SESSION_TYPE'} // 'unknown';
@@ -101,6 +103,9 @@ system("mvn clean install") == 0
     or die "Failed to build Mario project: $!";
 
 $cmd = "mvn javafx:run";
+if ($enable_ai) {
+    $cmd .= " -Dmario.enableAI=true";
+}
 
 print "Running: $cmd\n";
 

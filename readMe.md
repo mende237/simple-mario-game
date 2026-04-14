@@ -78,12 +78,12 @@ perl run.pl --run-server --venv model/venv
 perl run.pl --run-server
 ```
 
-To enable the AI RL model, you need to pass the `-Dmario.enableAI=true` argument to the Maven command.
+To enable the AI RL model, use the `--enable-ai` flag with `run.pl` or pass `-Dmario.enableAI=true` directly to the Maven command if running without `run.pl`.
 
 Example:
 ```sh
 # Using run.pl with AI enabled
-perl run.pl --run-server --venv model/venv -Dmario.enableAI=true
+perl run.pl --run-server --venv model/venv --enable-ai
 
 # Running directly with Maven and AI enabled
 cd mario

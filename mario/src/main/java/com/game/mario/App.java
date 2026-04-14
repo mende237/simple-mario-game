@@ -17,8 +17,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        // Create a custom Scene (subclass of Canvas)
-        boolean enableAI = Boolean.parseBoolean(System.getProperty("mario.enableAI", "false"));
+        boolean enableAI = Boolean.parseBoolean(System.getProperty("mario.enableAI",
+                "false"));
+        System.out.println(enableAI ? "AI Enabled" : "AI Disabled");
         scene = new FirstStage(enableAI);
 
         Clavier clavier = new Clavier(scene);
