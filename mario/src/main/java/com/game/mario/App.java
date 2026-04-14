@@ -2,6 +2,9 @@ package com.game.mario;
 
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
+
+import java.util.List;
+
 import com.game.mario.game.Clavier;
 import com.game.mario.game.FirstStage;
 // import javafx.scene.Scene;
@@ -17,8 +20,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        boolean enableAI = Boolean.parseBoolean(System.getProperty("mario.enableAI",
-                "false"));
+        List<String> args = getParameters().getRaw();
+
+        boolean enableAI = args.contains("ai") || args.contains("enable-ai");
         System.out.println(enableAI ? "AI Enabled" : "AI Disabled");
         scene = new FirstStage(enableAI);
 
@@ -53,7 +57,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
 }

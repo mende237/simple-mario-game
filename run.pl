@@ -104,7 +104,7 @@ system("mvn clean install") == 0
 
 $cmd = "mvn javafx:run";
 if ($enable_ai) {
-    $cmd .= " -Dmario.enableAI=true";
+    $cmd .= ' -Djavafx.args="ai"';
 }
 
 print "Running: $cmd\n";

@@ -88,7 +88,7 @@ perl run.pl --run-server --venv model/venv --enable-ai
 # Running directly with Maven and AI enabled
 cd mario
 mvn clean install
-mvn javafx:run -Dmario.enableAI=true
+mvn javafx:run -Djavafx.args="ai"
 ```
 
 The `run.pl` script will:

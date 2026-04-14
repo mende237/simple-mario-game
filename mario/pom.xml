@@ -89,10 +89,6 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com.game.mario/com.game.mario.App</mainClass>
-
-                            <systemProperties>
-                                <mario.enableAI>${mario.enableAI}</mario.enableAI>
-                            </systemProperties>
                         </configuration>
                     </execution>
                 </executions>
