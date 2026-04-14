@@ -32,14 +32,59 @@ Enjoy classic gameplay, collect coins, avoid enemies, and reach the flag!
 
 - Java 11+
 - Maven
+- Perl (required to use the `run.pl` script for simplified execution)
+- Python 3.x (required for the Reinforcement Learning model)
+- Python virtual environment (recommended for managing RL model dependencies)
+- `lsof` (for Linux/macOS users, if using `run.pl` to automatically kill processes on port 50051)
 
 ### Build & Run
 
+The project can be built and run in two main ways:
+
+#### 1. Running the Java Game Only
+
+To run only the JavaFX game without the Reinforcement Learning model:
+
 ```sh
-mvn clean javafx:run
+cd mario
+mvn clean install
+mvn javafx:run
 ```
 
 The game window will open. Use your keyboard to play!
+
+#### 2. Running the Java Game with the Python RL Server (Recommended)
+
+For a more integrated experience, especially if you plan to interact with or train the RL model, use the provided Perl script `run.pl`. This script handles starting the Python gRPC server and then launching the Java game.
+
+First, ensure you have the Python dependencies installed, preferably in a virtual environment. Navigate to the `model` directory and install them:
+
+```sh
+cd model
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+deactivate
+cd ..
+```
+
+Then, from the project root directory, run the game and the RL server using `run.pl`:
+
+```sh
+# To run with the Python RL server using a virtual environment
+perl run.pl --run-server --venv model/venv
+
+# To run with the Python RL server using system Python (not recommended)
+perl run.pl --run-server
+```
+
+The `run.pl` script will:
+- Kill any existing process on port 50051 (where the gRPC server runs).
+- Start the Python gRPC server in the background.
+- Build the Java project (`mvn clean install`).
+- Launch the JavaFX game.
+
+Output from the Python server will be redirected to `model/proto_server/logs/python-server.log`. You can stop the Python server manually by finding its process ID (e.g., `ps aux | grep server.py`) and killing it.
 
 ---
 
@@ -82,7 +127,7 @@ This project includes a reinforcement learning (RL) model that can be trained to
 -   **Java Game (`GamerAI.java`)**: Continuously collects the current game state, packages it into a `GameData` protobuf message, and sends it via gRPC to the Python server's `GetAction` method.
 
 ### 3. State Representation
--   **Python Server (`server.py:_get_state_from_request`)**: Transforms the `GameData` message into a flat numerical `state` vector (NumPy array) for the neural network. This includes Mario's coordinates, `MarioState`, and relative positions/statuses of antagonists and items.
+-   **Python Server (`server.py:_get_state_from_request`)**: Transforms the `GameData` message into a flat numerical `state` vector (NumPy array) for the neural network. This includes Mario's coordinates, `MarioState`, and relative positions/statuses of antagonists, items, and coins.
 
 ### 4. Experience Storage and Reward Calculation
 -   **Python Server (`server.py:GetAction` and `_calculate_reward`)**: Calculates a `reward` for the *previous* action based on game events (e.g., moving forward, dying, jumping). The experience tuple `(last_state, last_action, reward, current_state, done)` is stored in the `DQN` agent's replay buffer.
@@ -114,35 +159,44 @@ syntax = "proto3";
 
 package proto;
 
-// Represents a game object with position and dimensions.
-message Mario {
+message Position {
     int32 x = 1;
     int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    int32 numberOfLive = 5;
-    map<string, bool> state = 6;
+}
+
+message Dimensions {
+    int32 height = 1;
+    int32 width = 2;
+}
+
+// Represents a game object with position and dimensions.
+message Mario {
+    Position position = 1;
+    Dimensions dimensions = 2;
+    int32 numberOfLive = 3;
+    map<string, bool> state = 4;
 }
 
 // Represents an antagonist character.
 message Antagonist {
-    int32 x = 1;
-    int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    int32 speed = 5;
-    string name = 6;
-    bool isdead = 7;
-    bool isZombie = 8;
+    Position position = 1;
+    Dimensions dimensions = 2;
+    int32 speed = 3;
+    string name = 4;
+    bool isdead = 5;
+    bool isZombie = 6;
 }
 
 // Represents an item in the game.
 message Item {
-    int32 x = 1;
-    int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    string name = 5;
+    Position position = 1;
+    Dimensions dimensions = 2;
+    string name = 3;
+}
+
+message Coin{
+    Position position = 1;
+    Dimensions dimensions = 2;
 }
 
 // Request data containing the state of the game.
@@ -153,6 +207,7 @@ message GameData {
     int32 item_context_width = 4;
     repeated Antagonist antagonists = 5;
     repeated Item items = 6;
+    repeated Coin coins = 7;
 }
 
 // Response data containing the action to be taken.
@@ -166,22 +221,27 @@ service GameService {
     rpc GetAction(GameData) returns (Action) {}
 }
 ```
-- `GameData` message: This is the input your model will receive from the game, containing information about Mario, antagonists, items, and game context. Your model's observation space will be derived from this data.
+- `GameData` message: This is the input your model will receive from the game, containing information about Mario, antagonists, items, coins, and game context. Your model's observation space will be derived from this data.
 - `Action` message: This is the output your model must produce, indicating the action to be taken in the game.
-Understanding these message structures is fundamental to correctly interpret game states and generate valid actions.
+Understanding these message structures is fundamental to correctly interpret game states and generate valid actions. `0: do nothing, 1: forward, 2: backward, 3: jump`
 
 -   **`config/context.json`**: This configuration file provides essential context parameters that influence the game state and, consequently, the observations your model receives.
 ```json
 {
     "contextItemWidth": 5,
     "contextAntogonistWidth": 6,
+    "contextCoinWidth": 5,
     "windowFilter": {
         "min": 0,
         "max": 800
     }
 }
 ```
--   `contextItemWidth` and `contextAntogonistWidth`: These values define the width of the observation window around Mario for items and antagonists, respectively. When designing your model's state representation, you'll need to consider these parameters as they determine what entities are visible to the model at any given time.
+![Screenshot 1](screenshot/Game_informations_extraction.png)
+
+-   `windowFilter`: This represents the window within which information is collected. By default, humans perceive information within the game window, but it's possible to change this by modifying the `min` and `max` values. By default, these values correspond to the dimensions of the game window; you can enlarge or reduce this window.
+
+-   `contextItemWidth`, `contextAntogonistWidth`, and `contextCoinWidth`: These respectively represent the number of items, antagonists, and coins that are extracted within the window defined by `windowFilter`.
 
 -   **`config/server.json`**: This file specifies the network configuration for the gRPC server that facilitates communication between the Java game and your Python model.
 ```json
