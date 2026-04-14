@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use JSON;
 use Getopt::Long;
 use Cwd 'abs_path'; # To get absolute path for venv
 
@@ -38,7 +39,17 @@ GetOptions(
     "enable-ai" => \$enable_ai,
 ) or die "Error in command line arguments\n\nUsage: perl run.pl [OPTIONS]\nOptions:\n  --venv PATH       Path to Python virtual environment\n  --run-server      Start the Python gRPC server\n  --enable-ai       Enable the AI RL model in the JavaFX app\n";
 
+# Read port from config/server.json
+my $server_config_file = "config/server.json";
+open my $fh, '<', $server_config_file or die "Could not open $server_config_file: $!";
+my $json_text = do { local $/; <$fh> };
+close $fh;
+
+my $server_config = decode_json($json_text);
+my $port = $server_config->{port} or die "Port not found in $server_config_file\n";
+
 if ($os eq 'linux') {
+
     my $session = $ENV{'XDG_SESSION_TYPE'} // 'unknown';
 
     if ($session eq 'wayland') {
@@ -55,8 +66,8 @@ if ($os eq 'linux') {
 
 # --- Python Server Setup ---
 if ($run_server) {
-    # Kill any existing process on port 50051 before starting the server
-    kill_process_on_port(50051);
+    # Kill any existing process on port before starting the server
+    kill_process_on_port($port);
 
     my $python_server_script = "server.py";
     my $python_command = "";
