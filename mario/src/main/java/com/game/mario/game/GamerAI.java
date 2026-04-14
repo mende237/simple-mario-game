@@ -2,6 +2,7 @@ package com.game.mario.game;
 
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mario;
+import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
@@ -26,20 +27,23 @@ public class GamerAI implements Runnable {
     private Stage stage;
     private int contextItemWidth;
     private int contextAntogonistWidth;
+    private int contextCoinWidth;
     private WindowFilter windowFilter;
 
     private final ManagedChannel channel;
     private final GameServiceGrpc.GameServiceBlockingStub blockingStub;
 
-    public GamerAI(Stage stage, int contextItemWidth, int contextAntogonistWidth, WindowFilter windowFilter) {
+    public GamerAI(Stage stage, int contextItemWidth, int contextCoinWidth, int contextAntogonistWidth,
+            WindowFilter windowFilter) {
         this.stage = stage;
         this.contextItemWidth = contextItemWidth;
+        this.contextCoinWidth = contextCoinWidth;
         this.contextAntogonistWidth = contextAntogonistWidth;
         this.windowFilter = windowFilter;
 
         // Initialize gRPC client
         this.channel = ManagedChannelBuilder.forAddress(Config.host, Config.port)
-                .usePlaintext() // Use plaintext for local testing
+                .usePlaintext() // plaintext for local testing
                 .build();
         this.blockingStub = GameServiceGrpc.newBlockingStub(channel);
     }
@@ -119,8 +123,8 @@ public class GamerAI implements Runnable {
         return antagonists;
     }
 
-    private GameItem[] getItemContext() {
-        if (this.contextItemWidth <= 0) {
+    private GameItem[] getItemContext(ArrayList<? extends GameItem> items, int contextWidth) {
+        if (contextWidth <= 0) {
             return null;
         }
 
@@ -128,8 +132,8 @@ public class GamerAI implements Runnable {
         int cmpt = 0;
         Mario mario = stage.getMario();
 
-        GameItem[] gameItems = new GameItem[this.contextItemWidth];
-        int tabO[] = Collision.marioBetweenObject(stage.getGameItems(), 0, stage.getGameItems().size() - 1, 0,
+        GameItem[] gameItems = new GameItem[contextWidth];
+        int tabO[] = Collision.marioBetweenObject(items, 0, items.size() - 1, 0,
                 0,
                 mario);
 
@@ -150,13 +154,13 @@ public class GamerAI implements Runnable {
             nbrNearestItems = end - begin + 1;
         }
 
-        if (this.contextItemWidth <= nbrNearestItems) {
-            for (int i = 0; i < this.contextItemWidth; i++) {
-                gameItems[i] = stage.getGameItems().get(begin + i);
+        if (contextWidth <= nbrNearestItems) {
+            for (int i = 0; i < contextWidth; i++) {
+                gameItems[i] = items.get(begin + i);
             }
         } else {
-            if (this.contextItemWidth < stage.getGameItems().size()) {
-                int rest = this.contextItemWidth - nbrNearestItems;
+            if (contextWidth < items.size()) {
+                int rest = contextWidth - nbrNearestItems;
                 int nbrLeft = rest / 2;
                 int nbrRight = rest - nbrLeft;
 
@@ -167,24 +171,24 @@ public class GamerAI implements Runnable {
 
                 int leftBound = Math.max(0, begin - nbrLeft);
                 for (int i = leftBound; i < begin; i++) {
-                    gameItems[cmpt] = stage.getGameItems().get(i);
+                    gameItems[cmpt] = items.get(i);
                     cmpt++;
                 }
 
                 for (int i = 0; i < nbrNearestItems; i++) {
-                    gameItems[cmpt] = stage.getGameItems().get(begin + i);
+                    gameItems[cmpt] = items.get(begin + i);
                     cmpt++;
                 }
 
-                int rightBound = Math.min(stage.getGameItems().size(), end + nbrRight + 1);
+                int rightBound = Math.min(items.size(), end + nbrRight + 1);
                 for (int i = end + 1; i < rightBound; i++) {
-                    gameItems[cmpt] = stage.getGameItems().get(i);
+                    gameItems[cmpt] = items.get(i);
                     cmpt++;
                 }
 
             } else {
-                for (int i = 0; i < this.stage.getGameItems().size(); i++) {
-                    gameItems[i] = this.stage.getGameItems().get(i);
+                for (int i = 0; i < items.size(); i++) {
+                    gameItems[i] = items.get(i);
                 }
             }
         }
@@ -193,6 +197,8 @@ public class GamerAI implements Runnable {
     }
 
     private void filterAntogonist(Antagonist antagonists[]) {
+        if (antagonists == null)
+            return;
 
         for (int i = 0; i < antagonists.length; i++) {
             if (!(antagonists[i].getX() >= this.windowFilter.nim()
@@ -203,6 +209,8 @@ public class GamerAI implements Runnable {
     }
 
     private void filterItem(GameItem gameItems[]) {
+        if (gameItems == null)
+            return;
 
         for (int i = 0; i < gameItems.length; i++) {
             if (!(gameItems[i].getX() >= this.windowFilter.nim()
@@ -217,16 +225,16 @@ public class GamerAI implements Runnable {
 
         while (true) {
             if (!stage.mario.isLiving() || GameManager.isInterupt()) {
-                System.out.println("Living " + stage.mario.isLiving() + " Interrupt " +
-                        GameManager.isInterupt());
                 continue;
             }
 
             Antagonist[] antagonists = getAntagonistContext();
-            GameItem[] gameItems = getItemContext();
+            GameItem[] gameItems = getItemContext(this.stage.getGameItems(), this.contextItemWidth);
+            GameItem[] coins = getItemContext(this.stage.getCoins(), this.contextCoinWidth);
 
             filterAntogonist(antagonists);
             filterItem(gameItems);
+            filterItem(coins);
 
             this.stage.mario.lockAllState();
 
@@ -236,11 +244,14 @@ public class GamerAI implements Runnable {
             // Build GameData
             Mario mario = stage.getMario();
             Data.Mario marioObject = Data.Mario.newBuilder()
-                    .setX(mario.getX())
-                    .setY(mario.getY())
+                    .setPosition(Data.Position
+                            .newBuilder()
+                            .setX(mario.getX())
+                            .setY(mario.getY()))
+                    .setDimensions(Data.Dimensions.newBuilder()
+                            .setHeight(mario.getHeight())
+                            .setWidth(mario.getWidth()))
                     .setNumberOfLive(mario.getNumberOfLive())
-                    .setHeight(mario.getHeight())
-                    .setWidth(mario.getWidth())
                     .putAllState(mario.getState().keySet().stream()
                             .collect(Collectors.toMap(state -> state.name(), state -> mario.getState().get(state)
                                     .getValue())))
@@ -254,10 +265,12 @@ public class GamerAI implements Runnable {
                 for (Antagonist ant : antagonists) {
                     if (ant != null) {
                         protoAntagonists.add(Data.Antagonist.newBuilder()
-                                .setX(ant.getX())
-                                .setY(ant.getY())
-                                .setHeight(ant.getHeight())
-                                .setWidth(ant.getWidth())
+                                .setPosition(Data.Position.newBuilder()
+                                        .setX(ant.getX())
+                                        .setY(ant.getY()))
+                                .setDimensions(Data.Dimensions.newBuilder()
+                                        .setHeight(ant.getHeight())
+                                        .setWidth(ant.getWidth()))
                                 .setSpeed(ant.getBreakDuration())
                                 .setName(ant.getName() != null ? ant.getName() : "unknown")
                                 .setIsdead(!ant.isLiving())
@@ -272,11 +285,29 @@ public class GamerAI implements Runnable {
                 for (GameItem item : gameItems) {
                     if (item != null) {
                         protoItems.add(Data.Item.newBuilder()
-                                .setX(item.getX())
-                                .setY(item.getY())
-                                .setHeight(item.getHeight())
-                                .setWidth(item.getWidth())
+                                .setPosition(Data.Position.newBuilder()
+                                        .setX(item.getX())
+                                        .setY(item.getY()))
+                                .setDimensions(Data.Dimensions.newBuilder()
+                                        .setHeight(item.getHeight())
+                                        .setWidth(item.getWidth()))
                                 .setName(item.getName() != null ? item.getName() : "unknown")
+                                .build());
+                    }
+                }
+            }
+
+            List<Data.Coin> protoCoins = new ArrayList<>();
+            if (coins != null) {
+                for (GameItem coin : coins) {
+                    if (coin != null) {
+                        protoCoins.add(Data.Coin.newBuilder()
+                                .setPosition(Data.Position.newBuilder()
+                                        .setX(coin.getX())
+                                        .setY(coin.getY()))
+                                .setDimensions(Data.Dimensions.newBuilder()
+                                        .setHeight(coin.getHeight())
+                                        .setWidth(coin.getWidth()))
                                 .build());
                     }
                 }
@@ -289,6 +320,7 @@ public class GamerAI implements Runnable {
                     .setItemContextWidth(contextItemWidth)
                     .addAllAntagonists(protoAntagonists)
                     .addAllItems(protoItems)
+                    .addAllCoins(protoCoins)
                     .build();
 
             // Send GameData and get Action

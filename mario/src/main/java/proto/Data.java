@@ -14,8 +14,8 @@ public final class Data {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface MarioOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:proto.Mario)
+  public interface PositionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Position)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -29,31 +29,1117 @@ public final class Data {
      * @return The y.
      */
     int getY();
+  }
+  /**
+   * Protobuf type {@code proto.Position}
+   */
+  public static final class Position extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Position)
+      PositionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Position.newBuilder() to construct.
+    private Position(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Position() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Position();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.Data.internal_static_proto_Position_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.Data.internal_static_proto_Position_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.Data.Position.class, proto.Data.Position.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private int x_;
+    /**
+     * <code>int32 x = 1;</code>
+     * @return The x.
+     */
+    @java.lang.Override
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private int y_;
+    /**
+     * <code>int32 y = 2;</code>
+     * @return The y.
+     */
+    @java.lang.Override
+    public int getY() {
+      return y_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x_ != 0) {
+        output.writeInt32(1, x_);
+      }
+      if (y_ != 0) {
+        output.writeInt32(2, y_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, x_);
+      }
+      if (y_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, y_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.Data.Position)) {
+        return super.equals(obj);
+      }
+      proto.Data.Position other = (proto.Data.Position) obj;
+
+      if (getX()
+          != other.getX()) return false;
+      if (getY()
+          != other.getY()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.Data.Position parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Position parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Position parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Position parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Position parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Position parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Position parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Position parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Position parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.Data.Position parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Position parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Position parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.Data.Position prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.Position}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Position)
+        proto.Data.PositionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.Data.internal_static_proto_Position_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.Data.internal_static_proto_Position_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.Data.Position.class, proto.Data.Position.Builder.class);
+      }
+
+      // Construct using proto.Data.Position.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+
+        y_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.Data.internal_static_proto_Position_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.Data.Position getDefaultInstanceForType() {
+        return proto.Data.Position.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.Data.Position build() {
+        proto.Data.Position result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.Data.Position buildPartial() {
+        proto.Data.Position result = new proto.Data.Position(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.Data.Position) {
+          return mergeFrom((proto.Data.Position)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.Data.Position other) {
+        if (other == proto.Data.Position.getDefaultInstance()) return this;
+        if (other.getX() != 0) {
+          setX(other.getX());
+        }
+        if (other.getY() != 0) {
+          setY(other.getY());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                x_ = input.readInt32();
+
+                break;
+              } // case 8
+              case 16: {
+                y_ = input.readInt32();
+
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int x_ ;
+      /**
+       * <code>int32 x = 1;</code>
+       * @return The x.
+       */
+      @java.lang.Override
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @param value The x to set.
+       * @return This builder for chaining.
+       */
+      public Builder setX(int value) {
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 x = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearX() {
+        
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>int32 y = 2;</code>
+       * @return The y.
+       */
+      @java.lang.Override
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @param value The y to set.
+       * @return This builder for chaining.
+       */
+      public Builder setY(int value) {
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 y = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearY() {
+        
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Position)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Position)
+    private static final proto.Data.Position DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.Data.Position();
+    }
+
+    public static proto.Data.Position getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Position>
+        PARSER = new com.google.protobuf.AbstractParser<Position>() {
+      @java.lang.Override
+      public Position parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Position> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Position> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.Data.Position getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DimensionsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Dimensions)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 height = 3;</code>
+     * <code>int32 height = 1;</code>
      * @return The height.
      */
     int getHeight();
 
     /**
-     * <code>int32 width = 4;</code>
+     * <code>int32 width = 2;</code>
      * @return The width.
      */
     int getWidth();
+  }
+  /**
+   * Protobuf type {@code proto.Dimensions}
+   */
+  public static final class Dimensions extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Dimensions)
+      DimensionsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Dimensions.newBuilder() to construct.
+    private Dimensions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Dimensions() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Dimensions();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.Data.internal_static_proto_Dimensions_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.Data.internal_static_proto_Dimensions_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.Data.Dimensions.class, proto.Data.Dimensions.Builder.class);
+    }
+
+    public static final int HEIGHT_FIELD_NUMBER = 1;
+    private int height_;
+    /**
+     * <code>int32 height = 1;</code>
+     * @return The height.
+     */
+    @java.lang.Override
+    public int getHeight() {
+      return height_;
+    }
+
+    public static final int WIDTH_FIELD_NUMBER = 2;
+    private int width_;
+    /**
+     * <code>int32 width = 2;</code>
+     * @return The width.
+     */
+    @java.lang.Override
+    public int getWidth() {
+      return width_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (height_ != 0) {
+        output.writeInt32(1, height_);
+      }
+      if (width_ != 0) {
+        output.writeInt32(2, width_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (height_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, height_);
+      }
+      if (width_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, width_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.Data.Dimensions)) {
+        return super.equals(obj);
+      }
+      proto.Data.Dimensions other = (proto.Data.Dimensions) obj;
+
+      if (getHeight()
+          != other.getHeight()) return false;
+      if (getWidth()
+          != other.getWidth()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + getHeight();
+      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getWidth();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.Data.Dimensions parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Dimensions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Dimensions parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Dimensions parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.Data.Dimensions parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Dimensions parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.Data.Dimensions prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.Dimensions}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Dimensions)
+        proto.Data.DimensionsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.Data.internal_static_proto_Dimensions_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.Data.internal_static_proto_Dimensions_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.Data.Dimensions.class, proto.Data.Dimensions.Builder.class);
+      }
+
+      // Construct using proto.Data.Dimensions.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        height_ = 0;
+
+        width_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.Data.internal_static_proto_Dimensions_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.Data.Dimensions getDefaultInstanceForType() {
+        return proto.Data.Dimensions.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.Data.Dimensions build() {
+        proto.Data.Dimensions result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.Data.Dimensions buildPartial() {
+        proto.Data.Dimensions result = new proto.Data.Dimensions(this);
+        result.height_ = height_;
+        result.width_ = width_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.Data.Dimensions) {
+          return mergeFrom((proto.Data.Dimensions)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.Data.Dimensions other) {
+        if (other == proto.Data.Dimensions.getDefaultInstance()) return this;
+        if (other.getHeight() != 0) {
+          setHeight(other.getHeight());
+        }
+        if (other.getWidth() != 0) {
+          setWidth(other.getWidth());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                height_ = input.readInt32();
+
+                break;
+              } // case 8
+              case 16: {
+                width_ = input.readInt32();
+
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private int height_ ;
+      /**
+       * <code>int32 height = 1;</code>
+       * @return The height.
+       */
+      @java.lang.Override
+      public int getHeight() {
+        return height_;
+      }
+      /**
+       * <code>int32 height = 1;</code>
+       * @param value The height to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeight(int value) {
+        
+        height_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 height = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHeight() {
+        
+        height_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int width_ ;
+      /**
+       * <code>int32 width = 2;</code>
+       * @return The width.
+       */
+      @java.lang.Override
+      public int getWidth() {
+        return width_;
+      }
+      /**
+       * <code>int32 width = 2;</code>
+       * @param value The width to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWidth(int value) {
+        
+        width_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 width = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWidth() {
+        
+        width_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Dimensions)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Dimensions)
+    private static final proto.Data.Dimensions DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.Data.Dimensions();
+    }
+
+    public static proto.Data.Dimensions getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Dimensions>
+        PARSER = new com.google.protobuf.AbstractParser<Dimensions>() {
+      @java.lang.Override
+      public Dimensions parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Dimensions> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Dimensions> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.Data.Dimensions getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MarioOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Mario)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 numberOfLive = 5;</code>
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
+     */
+    boolean hasPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
+     */
+    proto.Data.Position getPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     */
+    proto.Data.PositionOrBuilder getPositionOrBuilder();
+
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
+     */
+    boolean hasDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    proto.Data.Dimensions getDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    proto.Data.DimensionsOrBuilder getDimensionsOrBuilder();
+
+    /**
+     * <code>int32 numberOfLive = 3;</code>
      * @return The numberOfLive.
      */
     int getNumberOfLive();
 
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     int getStateCount();
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     boolean containsState(
         java.lang.String key);
@@ -64,19 +1150,19 @@ public final class Data {
     java.util.Map<java.lang.String, java.lang.Boolean>
     getState();
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     java.util.Map<java.lang.String, java.lang.Boolean>
     getStateMap();
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
 
     boolean getStateOrDefault(
         java.lang.String key,
         boolean defaultValue);
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
 
     boolean getStateOrThrow(
@@ -123,7 +1209,7 @@ public final class Data {
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
-        case 6:
+        case 4:
           return internalGetState();
         default:
           throw new RuntimeException(
@@ -138,54 +1224,62 @@ public final class Data {
               proto.Data.Mario.class, proto.Data.Mario.Builder.class);
     }
 
-    public static final int X_FIELD_NUMBER = 1;
-    private int x_;
+    public static final int POSITION_FIELD_NUMBER = 1;
+    private proto.Data.Position position_;
     /**
-     * <code>int32 x = 1;</code>
-     * @return The x.
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
      */
     @java.lang.Override
-    public int getX() {
-      return x_;
+    public boolean hasPosition() {
+      return position_ != null;
     }
-
-    public static final int Y_FIELD_NUMBER = 2;
-    private int y_;
     /**
-     * <code>int32 y = 2;</code>
-     * @return The y.
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
      */
     @java.lang.Override
-    public int getY() {
-      return y_;
+    public proto.Data.Position getPosition() {
+      return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
     }
-
-    public static final int HEIGHT_FIELD_NUMBER = 3;
-    private int height_;
     /**
-     * <code>int32 height = 3;</code>
-     * @return The height.
+     * <code>.proto.Position position = 1;</code>
      */
     @java.lang.Override
-    public int getHeight() {
-      return height_;
+    public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+      return getPosition();
     }
 
-    public static final int WIDTH_FIELD_NUMBER = 4;
-    private int width_;
+    public static final int DIMENSIONS_FIELD_NUMBER = 2;
+    private proto.Data.Dimensions dimensions_;
     /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
      */
     @java.lang.Override
-    public int getWidth() {
-      return width_;
+    public boolean hasDimensions() {
+      return dimensions_ != null;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    @java.lang.Override
+    public proto.Data.Dimensions getDimensions() {
+      return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    @java.lang.Override
+    public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+      return getDimensions();
     }
 
-    public static final int NUMBEROFLIVE_FIELD_NUMBER = 5;
+    public static final int NUMBEROFLIVE_FIELD_NUMBER = 3;
     private int numberOfLive_;
     /**
-     * <code>int32 numberOfLive = 5;</code>
+     * <code>int32 numberOfLive = 3;</code>
      * @return The numberOfLive.
      */
     @java.lang.Override
@@ -193,7 +1287,7 @@ public final class Data {
       return numberOfLive_;
     }
 
-    public static final int STATE_FIELD_NUMBER = 6;
+    public static final int STATE_FIELD_NUMBER = 4;
     private static final class StateDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Boolean> defaultEntry =
@@ -220,7 +1314,7 @@ public final class Data {
       return internalGetState().getMap().size();
     }
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
 
     @java.lang.Override
@@ -238,7 +1332,7 @@ public final class Data {
       return getStateMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     @java.lang.Override
 
@@ -246,7 +1340,7 @@ public final class Data {
       return internalGetState().getMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     @java.lang.Override
 
@@ -259,7 +1353,7 @@ public final class Data {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bool&gt; state = 6;</code>
+     * <code>map&lt;string, bool&gt; state = 4;</code>
      */
     @java.lang.Override
 
@@ -288,27 +1382,21 @@ public final class Data {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (x_ != 0) {
-        output.writeInt32(1, x_);
+      if (position_ != null) {
+        output.writeMessage(1, getPosition());
       }
-      if (y_ != 0) {
-        output.writeInt32(2, y_);
-      }
-      if (height_ != 0) {
-        output.writeInt32(3, height_);
-      }
-      if (width_ != 0) {
-        output.writeInt32(4, width_);
+      if (dimensions_ != null) {
+        output.writeMessage(2, getDimensions());
       }
       if (numberOfLive_ != 0) {
-        output.writeInt32(5, numberOfLive_);
+        output.writeInt32(3, numberOfLive_);
       }
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetState(),
           StateDefaultEntryHolder.defaultEntry,
-          6);
+          4);
       getUnknownFields().writeTo(output);
     }
 
@@ -318,25 +1406,17 @@ public final class Data {
       if (size != -1) return size;
 
       size = 0;
-      if (x_ != 0) {
+      if (position_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, x_);
+          .computeMessageSize(1, getPosition());
       }
-      if (y_ != 0) {
+      if (dimensions_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, y_);
-      }
-      if (height_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, height_);
-      }
-      if (width_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, width_);
+          .computeMessageSize(2, getDimensions());
       }
       if (numberOfLive_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, numberOfLive_);
+          .computeInt32Size(3, numberOfLive_);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.Boolean> entry
            : internalGetState().getMap().entrySet()) {
@@ -346,7 +1426,7 @@ public final class Data {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(6, state__);
+            .computeMessageSize(4, state__);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -363,14 +1443,16 @@ public final class Data {
       }
       proto.Data.Mario other = (proto.Data.Mario) obj;
 
-      if (getX()
-          != other.getX()) return false;
-      if (getY()
-          != other.getY()) return false;
-      if (getHeight()
-          != other.getHeight()) return false;
-      if (getWidth()
-          != other.getWidth()) return false;
+      if (hasPosition() != other.hasPosition()) return false;
+      if (hasPosition()) {
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
+      }
+      if (hasDimensions() != other.hasDimensions()) return false;
+      if (hasDimensions()) {
+        if (!getDimensions()
+            .equals(other.getDimensions())) return false;
+      }
       if (getNumberOfLive()
           != other.getNumberOfLive()) return false;
       if (!internalGetState().equals(
@@ -386,14 +1468,14 @@ public final class Data {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + X_FIELD_NUMBER;
-      hash = (53 * hash) + getX();
-      hash = (37 * hash) + Y_FIELD_NUMBER;
-      hash = (53 * hash) + getY();
-      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + getHeight();
-      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
-      hash = (53 * hash) + getWidth();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      if (hasDimensions()) {
+        hash = (37 * hash) + DIMENSIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getDimensions().hashCode();
+      }
       hash = (37 * hash) + NUMBEROFLIVE_FIELD_NUMBER;
       hash = (53 * hash) + getNumberOfLive();
       if (!internalGetState().getMap().isEmpty()) {
@@ -515,7 +1597,7 @@ public final class Data {
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
         switch (number) {
-          case 6:
+          case 4:
             return internalGetState();
           default:
             throw new RuntimeException(
@@ -526,7 +1608,7 @@ public final class Data {
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
         switch (number) {
-          case 6:
+          case 4:
             return internalGetMutableState();
           default:
             throw new RuntimeException(
@@ -554,14 +1636,18 @@ public final class Data {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        x_ = 0;
-
-        y_ = 0;
-
-        height_ = 0;
-
-        width_ = 0;
-
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
         numberOfLive_ = 0;
 
         internalGetMutableState().clear();
@@ -592,10 +1678,16 @@ public final class Data {
       public proto.Data.Mario buildPartial() {
         proto.Data.Mario result = new proto.Data.Mario(this);
         int from_bitField0_ = bitField0_;
-        result.x_ = x_;
-        result.y_ = y_;
-        result.height_ = height_;
-        result.width_ = width_;
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
+        if (dimensionsBuilder_ == null) {
+          result.dimensions_ = dimensions_;
+        } else {
+          result.dimensions_ = dimensionsBuilder_.build();
+        }
         result.numberOfLive_ = numberOfLive_;
         result.state_ = internalGetState();
         result.state_.makeImmutable();
@@ -647,17 +1739,11 @@ public final class Data {
 
       public Builder mergeFrom(proto.Data.Mario other) {
         if (other == proto.Data.Mario.getDefaultInstance()) return this;
-        if (other.getX() != 0) {
-          setX(other.getX());
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
         }
-        if (other.getY() != 0) {
-          setY(other.getY());
-        }
-        if (other.getHeight() != 0) {
-          setHeight(other.getHeight());
-        }
-        if (other.getWidth() != 0) {
-          setWidth(other.getWidth());
+        if (other.hasDimensions()) {
+          mergeDimensions(other.getDimensions());
         }
         if (other.getNumberOfLive() != 0) {
           setNumberOfLive(other.getNumberOfLive());
@@ -690,39 +1776,33 @@ public final class Data {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                x_ = input.readInt32();
+              case 10: {
+                input.readMessage(
+                    getPositionFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 8
-              case 16: {
-                y_ = input.readInt32();
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDimensionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 16
+              } // case 18
               case 24: {
-                height_ = input.readInt32();
-
-                break;
-              } // case 24
-              case 32: {
-                width_ = input.readInt32();
-
-                break;
-              } // case 32
-              case 40: {
                 numberOfLive_ = input.readInt32();
 
                 break;
-              } // case 40
-              case 50: {
+              } // case 24
+              case 34: {
                 com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
                 state__ = input.readMessage(
                     StateDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
                 internalGetMutableState().getMutableMap().put(
                     state__.getKey(), state__.getValue());
                 break;
-              } // case 50
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -740,133 +1820,247 @@ public final class Data {
       }
       private int bitField0_;
 
-      private int x_ ;
+      private proto.Data.Position position_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> positionBuilder_;
       /**
-       * <code>int32 x = 1;</code>
-       * @return The x.
+       * <code>.proto.Position position = 1;</code>
+       * @return Whether the position field is set.
        */
-      @java.lang.Override
-      public int getX() {
-        return x_;
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @param value The x to set.
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
+       * @return The position.
        */
-      public Builder setX(int value) {
-        
-        x_ = value;
-        onChanged();
+      public proto.Data.Position getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder setPosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+
         return this;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
        */
-      public Builder clearX() {
-        
-        x_ = 0;
-        onChanged();
+      public Builder setPosition(
+          proto.Data.Position.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder mergePosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+              proto.Data.Position.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.Position.Builder getPositionBuilder() {
+        
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+              proto.Data.Position.getDefaultInstance() : position_;
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
       }
 
-      private int y_ ;
+      private proto.Data.Dimensions dimensions_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> dimensionsBuilder_;
       /**
-       * <code>int32 y = 2;</code>
-       * @return The y.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return Whether the dimensions field is set.
        */
-      @java.lang.Override
-      public int getY() {
-        return y_;
+      public boolean hasDimensions() {
+        return dimensionsBuilder_ != null || dimensions_ != null;
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @param value The y to set.
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return The dimensions.
        */
-      public Builder setY(int value) {
-        
-        y_ = value;
-        onChanged();
-        return this;
+      public proto.Data.Dimensions getDimensions() {
+        if (dimensionsBuilder_ == null) {
+          return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        } else {
+          return dimensionsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearY() {
-        
-        y_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          dimensions_ = value;
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(value);
+        }
 
-      private int height_ ;
-      /**
-       * <code>int32 height = 3;</code>
-       * @return The height.
-       */
-      @java.lang.Override
-      public int getHeight() {
-        return height_;
-      }
-      /**
-       * <code>int32 height = 3;</code>
-       * @param value The height to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHeight(int value) {
-        
-        height_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 height = 3;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearHeight() {
-        
-        height_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(
+          proto.Data.Dimensions.Builder builderForValue) {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = builderForValue.build();
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(builderForValue.build());
+        }
 
-      private int width_ ;
-      /**
-       * <code>int32 width = 4;</code>
-       * @return The width.
-       */
-      @java.lang.Override
-      public int getWidth() {
-        return width_;
-      }
-      /**
-       * <code>int32 width = 4;</code>
-       * @param value The width to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWidth(int value) {
-        
-        width_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 width = 4;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearWidth() {
-        
-        width_ = 0;
-        onChanged();
+      public Builder mergeDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (dimensions_ != null) {
+            dimensions_ =
+              proto.Data.Dimensions.newBuilder(dimensions_).mergeFrom(value).buildPartial();
+          } else {
+            dimensions_ = value;
+          }
+          onChanged();
+        } else {
+          dimensionsBuilder_.mergeFrom(value);
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder clearDimensions() {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+          onChanged();
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.Dimensions.Builder getDimensionsBuilder() {
+        
+        onChanged();
+        return getDimensionsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+        if (dimensionsBuilder_ != null) {
+          return dimensionsBuilder_.getMessageOrBuilder();
+        } else {
+          return dimensions_ == null ?
+              proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        }
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> 
+          getDimensionsFieldBuilder() {
+        if (dimensionsBuilder_ == null) {
+          dimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder>(
+                  getDimensions(),
+                  getParentForChildren(),
+                  isClean());
+          dimensions_ = null;
+        }
+        return dimensionsBuilder_;
       }
 
       private int numberOfLive_ ;
       /**
-       * <code>int32 numberOfLive = 5;</code>
+       * <code>int32 numberOfLive = 3;</code>
        * @return The numberOfLive.
        */
       @java.lang.Override
@@ -874,7 +2068,7 @@ public final class Data {
         return numberOfLive_;
       }
       /**
-       * <code>int32 numberOfLive = 5;</code>
+       * <code>int32 numberOfLive = 3;</code>
        * @param value The numberOfLive to set.
        * @return This builder for chaining.
        */
@@ -885,7 +2079,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>int32 numberOfLive = 5;</code>
+       * <code>int32 numberOfLive = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearNumberOfLive() {
@@ -922,7 +2116,7 @@ public final class Data {
         return internalGetState().getMap().size();
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
 
       @java.lang.Override
@@ -940,7 +2134,7 @@ public final class Data {
         return getStateMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
       @java.lang.Override
 
@@ -948,7 +2142,7 @@ public final class Data {
         return internalGetState().getMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
       @java.lang.Override
 
@@ -961,7 +2155,7 @@ public final class Data {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
       @java.lang.Override
 
@@ -982,7 +2176,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
 
       public Builder removeState(
@@ -1001,7 +2195,7 @@ public final class Data {
         return internalGetMutableState().getMutableMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
       public Builder putState(
           java.lang.String key,
@@ -1013,7 +2207,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; state = 6;</code>
+       * <code>map&lt;string, bool&gt; state = 4;</code>
        */
 
       public Builder putAllState(
@@ -1091,55 +2285,61 @@ public final class Data {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 x = 1;</code>
-     * @return The x.
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
      */
-    int getX();
+    boolean hasPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
+     */
+    proto.Data.Position getPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     */
+    proto.Data.PositionOrBuilder getPositionOrBuilder();
 
     /**
-     * <code>int32 y = 2;</code>
-     * @return The y.
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
      */
-    int getY();
+    boolean hasDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    proto.Data.Dimensions getDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    proto.Data.DimensionsOrBuilder getDimensionsOrBuilder();
 
     /**
-     * <code>int32 height = 3;</code>
-     * @return The height.
-     */
-    int getHeight();
-
-    /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
-     */
-    int getWidth();
-
-    /**
-     * <code>int32 speed = 5;</code>
+     * <code>int32 speed = 3;</code>
      * @return The speed.
      */
     int getSpeed();
 
     /**
-     * <code>string name = 6;</code>
+     * <code>string name = 4;</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 6;</code>
+     * <code>string name = 4;</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>bool isdead = 7;</code>
+     * <code>bool isdead = 5;</code>
      * @return The isdead.
      */
     boolean getIsdead();
 
     /**
-     * <code>bool isZombie = 8;</code>
+     * <code>bool isZombie = 6;</code>
      * @return The isZombie.
      */
     boolean getIsZombie();
@@ -1189,54 +2389,62 @@ public final class Data {
               proto.Data.Antagonist.class, proto.Data.Antagonist.Builder.class);
     }
 
-    public static final int X_FIELD_NUMBER = 1;
-    private int x_;
+    public static final int POSITION_FIELD_NUMBER = 1;
+    private proto.Data.Position position_;
     /**
-     * <code>int32 x = 1;</code>
-     * @return The x.
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
      */
     @java.lang.Override
-    public int getX() {
-      return x_;
+    public boolean hasPosition() {
+      return position_ != null;
     }
-
-    public static final int Y_FIELD_NUMBER = 2;
-    private int y_;
     /**
-     * <code>int32 y = 2;</code>
-     * @return The y.
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
      */
     @java.lang.Override
-    public int getY() {
-      return y_;
+    public proto.Data.Position getPosition() {
+      return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
     }
-
-    public static final int HEIGHT_FIELD_NUMBER = 3;
-    private int height_;
     /**
-     * <code>int32 height = 3;</code>
-     * @return The height.
+     * <code>.proto.Position position = 1;</code>
      */
     @java.lang.Override
-    public int getHeight() {
-      return height_;
+    public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+      return getPosition();
     }
 
-    public static final int WIDTH_FIELD_NUMBER = 4;
-    private int width_;
+    public static final int DIMENSIONS_FIELD_NUMBER = 2;
+    private proto.Data.Dimensions dimensions_;
     /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
      */
     @java.lang.Override
-    public int getWidth() {
-      return width_;
+    public boolean hasDimensions() {
+      return dimensions_ != null;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    @java.lang.Override
+    public proto.Data.Dimensions getDimensions() {
+      return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    @java.lang.Override
+    public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+      return getDimensions();
     }
 
-    public static final int SPEED_FIELD_NUMBER = 5;
+    public static final int SPEED_FIELD_NUMBER = 3;
     private int speed_;
     /**
-     * <code>int32 speed = 5;</code>
+     * <code>int32 speed = 3;</code>
      * @return The speed.
      */
     @java.lang.Override
@@ -1244,10 +2452,10 @@ public final class Data {
       return speed_;
     }
 
-    public static final int NAME_FIELD_NUMBER = 6;
+    public static final int NAME_FIELD_NUMBER = 4;
     private volatile java.lang.Object name_;
     /**
-     * <code>string name = 6;</code>
+     * <code>string name = 4;</code>
      * @return The name.
      */
     @java.lang.Override
@@ -1264,7 +2472,7 @@ public final class Data {
       }
     }
     /**
-     * <code>string name = 6;</code>
+     * <code>string name = 4;</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -1282,10 +2490,10 @@ public final class Data {
       }
     }
 
-    public static final int ISDEAD_FIELD_NUMBER = 7;
+    public static final int ISDEAD_FIELD_NUMBER = 5;
     private boolean isdead_;
     /**
-     * <code>bool isdead = 7;</code>
+     * <code>bool isdead = 5;</code>
      * @return The isdead.
      */
     @java.lang.Override
@@ -1293,10 +2501,10 @@ public final class Data {
       return isdead_;
     }
 
-    public static final int ISZOMBIE_FIELD_NUMBER = 8;
+    public static final int ISZOMBIE_FIELD_NUMBER = 6;
     private boolean isZombie_;
     /**
-     * <code>bool isZombie = 8;</code>
+     * <code>bool isZombie = 6;</code>
      * @return The isZombie.
      */
     @java.lang.Override
@@ -1318,29 +2526,23 @@ public final class Data {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (x_ != 0) {
-        output.writeInt32(1, x_);
+      if (position_ != null) {
+        output.writeMessage(1, getPosition());
       }
-      if (y_ != 0) {
-        output.writeInt32(2, y_);
-      }
-      if (height_ != 0) {
-        output.writeInt32(3, height_);
-      }
-      if (width_ != 0) {
-        output.writeInt32(4, width_);
+      if (dimensions_ != null) {
+        output.writeMessage(2, getDimensions());
       }
       if (speed_ != 0) {
-        output.writeInt32(5, speed_);
+        output.writeInt32(3, speed_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, name_);
       }
       if (isdead_ != false) {
-        output.writeBool(7, isdead_);
+        output.writeBool(5, isdead_);
       }
       if (isZombie_ != false) {
-        output.writeBool(8, isZombie_);
+        output.writeBool(6, isZombie_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1351,36 +2553,28 @@ public final class Data {
       if (size != -1) return size;
 
       size = 0;
-      if (x_ != 0) {
+      if (position_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, x_);
+          .computeMessageSize(1, getPosition());
       }
-      if (y_ != 0) {
+      if (dimensions_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, y_);
-      }
-      if (height_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, height_);
-      }
-      if (width_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, width_);
+          .computeMessageSize(2, getDimensions());
       }
       if (speed_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, speed_);
+          .computeInt32Size(3, speed_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, name_);
       }
       if (isdead_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, isdead_);
+          .computeBoolSize(5, isdead_);
       }
       if (isZombie_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(8, isZombie_);
+          .computeBoolSize(6, isZombie_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1397,14 +2591,16 @@ public final class Data {
       }
       proto.Data.Antagonist other = (proto.Data.Antagonist) obj;
 
-      if (getX()
-          != other.getX()) return false;
-      if (getY()
-          != other.getY()) return false;
-      if (getHeight()
-          != other.getHeight()) return false;
-      if (getWidth()
-          != other.getWidth()) return false;
+      if (hasPosition() != other.hasPosition()) return false;
+      if (hasPosition()) {
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
+      }
+      if (hasDimensions() != other.hasDimensions()) return false;
+      if (hasDimensions()) {
+        if (!getDimensions()
+            .equals(other.getDimensions())) return false;
+      }
       if (getSpeed()
           != other.getSpeed()) return false;
       if (!getName()
@@ -1424,14 +2620,14 @@ public final class Data {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + X_FIELD_NUMBER;
-      hash = (53 * hash) + getX();
-      hash = (37 * hash) + Y_FIELD_NUMBER;
-      hash = (53 * hash) + getY();
-      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + getHeight();
-      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
-      hash = (53 * hash) + getWidth();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      if (hasDimensions()) {
+        hash = (37 * hash) + DIMENSIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getDimensions().hashCode();
+      }
       hash = (37 * hash) + SPEED_FIELD_NUMBER;
       hash = (53 * hash) + getSpeed();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
@@ -1574,14 +2770,18 @@ public final class Data {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        x_ = 0;
-
-        y_ = 0;
-
-        height_ = 0;
-
-        width_ = 0;
-
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
         speed_ = 0;
 
         name_ = "";
@@ -1616,10 +2816,16 @@ public final class Data {
       @java.lang.Override
       public proto.Data.Antagonist buildPartial() {
         proto.Data.Antagonist result = new proto.Data.Antagonist(this);
-        result.x_ = x_;
-        result.y_ = y_;
-        result.height_ = height_;
-        result.width_ = width_;
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
+        if (dimensionsBuilder_ == null) {
+          result.dimensions_ = dimensions_;
+        } else {
+          result.dimensions_ = dimensionsBuilder_.build();
+        }
         result.speed_ = speed_;
         result.name_ = name_;
         result.isdead_ = isdead_;
@@ -1672,17 +2878,11 @@ public final class Data {
 
       public Builder mergeFrom(proto.Data.Antagonist other) {
         if (other == proto.Data.Antagonist.getDefaultInstance()) return this;
-        if (other.getX() != 0) {
-          setX(other.getX());
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
         }
-        if (other.getY() != 0) {
-          setY(other.getY());
-        }
-        if (other.getHeight() != 0) {
-          setHeight(other.getHeight());
-        }
-        if (other.getWidth() != 0) {
-          setWidth(other.getWidth());
+        if (other.hasDimensions()) {
+          mergeDimensions(other.getDimensions());
         }
         if (other.getSpeed() != 0) {
           setSpeed(other.getSpeed());
@@ -1723,46 +2923,40 @@ public final class Data {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                x_ = input.readInt32();
+              case 10: {
+                input.readMessage(
+                    getPositionFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 8
-              case 16: {
-                y_ = input.readInt32();
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDimensionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 16
+              } // case 18
               case 24: {
-                height_ = input.readInt32();
-
-                break;
-              } // case 24
-              case 32: {
-                width_ = input.readInt32();
-
-                break;
-              } // case 32
-              case 40: {
                 speed_ = input.readInt32();
 
                 break;
-              } // case 40
-              case 50: {
+              } // case 24
+              case 34: {
                 name_ = input.readStringRequireUtf8();
 
                 break;
-              } // case 50
-              case 56: {
+              } // case 34
+              case 40: {
                 isdead_ = input.readBool();
 
                 break;
-              } // case 56
-              case 64: {
+              } // case 40
+              case 48: {
                 isZombie_ = input.readBool();
 
                 break;
-              } // case 64
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1779,133 +2973,247 @@ public final class Data {
         return this;
       }
 
-      private int x_ ;
+      private proto.Data.Position position_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> positionBuilder_;
       /**
-       * <code>int32 x = 1;</code>
-       * @return The x.
+       * <code>.proto.Position position = 1;</code>
+       * @return Whether the position field is set.
        */
-      @java.lang.Override
-      public int getX() {
-        return x_;
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @param value The x to set.
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
+       * @return The position.
        */
-      public Builder setX(int value) {
-        
-        x_ = value;
-        onChanged();
+      public proto.Data.Position getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder setPosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+
         return this;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
        */
-      public Builder clearX() {
-        
-        x_ = 0;
-        onChanged();
+      public Builder setPosition(
+          proto.Data.Position.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder mergePosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+              proto.Data.Position.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.Position.Builder getPositionBuilder() {
+        
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+              proto.Data.Position.getDefaultInstance() : position_;
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
       }
 
-      private int y_ ;
+      private proto.Data.Dimensions dimensions_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> dimensionsBuilder_;
       /**
-       * <code>int32 y = 2;</code>
-       * @return The y.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return Whether the dimensions field is set.
        */
-      @java.lang.Override
-      public int getY() {
-        return y_;
+      public boolean hasDimensions() {
+        return dimensionsBuilder_ != null || dimensions_ != null;
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @param value The y to set.
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return The dimensions.
        */
-      public Builder setY(int value) {
-        
-        y_ = value;
-        onChanged();
-        return this;
+      public proto.Data.Dimensions getDimensions() {
+        if (dimensionsBuilder_ == null) {
+          return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        } else {
+          return dimensionsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearY() {
-        
-        y_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          dimensions_ = value;
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(value);
+        }
 
-      private int height_ ;
-      /**
-       * <code>int32 height = 3;</code>
-       * @return The height.
-       */
-      @java.lang.Override
-      public int getHeight() {
-        return height_;
-      }
-      /**
-       * <code>int32 height = 3;</code>
-       * @param value The height to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHeight(int value) {
-        
-        height_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 height = 3;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearHeight() {
-        
-        height_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(
+          proto.Data.Dimensions.Builder builderForValue) {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = builderForValue.build();
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(builderForValue.build());
+        }
 
-      private int width_ ;
-      /**
-       * <code>int32 width = 4;</code>
-       * @return The width.
-       */
-      @java.lang.Override
-      public int getWidth() {
-        return width_;
-      }
-      /**
-       * <code>int32 width = 4;</code>
-       * @param value The width to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWidth(int value) {
-        
-        width_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 width = 4;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearWidth() {
-        
-        width_ = 0;
-        onChanged();
+      public Builder mergeDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (dimensions_ != null) {
+            dimensions_ =
+              proto.Data.Dimensions.newBuilder(dimensions_).mergeFrom(value).buildPartial();
+          } else {
+            dimensions_ = value;
+          }
+          onChanged();
+        } else {
+          dimensionsBuilder_.mergeFrom(value);
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder clearDimensions() {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+          onChanged();
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.Dimensions.Builder getDimensionsBuilder() {
+        
+        onChanged();
+        return getDimensionsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+        if (dimensionsBuilder_ != null) {
+          return dimensionsBuilder_.getMessageOrBuilder();
+        } else {
+          return dimensions_ == null ?
+              proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        }
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> 
+          getDimensionsFieldBuilder() {
+        if (dimensionsBuilder_ == null) {
+          dimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder>(
+                  getDimensions(),
+                  getParentForChildren(),
+                  isClean());
+          dimensions_ = null;
+        }
+        return dimensionsBuilder_;
       }
 
       private int speed_ ;
       /**
-       * <code>int32 speed = 5;</code>
+       * <code>int32 speed = 3;</code>
        * @return The speed.
        */
       @java.lang.Override
@@ -1913,7 +3221,7 @@ public final class Data {
         return speed_;
       }
       /**
-       * <code>int32 speed = 5;</code>
+       * <code>int32 speed = 3;</code>
        * @param value The speed to set.
        * @return This builder for chaining.
        */
@@ -1924,7 +3232,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>int32 speed = 5;</code>
+       * <code>int32 speed = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearSpeed() {
@@ -1936,7 +3244,7 @@ public final class Data {
 
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 6;</code>
+       * <code>string name = 4;</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -1952,7 +3260,7 @@ public final class Data {
         }
       }
       /**
-       * <code>string name = 6;</code>
+       * <code>string name = 4;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -1969,7 +3277,7 @@ public final class Data {
         }
       }
       /**
-       * <code>string name = 6;</code>
+       * <code>string name = 4;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -1984,7 +3292,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>string name = 6;</code>
+       * <code>string name = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -1994,7 +3302,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>string name = 6;</code>
+       * <code>string name = 4;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -2012,7 +3320,7 @@ public final class Data {
 
       private boolean isdead_ ;
       /**
-       * <code>bool isdead = 7;</code>
+       * <code>bool isdead = 5;</code>
        * @return The isdead.
        */
       @java.lang.Override
@@ -2020,7 +3328,7 @@ public final class Data {
         return isdead_;
       }
       /**
-       * <code>bool isdead = 7;</code>
+       * <code>bool isdead = 5;</code>
        * @param value The isdead to set.
        * @return This builder for chaining.
        */
@@ -2031,7 +3339,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>bool isdead = 7;</code>
+       * <code>bool isdead = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearIsdead() {
@@ -2043,7 +3351,7 @@ public final class Data {
 
       private boolean isZombie_ ;
       /**
-       * <code>bool isZombie = 8;</code>
+       * <code>bool isZombie = 6;</code>
        * @return The isZombie.
        */
       @java.lang.Override
@@ -2051,7 +3359,7 @@ public final class Data {
         return isZombie_;
       }
       /**
-       * <code>bool isZombie = 8;</code>
+       * <code>bool isZombie = 6;</code>
        * @param value The isZombie to set.
        * @return This builder for chaining.
        */
@@ -2062,7 +3370,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>bool isZombie = 8;</code>
+       * <code>bool isZombie = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearIsZombie() {
@@ -2140,36 +3448,42 @@ public final class Data {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 x = 1;</code>
-     * @return The x.
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
      */
-    int getX();
+    boolean hasPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
+     */
+    proto.Data.Position getPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     */
+    proto.Data.PositionOrBuilder getPositionOrBuilder();
 
     /**
-     * <code>int32 y = 2;</code>
-     * @return The y.
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
      */
-    int getY();
+    boolean hasDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    proto.Data.Dimensions getDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    proto.Data.DimensionsOrBuilder getDimensionsOrBuilder();
 
     /**
-     * <code>int32 height = 3;</code>
-     * @return The height.
-     */
-    int getHeight();
-
-    /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
-     */
-    int getWidth();
-
-    /**
-     * <code>string name = 5;</code>
+     * <code>string name = 3;</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 5;</code>
+     * <code>string name = 3;</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
@@ -2220,54 +3534,62 @@ public final class Data {
               proto.Data.Item.class, proto.Data.Item.Builder.class);
     }
 
-    public static final int X_FIELD_NUMBER = 1;
-    private int x_;
+    public static final int POSITION_FIELD_NUMBER = 1;
+    private proto.Data.Position position_;
     /**
-     * <code>int32 x = 1;</code>
-     * @return The x.
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
      */
     @java.lang.Override
-    public int getX() {
-      return x_;
+    public boolean hasPosition() {
+      return position_ != null;
     }
-
-    public static final int Y_FIELD_NUMBER = 2;
-    private int y_;
     /**
-     * <code>int32 y = 2;</code>
-     * @return The y.
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
      */
     @java.lang.Override
-    public int getY() {
-      return y_;
+    public proto.Data.Position getPosition() {
+      return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
     }
-
-    public static final int HEIGHT_FIELD_NUMBER = 3;
-    private int height_;
     /**
-     * <code>int32 height = 3;</code>
-     * @return The height.
+     * <code>.proto.Position position = 1;</code>
      */
     @java.lang.Override
-    public int getHeight() {
-      return height_;
+    public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+      return getPosition();
     }
 
-    public static final int WIDTH_FIELD_NUMBER = 4;
-    private int width_;
+    public static final int DIMENSIONS_FIELD_NUMBER = 2;
+    private proto.Data.Dimensions dimensions_;
     /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
      */
     @java.lang.Override
-    public int getWidth() {
-      return width_;
+    public boolean hasDimensions() {
+      return dimensions_ != null;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    @java.lang.Override
+    public proto.Data.Dimensions getDimensions() {
+      return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    @java.lang.Override
+    public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+      return getDimensions();
     }
 
-    public static final int NAME_FIELD_NUMBER = 5;
+    public static final int NAME_FIELD_NUMBER = 3;
     private volatile java.lang.Object name_;
     /**
-     * <code>string name = 5;</code>
+     * <code>string name = 3;</code>
      * @return The name.
      */
     @java.lang.Override
@@ -2284,7 +3606,7 @@ public final class Data {
       }
     }
     /**
-     * <code>string name = 5;</code>
+     * <code>string name = 3;</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -2316,20 +3638,14 @@ public final class Data {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (x_ != 0) {
-        output.writeInt32(1, x_);
+      if (position_ != null) {
+        output.writeMessage(1, getPosition());
       }
-      if (y_ != 0) {
-        output.writeInt32(2, y_);
-      }
-      if (height_ != 0) {
-        output.writeInt32(3, height_);
-      }
-      if (width_ != 0) {
-        output.writeInt32(4, width_);
+      if (dimensions_ != null) {
+        output.writeMessage(2, getDimensions());
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2340,24 +3656,16 @@ public final class Data {
       if (size != -1) return size;
 
       size = 0;
-      if (x_ != 0) {
+      if (position_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, x_);
+          .computeMessageSize(1, getPosition());
       }
-      if (y_ != 0) {
+      if (dimensions_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, y_);
-      }
-      if (height_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, height_);
-      }
-      if (width_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, width_);
+          .computeMessageSize(2, getDimensions());
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2374,14 +3682,16 @@ public final class Data {
       }
       proto.Data.Item other = (proto.Data.Item) obj;
 
-      if (getX()
-          != other.getX()) return false;
-      if (getY()
-          != other.getY()) return false;
-      if (getHeight()
-          != other.getHeight()) return false;
-      if (getWidth()
-          != other.getWidth()) return false;
+      if (hasPosition() != other.hasPosition()) return false;
+      if (hasPosition()) {
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
+      }
+      if (hasDimensions() != other.hasDimensions()) return false;
+      if (hasDimensions()) {
+        if (!getDimensions()
+            .equals(other.getDimensions())) return false;
+      }
       if (!getName()
           .equals(other.getName())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -2395,14 +3705,14 @@ public final class Data {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + X_FIELD_NUMBER;
-      hash = (53 * hash) + getX();
-      hash = (37 * hash) + Y_FIELD_NUMBER;
-      hash = (53 * hash) + getY();
-      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + getHeight();
-      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
-      hash = (53 * hash) + getWidth();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      if (hasDimensions()) {
+        hash = (37 * hash) + DIMENSIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getDimensions().hashCode();
+      }
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -2537,14 +3847,18 @@ public final class Data {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        x_ = 0;
-
-        y_ = 0;
-
-        height_ = 0;
-
-        width_ = 0;
-
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
         name_ = "";
 
         return this;
@@ -2573,10 +3887,16 @@ public final class Data {
       @java.lang.Override
       public proto.Data.Item buildPartial() {
         proto.Data.Item result = new proto.Data.Item(this);
-        result.x_ = x_;
-        result.y_ = y_;
-        result.height_ = height_;
-        result.width_ = width_;
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
+        if (dimensionsBuilder_ == null) {
+          result.dimensions_ = dimensions_;
+        } else {
+          result.dimensions_ = dimensionsBuilder_.build();
+        }
         result.name_ = name_;
         onBuilt();
         return result;
@@ -2626,17 +3946,11 @@ public final class Data {
 
       public Builder mergeFrom(proto.Data.Item other) {
         if (other == proto.Data.Item.getDefaultInstance()) return this;
-        if (other.getX() != 0) {
-          setX(other.getX());
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
         }
-        if (other.getY() != 0) {
-          setY(other.getY());
-        }
-        if (other.getHeight() != 0) {
-          setHeight(other.getHeight());
-        }
-        if (other.getWidth() != 0) {
-          setWidth(other.getWidth());
+        if (other.hasDimensions()) {
+          mergeDimensions(other.getDimensions());
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
@@ -2668,31 +3982,25 @@ public final class Data {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                x_ = input.readInt32();
+              case 10: {
+                input.readMessage(
+                    getPositionFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 8
-              case 16: {
-                y_ = input.readInt32();
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDimensionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
 
                 break;
-              } // case 16
-              case 24: {
-                height_ = input.readInt32();
-
-                break;
-              } // case 24
-              case 32: {
-                width_ = input.readInt32();
-
-                break;
-              } // case 32
-              case 42: {
+              } // case 18
+              case 26: {
                 name_ = input.readStringRequireUtf8();
 
                 break;
-              } // case 42
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2709,133 +4017,247 @@ public final class Data {
         return this;
       }
 
-      private int x_ ;
+      private proto.Data.Position position_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> positionBuilder_;
       /**
-       * <code>int32 x = 1;</code>
-       * @return The x.
+       * <code>.proto.Position position = 1;</code>
+       * @return Whether the position field is set.
        */
-      @java.lang.Override
-      public int getX() {
-        return x_;
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @param value The x to set.
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
+       * @return The position.
        */
-      public Builder setX(int value) {
-        
-        x_ = value;
-        onChanged();
+      public proto.Data.Position getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder setPosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+
         return this;
       }
       /**
-       * <code>int32 x = 1;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Position position = 1;</code>
        */
-      public Builder clearX() {
-        
-        x_ = 0;
-        onChanged();
+      public Builder setPosition(
+          proto.Data.Position.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder mergePosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+              proto.Data.Position.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.Position.Builder getPositionBuilder() {
+        
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+              proto.Data.Position.getDefaultInstance() : position_;
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
       }
 
-      private int y_ ;
+      private proto.Data.Dimensions dimensions_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> dimensionsBuilder_;
       /**
-       * <code>int32 y = 2;</code>
-       * @return The y.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return Whether the dimensions field is set.
        */
-      @java.lang.Override
-      public int getY() {
-        return y_;
+      public boolean hasDimensions() {
+        return dimensionsBuilder_ != null || dimensions_ != null;
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @param value The y to set.
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return The dimensions.
        */
-      public Builder setY(int value) {
-        
-        y_ = value;
-        onChanged();
-        return this;
+      public proto.Data.Dimensions getDimensions() {
+        if (dimensionsBuilder_ == null) {
+          return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        } else {
+          return dimensionsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>int32 y = 2;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearY() {
-        
-        y_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          dimensions_ = value;
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(value);
+        }
 
-      private int height_ ;
-      /**
-       * <code>int32 height = 3;</code>
-       * @return The height.
-       */
-      @java.lang.Override
-      public int getHeight() {
-        return height_;
-      }
-      /**
-       * <code>int32 height = 3;</code>
-       * @param value The height to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHeight(int value) {
-        
-        height_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 height = 3;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearHeight() {
-        
-        height_ = 0;
-        onChanged();
-        return this;
-      }
+      public Builder setDimensions(
+          proto.Data.Dimensions.Builder builderForValue) {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = builderForValue.build();
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(builderForValue.build());
+        }
 
-      private int width_ ;
-      /**
-       * <code>int32 width = 4;</code>
-       * @return The width.
-       */
-      @java.lang.Override
-      public int getWidth() {
-        return width_;
-      }
-      /**
-       * <code>int32 width = 4;</code>
-       * @param value The width to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWidth(int value) {
-        
-        width_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>int32 width = 4;</code>
-       * @return This builder for chaining.
+       * <code>.proto.Dimensions dimensions = 2;</code>
        */
-      public Builder clearWidth() {
-        
-        width_ = 0;
-        onChanged();
+      public Builder mergeDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (dimensions_ != null) {
+            dimensions_ =
+              proto.Data.Dimensions.newBuilder(dimensions_).mergeFrom(value).buildPartial();
+          } else {
+            dimensions_ = value;
+          }
+          onChanged();
+        } else {
+          dimensionsBuilder_.mergeFrom(value);
+        }
+
         return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder clearDimensions() {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+          onChanged();
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.Dimensions.Builder getDimensionsBuilder() {
+        
+        onChanged();
+        return getDimensionsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+        if (dimensionsBuilder_ != null) {
+          return dimensionsBuilder_.getMessageOrBuilder();
+        } else {
+          return dimensions_ == null ?
+              proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        }
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> 
+          getDimensionsFieldBuilder() {
+        if (dimensionsBuilder_ == null) {
+          dimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder>(
+                  getDimensions(),
+                  getParentForChildren(),
+                  isClean());
+          dimensions_ = null;
+        }
+        return dimensionsBuilder_;
       }
 
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 5;</code>
+       * <code>string name = 3;</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -2851,7 +4273,7 @@ public final class Data {
         }
       }
       /**
-       * <code>string name = 5;</code>
+       * <code>string name = 3;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -2868,7 +4290,7 @@ public final class Data {
         }
       }
       /**
-       * <code>string name = 5;</code>
+       * <code>string name = 3;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -2883,7 +4305,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>string name = 5;</code>
+       * <code>string name = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -2893,7 +4315,7 @@ public final class Data {
         return this;
       }
       /**
-       * <code>string name = 5;</code>
+       * <code>string name = 3;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -2967,6 +4389,800 @@ public final class Data {
 
     @java.lang.Override
     public proto.Data.Item getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CoinOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Coin)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
+     */
+    boolean hasPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
+     */
+    proto.Data.Position getPosition();
+    /**
+     * <code>.proto.Position position = 1;</code>
+     */
+    proto.Data.PositionOrBuilder getPositionOrBuilder();
+
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
+     */
+    boolean hasDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    proto.Data.Dimensions getDimensions();
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    proto.Data.DimensionsOrBuilder getDimensionsOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.Coin}
+   */
+  public static final class Coin extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Coin)
+      CoinOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Coin.newBuilder() to construct.
+    private Coin(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Coin() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Coin();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.Data.internal_static_proto_Coin_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.Data.internal_static_proto_Coin_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.Data.Coin.class, proto.Data.Coin.Builder.class);
+    }
+
+    public static final int POSITION_FIELD_NUMBER = 1;
+    private proto.Data.Position position_;
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return Whether the position field is set.
+     */
+    @java.lang.Override
+    public boolean hasPosition() {
+      return position_ != null;
+    }
+    /**
+     * <code>.proto.Position position = 1;</code>
+     * @return The position.
+     */
+    @java.lang.Override
+    public proto.Data.Position getPosition() {
+      return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
+    }
+    /**
+     * <code>.proto.Position position = 1;</code>
+     */
+    @java.lang.Override
+    public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+      return getPosition();
+    }
+
+    public static final int DIMENSIONS_FIELD_NUMBER = 2;
+    private proto.Data.Dimensions dimensions_;
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return Whether the dimensions field is set.
+     */
+    @java.lang.Override
+    public boolean hasDimensions() {
+      return dimensions_ != null;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     * @return The dimensions.
+     */
+    @java.lang.Override
+    public proto.Data.Dimensions getDimensions() {
+      return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+    }
+    /**
+     * <code>.proto.Dimensions dimensions = 2;</code>
+     */
+    @java.lang.Override
+    public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+      return getDimensions();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (position_ != null) {
+        output.writeMessage(1, getPosition());
+      }
+      if (dimensions_ != null) {
+        output.writeMessage(2, getDimensions());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (position_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getPosition());
+      }
+      if (dimensions_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getDimensions());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.Data.Coin)) {
+        return super.equals(obj);
+      }
+      proto.Data.Coin other = (proto.Data.Coin) obj;
+
+      if (hasPosition() != other.hasPosition()) return false;
+      if (hasPosition()) {
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
+      }
+      if (hasDimensions() != other.hasDimensions()) return false;
+      if (hasDimensions()) {
+        if (!getDimensions()
+            .equals(other.getDimensions())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      if (hasDimensions()) {
+        hash = (37 * hash) + DIMENSIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getDimensions().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.Data.Coin parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Coin parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Coin parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Coin parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Coin parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.Data.Coin parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.Data.Coin parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Coin parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Coin parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.Data.Coin parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.Data.Coin parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.Data.Coin parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.Data.Coin prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.Coin}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Coin)
+        proto.Data.CoinOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.Data.internal_static_proto_Coin_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.Data.internal_static_proto_Coin_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.Data.Coin.class, proto.Data.Coin.Builder.class);
+      }
+
+      // Construct using proto.Data.Coin.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.Data.internal_static_proto_Coin_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.Data.Coin getDefaultInstanceForType() {
+        return proto.Data.Coin.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.Data.Coin build() {
+        proto.Data.Coin result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.Data.Coin buildPartial() {
+        proto.Data.Coin result = new proto.Data.Coin(this);
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
+        if (dimensionsBuilder_ == null) {
+          result.dimensions_ = dimensions_;
+        } else {
+          result.dimensions_ = dimensionsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.Data.Coin) {
+          return mergeFrom((proto.Data.Coin)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.Data.Coin other) {
+        if (other == proto.Data.Coin.getDefaultInstance()) return this;
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
+        }
+        if (other.hasDimensions()) {
+          mergeDimensions(other.getDimensions());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getPositionFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDimensionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private proto.Data.Position position_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> positionBuilder_;
+      /**
+       * <code>.proto.Position position = 1;</code>
+       * @return Whether the position field is set.
+       */
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       * @return The position.
+       */
+      public proto.Data.Position getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? proto.Data.Position.getDefaultInstance() : position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder setPosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder setPosition(
+          proto.Data.Position.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder mergePosition(proto.Data.Position value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+              proto.Data.Position.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.Position.Builder getPositionBuilder() {
+        
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      public proto.Data.PositionOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+              proto.Data.Position.getDefaultInstance() : position_;
+        }
+      }
+      /**
+       * <code>.proto.Position position = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Position, proto.Data.Position.Builder, proto.Data.PositionOrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
+      }
+
+      private proto.Data.Dimensions dimensions_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> dimensionsBuilder_;
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return Whether the dimensions field is set.
+       */
+      public boolean hasDimensions() {
+        return dimensionsBuilder_ != null || dimensions_ != null;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       * @return The dimensions.
+       */
+      public proto.Data.Dimensions getDimensions() {
+        if (dimensionsBuilder_ == null) {
+          return dimensions_ == null ? proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        } else {
+          return dimensionsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder setDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          dimensions_ = value;
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder setDimensions(
+          proto.Data.Dimensions.Builder builderForValue) {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = builderForValue.build();
+          onChanged();
+        } else {
+          dimensionsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder mergeDimensions(proto.Data.Dimensions value) {
+        if (dimensionsBuilder_ == null) {
+          if (dimensions_ != null) {
+            dimensions_ =
+              proto.Data.Dimensions.newBuilder(dimensions_).mergeFrom(value).buildPartial();
+          } else {
+            dimensions_ = value;
+          }
+          onChanged();
+        } else {
+          dimensionsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public Builder clearDimensions() {
+        if (dimensionsBuilder_ == null) {
+          dimensions_ = null;
+          onChanged();
+        } else {
+          dimensions_ = null;
+          dimensionsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.Dimensions.Builder getDimensionsBuilder() {
+        
+        onChanged();
+        return getDimensionsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      public proto.Data.DimensionsOrBuilder getDimensionsOrBuilder() {
+        if (dimensionsBuilder_ != null) {
+          return dimensionsBuilder_.getMessageOrBuilder();
+        } else {
+          return dimensions_ == null ?
+              proto.Data.Dimensions.getDefaultInstance() : dimensions_;
+        }
+      }
+      /**
+       * <code>.proto.Dimensions dimensions = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder> 
+          getDimensionsFieldBuilder() {
+        if (dimensionsBuilder_ == null) {
+          dimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.Data.Dimensions, proto.Data.Dimensions.Builder, proto.Data.DimensionsOrBuilder>(
+                  getDimensions(),
+                  getParentForChildren(),
+                  isClean());
+          dimensions_ = null;
+        }
+        return dimensionsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Coin)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Coin)
+    private static final proto.Data.Coin DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.Data.Coin();
+    }
+
+    public static proto.Data.Coin getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Coin>
+        PARSER = new com.google.protobuf.AbstractParser<Coin>() {
+      @java.lang.Override
+      public Coin parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Coin> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Coin> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.Data.Coin getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3056,6 +5272,30 @@ public final class Data {
      */
     proto.Data.ItemOrBuilder getItemsOrBuilder(
         int index);
+
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    java.util.List<proto.Data.Coin> 
+        getCoinsList();
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    proto.Data.Coin getCoins(int index);
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    int getCoinsCount();
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    java.util.List<? extends proto.Data.CoinOrBuilder> 
+        getCoinsOrBuilderList();
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    proto.Data.CoinOrBuilder getCoinsOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -3076,6 +5316,7 @@ public final class Data {
     private GameData() {
       antagonists_ = java.util.Collections.emptyList();
       items_ = java.util.Collections.emptyList();
+      coins_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -3242,6 +5483,46 @@ public final class Data {
       return items_.get(index);
     }
 
+    public static final int COINS_FIELD_NUMBER = 7;
+    private java.util.List<proto.Data.Coin> coins_;
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    @java.lang.Override
+    public java.util.List<proto.Data.Coin> getCoinsList() {
+      return coins_;
+    }
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends proto.Data.CoinOrBuilder> 
+        getCoinsOrBuilderList() {
+      return coins_;
+    }
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    @java.lang.Override
+    public int getCoinsCount() {
+      return coins_.size();
+    }
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    @java.lang.Override
+    public proto.Data.Coin getCoins(int index) {
+      return coins_.get(index);
+    }
+    /**
+     * <code>repeated .proto.Coin coins = 7;</code>
+     */
+    @java.lang.Override
+    public proto.Data.CoinOrBuilder getCoinsOrBuilder(
+        int index) {
+      return coins_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3273,6 +5554,9 @@ public final class Data {
       }
       for (int i = 0; i < items_.size(); i++) {
         output.writeMessage(6, items_.get(i));
+      }
+      for (int i = 0; i < coins_.size(); i++) {
+        output.writeMessage(7, coins_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -3307,6 +5591,10 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, items_.get(i));
       }
+      for (int i = 0; i < coins_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, coins_.get(i));
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -3337,6 +5625,8 @@ public final class Data {
           .equals(other.getAntagonistsList())) return false;
       if (!getItemsList()
           .equals(other.getItemsList())) return false;
+      if (!getCoinsList()
+          .equals(other.getCoinsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -3365,6 +5655,10 @@ public final class Data {
       if (getItemsCount() > 0) {
         hash = (37 * hash) + ITEMS_FIELD_NUMBER;
         hash = (53 * hash) + getItemsList().hashCode();
+      }
+      if (getCoinsCount() > 0) {
+        hash = (37 * hash) + COINS_FIELD_NUMBER;
+        hash = (53 * hash) + getCoinsList().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -3524,6 +5818,13 @@ public final class Data {
           itemsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
+        if (coinsBuilder_ == null) {
+          coins_ = java.util.Collections.emptyList();
+        } else {
+          coins_ = null;
+          coinsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -3576,6 +5877,15 @@ public final class Data {
           result.items_ = items_;
         } else {
           result.items_ = itemsBuilder_.build();
+        }
+        if (coinsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0)) {
+            coins_ = java.util.Collections.unmodifiableList(coins_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.coins_ = coins_;
+        } else {
+          result.coins_ = coinsBuilder_.build();
         }
         onBuilt();
         return result;
@@ -3689,6 +5999,32 @@ public final class Data {
             }
           }
         }
+        if (coinsBuilder_ == null) {
+          if (!other.coins_.isEmpty()) {
+            if (coins_.isEmpty()) {
+              coins_ = other.coins_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureCoinsIsMutable();
+              coins_.addAll(other.coins_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.coins_.isEmpty()) {
+            if (coinsBuilder_.isEmpty()) {
+              coinsBuilder_.dispose();
+              coinsBuilder_ = null;
+              coins_ = other.coins_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              coinsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getCoinsFieldBuilder() : null;
+            } else {
+              coinsBuilder_.addAllMessages(other.coins_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -3763,6 +6099,19 @@ public final class Data {
                 }
                 break;
               } // case 50
+              case 58: {
+                proto.Data.Coin m =
+                    input.readMessage(
+                        proto.Data.Coin.parser(),
+                        extensionRegistry);
+                if (coinsBuilder_ == null) {
+                  ensureCoinsIsMutable();
+                  coins_.add(m);
+                } else {
+                  coinsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 58
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4471,6 +6820,246 @@ public final class Data {
         }
         return itemsBuilder_;
       }
+
+      private java.util.List<proto.Data.Coin> coins_ =
+        java.util.Collections.emptyList();
+      private void ensureCoinsIsMutable() {
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          coins_ = new java.util.ArrayList<proto.Data.Coin>(coins_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Coin, proto.Data.Coin.Builder, proto.Data.CoinOrBuilder> coinsBuilder_;
+
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public java.util.List<proto.Data.Coin> getCoinsList() {
+        if (coinsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(coins_);
+        } else {
+          return coinsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public int getCoinsCount() {
+        if (coinsBuilder_ == null) {
+          return coins_.size();
+        } else {
+          return coinsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public proto.Data.Coin getCoins(int index) {
+        if (coinsBuilder_ == null) {
+          return coins_.get(index);
+        } else {
+          return coinsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder setCoins(
+          int index, proto.Data.Coin value) {
+        if (coinsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoinsIsMutable();
+          coins_.set(index, value);
+          onChanged();
+        } else {
+          coinsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder setCoins(
+          int index, proto.Data.Coin.Builder builderForValue) {
+        if (coinsBuilder_ == null) {
+          ensureCoinsIsMutable();
+          coins_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          coinsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder addCoins(proto.Data.Coin value) {
+        if (coinsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoinsIsMutable();
+          coins_.add(value);
+          onChanged();
+        } else {
+          coinsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder addCoins(
+          int index, proto.Data.Coin value) {
+        if (coinsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoinsIsMutable();
+          coins_.add(index, value);
+          onChanged();
+        } else {
+          coinsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder addCoins(
+          proto.Data.Coin.Builder builderForValue) {
+        if (coinsBuilder_ == null) {
+          ensureCoinsIsMutable();
+          coins_.add(builderForValue.build());
+          onChanged();
+        } else {
+          coinsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder addCoins(
+          int index, proto.Data.Coin.Builder builderForValue) {
+        if (coinsBuilder_ == null) {
+          ensureCoinsIsMutable();
+          coins_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          coinsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder addAllCoins(
+          java.lang.Iterable<? extends proto.Data.Coin> values) {
+        if (coinsBuilder_ == null) {
+          ensureCoinsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, coins_);
+          onChanged();
+        } else {
+          coinsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder clearCoins() {
+        if (coinsBuilder_ == null) {
+          coins_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          coinsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public Builder removeCoins(int index) {
+        if (coinsBuilder_ == null) {
+          ensureCoinsIsMutable();
+          coins_.remove(index);
+          onChanged();
+        } else {
+          coinsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public proto.Data.Coin.Builder getCoinsBuilder(
+          int index) {
+        return getCoinsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public proto.Data.CoinOrBuilder getCoinsOrBuilder(
+          int index) {
+        if (coinsBuilder_ == null) {
+          return coins_.get(index);  } else {
+          return coinsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public java.util.List<? extends proto.Data.CoinOrBuilder> 
+           getCoinsOrBuilderList() {
+        if (coinsBuilder_ != null) {
+          return coinsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(coins_);
+        }
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public proto.Data.Coin.Builder addCoinsBuilder() {
+        return getCoinsFieldBuilder().addBuilder(
+            proto.Data.Coin.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public proto.Data.Coin.Builder addCoinsBuilder(
+          int index) {
+        return getCoinsFieldBuilder().addBuilder(
+            index, proto.Data.Coin.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Coin coins = 7;</code>
+       */
+      public java.util.List<proto.Data.Coin.Builder> 
+           getCoinsBuilderList() {
+        return getCoinsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          proto.Data.Coin, proto.Data.Coin.Builder, proto.Data.CoinOrBuilder> 
+          getCoinsFieldBuilder() {
+        if (coinsBuilder_ == null) {
+          coinsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              proto.Data.Coin, proto.Data.Coin.Builder, proto.Data.CoinOrBuilder>(
+                  coins_,
+                  ((bitField0_ & 0x00000004) != 0),
+                  getParentForChildren(),
+                  isClean());
+          coins_ = null;
+        }
+        return coinsBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5014,6 +7603,16 @@ public final class Data {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Position_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Position_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Dimensions_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Dimensions_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_Mario_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5034,6 +7633,11 @@ public final class Data {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_Item_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Coin_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Coin_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_GameData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5052,35 +7656,53 @@ public final class Data {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ndata.proto\022\005proto\"\250\001\n\005Mario\022\t\n\001x\030\001 \001(\005" +
-      "\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\r\n\005width\030\004 \001" +
-      "(\005\022\024\n\014numberOfLive\030\005 \001(\005\022&\n\005state\030\006 \003(\0132" +
-      "\027.proto.Mario.StateEntry\032,\n\nStateEntry\022\013" +
-      "\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"\200\001\n\nAntag" +
-      "onist\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006height\030\003 " +
-      "\001(\005\022\r\n\005width\030\004 \001(\005\022\r\n\005speed\030\005 \001(\005\022\014\n\004nam" +
-      "e\030\006 \001(\t\022\016\n\006isdead\030\007 \001(\010\022\020\n\010isZombie\030\010 \001(" +
-      "\010\"I\n\004Item\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\016\n\006heigh" +
-      "t\030\003 \001(\005\022\r\n\005width\030\004 \001(\005\022\014\n\004name\030\005 \001(\t\"\276\001\n" +
-      "\010GameData\022\033\n\005mario\030\001 \001(\0132\014.proto.Mario\022\023" +
-      "\n\013floor_level\030\002 \001(\005\022 \n\030antagonist_contex" +
-      "t_width\030\003 \001(\005\022\032\n\022item_context_width\030\004 \001(" +
-      "\005\022&\n\013antagonists\030\005 \003(\0132\021.proto.Antagonis" +
-      "t\022\032\n\005items\030\006 \003(\0132\013.proto.Item\"\030\n\006Action\022" +
-      "\016\n\006action\030\001 \001(\0052<\n\013GameService\022-\n\tGetAct" +
-      "ion\022\017.proto.GameData\032\r.proto.Action\"\000b\006p" +
-      "roto3"
+      "\n\ndata.proto\022\005proto\" \n\010Position\022\t\n\001x\030\001 \001" +
+      "(\005\022\t\n\001y\030\002 \001(\005\"+\n\nDimensions\022\016\n\006height\030\001 " +
+      "\001(\005\022\r\n\005width\030\002 \001(\005\"\275\001\n\005Mario\022!\n\010position" +
+      "\030\001 \001(\0132\017.proto.Position\022%\n\ndimensions\030\002 " +
+      "\001(\0132\021.proto.Dimensions\022\024\n\014numberOfLive\030\003" +
+      " \001(\005\022&\n\005state\030\004 \003(\0132\027.proto.Mario.StateE" +
+      "ntry\032,\n\nStateEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
+      "\030\002 \001(\010:\0028\001\"\225\001\n\nAntagonist\022!\n\010position\030\001 " +
+      "\001(\0132\017.proto.Position\022%\n\ndimensions\030\002 \001(\013" +
+      "2\021.proto.Dimensions\022\r\n\005speed\030\003 \001(\005\022\014\n\004na" +
+      "me\030\004 \001(\t\022\016\n\006isdead\030\005 \001(\010\022\020\n\010isZombie\030\006 \001" +
+      "(\010\"^\n\004Item\022!\n\010position\030\001 \001(\0132\017.proto.Pos" +
+      "ition\022%\n\ndimensions\030\002 \001(\0132\021.proto.Dimens" +
+      "ions\022\014\n\004name\030\003 \001(\t\"P\n\004Coin\022!\n\010position\030\001" +
+      " \001(\0132\017.proto.Position\022%\n\ndimensions\030\002 \001(" +
+      "\0132\021.proto.Dimensions\"\332\001\n\010GameData\022\033\n\005mar" +
+      "io\030\001 \001(\0132\014.proto.Mario\022\023\n\013floor_level\030\002 " +
+      "\001(\005\022 \n\030antagonist_context_width\030\003 \001(\005\022\032\n" +
+      "\022item_context_width\030\004 \001(\005\022&\n\013antagonists" +
+      "\030\005 \003(\0132\021.proto.Antagonist\022\032\n\005items\030\006 \003(\013" +
+      "2\013.proto.Item\022\032\n\005coins\030\007 \003(\0132\013.proto.Coi" +
+      "n\"\030\n\006Action\022\016\n\006action\030\001 \001(\0052<\n\013GameServi" +
+      "ce\022-\n\tGetAction\022\017.proto.GameData\032\r.proto" +
+      ".Action\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_proto_Mario_descriptor =
+    internal_static_proto_Position_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_proto_Position_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Position_descriptor,
+        new java.lang.String[] { "X", "Y", });
+    internal_static_proto_Dimensions_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_proto_Dimensions_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Dimensions_descriptor,
+        new java.lang.String[] { "Height", "Width", });
+    internal_static_proto_Mario_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_proto_Mario_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Mario_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", "NumberOfLive", "State", });
+        new java.lang.String[] { "Position", "Dimensions", "NumberOfLive", "State", });
     internal_static_proto_Mario_StateEntry_descriptor =
       internal_static_proto_Mario_descriptor.getNestedTypes().get(0);
     internal_static_proto_Mario_StateEntry_fieldAccessorTable = new
@@ -5088,25 +7710,31 @@ public final class Data {
         internal_static_proto_Mario_StateEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_proto_Antagonist_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_proto_Antagonist_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Antagonist_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", "Speed", "Name", "Isdead", "IsZombie", });
+        new java.lang.String[] { "Position", "Dimensions", "Speed", "Name", "Isdead", "IsZombie", });
     internal_static_proto_Item_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_proto_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Item_descriptor,
-        new java.lang.String[] { "X", "Y", "Height", "Width", "Name", });
+        new java.lang.String[] { "Position", "Dimensions", "Name", });
+    internal_static_proto_Coin_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_proto_Coin_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Coin_descriptor,
+        new java.lang.String[] { "Position", "Dimensions", });
     internal_static_proto_GameData_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_proto_GameData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_GameData_descriptor,
-        new java.lang.String[] { "Mario", "FloorLevel", "AntagonistContextWidth", "ItemContextWidth", "Antagonists", "Items", });
+        new java.lang.String[] { "Mario", "FloorLevel", "AntagonistContextWidth", "ItemContextWidth", "Antagonists", "Items", "Coins", });
     internal_static_proto_Action_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_proto_Action_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Action_descriptor,

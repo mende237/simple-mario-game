@@ -25,6 +25,7 @@ public class Config {
 
     public static int CONTEXT_ITEM_WIDTH;
     public static int CONTEXT_ANTAGONIST_WIDTH;
+    public static int CONTEXT_COIN_WIDTH;
     public static int WINDOW_FILTER_MIN;
     public static int WINDOW_FILTER_MAX;
 
@@ -37,6 +38,7 @@ public class Config {
             JSONObject json = new JSONObject(content);
             CONTEXT_ITEM_WIDTH = json.getInt("contextItemWidth");
             CONTEXT_ANTAGONIST_WIDTH = json.getInt("contextAntogonistWidth");
+            CONTEXT_COIN_WIDTH = json.getInt("contextCoinWidth");
             JSONObject windowFilter = json.getJSONObject("windowFilter");
             WINDOW_FILTER_MIN = windowFilter.getInt("min");
             WINDOW_FILTER_MAX = windowFilter.getInt("max");

@@ -2,35 +2,44 @@ syntax = "proto3";
 
 package proto;
 
-// Represents a game object with position and dimensions.
-message Mario {
+message Position {
     int32 x = 1;
     int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    int32 numberOfLive = 5;
-    map<string, bool> state = 6;
+}
+
+message Dimensions {
+    int32 height = 1;
+    int32 width = 2;
+}
+
+// Represents a game object with position and dimensions.
+message Mario {
+    Position position = 1;
+    Dimensions dimensions = 2;
+    int32 numberOfLive = 3;
+    map<string, bool> state = 4;
 }
 
 // Represents an antagonist character.
 message Antagonist {
-    int32 x = 1;
-    int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    int32 speed = 5;
-    string name = 6;
-    bool isdead = 7;
-    bool isZombie = 8;
+    Position position = 1;
+    Dimensions dimensions = 2;
+    int32 speed = 3;
+    string name = 4;
+    bool isdead = 5;
+    bool isZombie = 6;
 }
 
 // Represents an item in the game.
 message Item {
-    int32 x = 1;
-    int32 y = 2;
-    int32 height = 3;
-    int32 width = 4;
-    string name = 5;
+    Position position = 1;
+    Dimensions dimensions = 2;
+    string name = 3;
+}
+
+message Coin{
+    Position position = 1;
+    Dimensions dimensions = 2;
 }
 
 // Request data containing the state of the game.
@@ -41,6 +50,7 @@ message GameData {
     int32 item_context_width = 4;
     repeated Antagonist antagonists = 5;
     repeated Item items = 6;
+    repeated Coin coins = 7;
 }
 
 // Response data containing the action to be taken.

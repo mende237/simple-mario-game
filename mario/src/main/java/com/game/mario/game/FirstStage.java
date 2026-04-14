@@ -20,8 +20,6 @@ import com.game.mario.character.Mushroom;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
-import com.game.mario.util.GameStateLogger;
-import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
 public class FirstStage extends Stage {
@@ -135,7 +133,7 @@ public class FirstStage extends Stage {
 		coinTab.add(new Coin(3300, 110));
 		coinTab.add(new Coin(3400, 150));
 
-		champignon1 = new Mushroom(400, 263);
+		champignon1 = new Mushroom(800, 263);
 		champignon2 = new Mushroom(850, 263);
 		champignon3 = new Mushroom(1500, 263);
 		champignon4 = new Mushroom(3000, 263);
@@ -204,9 +202,16 @@ public class FirstStage extends Stage {
 		SceneUpdater.update(getGraphicsContext2D());
 
 		if (aiMode) {
-			GamerAI gamerAI = new GamerAI(this, Config.CONTEXT_ITEM_WIDTH, Config.CONTEXT_ANTAGONIST_WIDTH,
+			GamerAI gamerAI = new GamerAI(this, Config.CONTEXT_ITEM_WIDTH, Config.CONTEXT_COIN_WIDTH,
+					Config.CONTEXT_ANTAGONIST_WIDTH,
 					new WindowFilter(Config.WINDOW_FILTER_MIN, Config.WINDOW_FILTER_MAX));
 			this.gamerAI_Thread = new Thread(gamerAI);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			// Ensure the game is initialized before the AI starts
 			this.gamerAI_Thread.start();
 		}
 	}

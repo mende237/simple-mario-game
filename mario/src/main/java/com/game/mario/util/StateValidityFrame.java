@@ -74,6 +74,7 @@ public class StateValidityFrame {
                 ", value=" + value +
                 ", validForFrames=" + validForFrames +
                 ", framesCounter=" + framesCounter +
+                ", read=" + read +
                 '}';
     }
 }

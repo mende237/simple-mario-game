@@ -62,7 +62,7 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
             if state_enum_member.name in mario.state and mario.state[state_enum_member.name]:
                 mario_state_one_hot[i] = 1
 
-        state = [mario.y]
+        state = [mario.position.y]
 
         # Add antagonist and item distances in context
         def euclidean_distance(x1, y1, x2, y2):
@@ -72,12 +72,12 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
         item_features = np.zeros(CONTEXT_ITEM_WIDTH)
 
         ant_distances = [
-            euclidean_distance(ant.x, ant.y, mario.x, mario.y) if ant else float('inf')
+            euclidean_distance(ant.position.x, ant.position.y, mario.position.x, mario.position.y) if ant else float('inf')
             for ant in request.antagonists
         ]
         
         item_distances = [
-            euclidean_distance(item.x, item.y, mario.x, mario.y) if item else float('inf')
+            euclidean_distance(item.position.x, item.position.y, mario.position.x, mario.position.y) if item else float('inf')
             for item in request.items
         ]
         
@@ -102,10 +102,10 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
     def _calculate_reward(self, last_mario, current_mario):
         reward = 0
         # Reward for moving forward
-        if current_mario.x > last_mario.x:
+        if current_mario.position.x > last_mario.position.x:
             reward += 10
         # Penalty for moving backward
-        elif current_mario.x < last_mario.x:
+        elif current_mario.position.x < last_mario.position.x:
             reward -= 20
         
         # Big penalty for dying
