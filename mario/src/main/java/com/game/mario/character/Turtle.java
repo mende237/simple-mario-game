@@ -31,7 +31,7 @@ public class Turtle extends Antagonist implements Runnable {
 		super(x, y, 43, 50, "tortue", Config.TURTLE_THREAD_PAUSE, Config.TURTLE_WALK_FREQUENCY);
 		super.nbreOfLive = 2;
 		super.setToRight(true);
-		super.setWalke(true);
+		super.setWalk(true);
 		this.zombie = false;
 		this.imageTurtle = new Image(getClass().getResource("images/tortueMarcheDroite.png").toExternalForm());
 		this.icoTurtle = new ImageView(this.imageTurtle);
@@ -117,7 +117,7 @@ public class Turtle extends Antagonist implements Runnable {
 					int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
 					int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 					// we can move if only if the character is alive or in zombi state
-					if (super.isWalke() == true && (super.isLiving() == true || this.zombie == true)) {
+					if (super.isWalk() == true && (super.isLiving() == true || this.zombie == true)) {
 						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
 							if (super.isToRight() == true) {
 								this.dxTurtle = 1;
@@ -239,7 +239,7 @@ public class Turtle extends Antagonist implements Runnable {
 		// ImageIcon ico;
 		Image img;
 
-		if (super.isWalke() == false) {
+		if (super.isWalk() == false) {
 			if (super.isToRight() == true)
 				str = "images/" + name + "ArretDroite.png";
 			else

@@ -18,12 +18,12 @@ public class Clavier {
 
 		switch (event.getCode()) {
 			case NUMPAD6:
-				scene.mario.setWalke(true);
+				scene.mario.setWalk(true);
 				scene.mario.setToRight(true);
 				scene.setDx(1); // displacement to right of background
 				break;
 			case NUMPAD4:
-				scene.mario.setWalke(true);
+				scene.mario.setWalk(true);
 				scene.mario.setToRight(false);
 				scene.setDx(-1); // displacement to left of background
 				break;
@@ -42,7 +42,7 @@ public class Clavier {
 		if (App.scene instanceof Stage && ((Stage) App.scene).getAiAction() != -1) {
 			return;
 		}
-		scene.mario.setWalke(false);
+		scene.mario.setWalk(false);
 		scene.setDx(0); // immobilization of background
 	}
 }

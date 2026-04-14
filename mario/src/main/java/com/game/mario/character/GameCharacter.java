@@ -10,7 +10,7 @@ public abstract class GameCharacter {
 
 	private int height, width;// the height and the width of a character
 	private int x, y; // the position of character
-	private boolean walke; // verify if the character is immobile or not
+	private boolean walk; // verify if the character is immobile or not
 	private boolean toRight; // is true when the character is turned in right position
 	private int counter; // the displacement frequency
 	private boolean living;
@@ -24,7 +24,7 @@ public abstract class GameCharacter {
 		this.height = height;
 		this.width = width;
 		this.toRight = false;
-		this.walke = false;
+		this.walk = false;
 	}
 
 	// **************************************getter******************************************//
@@ -44,8 +44,8 @@ public abstract class GameCharacter {
 		return y;
 	}
 
-	public boolean isWalke() {
-		return walke;
+	public boolean isWalk() {
+		return walk;
 	}
 
 	public boolean isToRight() {
@@ -81,8 +81,8 @@ public abstract class GameCharacter {
 		this.toRight = toRight;
 	}
 
-	public void setWalke(boolean walke) {
-		this.walke = walke;
+	public void setWalk(boolean walk) {
+		this.walk = walk;
 	}
 
 	public void setHeight(int height) {

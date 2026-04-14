@@ -28,7 +28,7 @@ public class Mushroom extends Antagonist implements Runnable {
 		super(x, y, 27, 30, "champ", Config.MUSHROOM_THREAD_PAUSE, Config.MUSHROOM_WALK_FREQUENCY);
 		super.nbreOfLive = 1;
 		super.setToRight(true);
-		super.setWalke(true);
+		super.setWalk(true);
 
 		this.imageMushroom = new Image(getClass().getResource("images/champArretDroite.png").toExternalForm());
 		this.icoMushroom = new ImageView(imageMushroom);
@@ -103,7 +103,7 @@ public class Mushroom extends Antagonist implements Runnable {
 					int zomeMin = super.getZoneMin(super.behindCharacter, super.behindObject);
 					int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
 
-					if (super.isWalke() == true && super.isLiving() == true) {
+					if (super.isWalk() == true && super.isLiving() == true) {
 						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zomeMin) {
 							if (super.isToRight() == true) {
 								this.dxMushroom = 1;
@@ -179,7 +179,7 @@ public class Mushroom extends Antagonist implements Runnable {
 		// ImageIcon ico;
 		Image img;
 
-		if (super.isWalke() == false) {
+		if (super.isWalk() == false) {
 			if (super.isToRight() == true)
 				str = "images/" + name + "ArretDroite.png";
 			else

@@ -26,12 +26,12 @@ public class SceneUpdater {
 						// Mario's movement is already reset above
 						break;
 					case 1: // Move forward (right)
-						App.scene.getMario().setWalke(true);
+						App.scene.getMario().setWalk(true);
 						App.scene.getMario().setToRight(true);
 						App.scene.setDx(1);
 						break;
 					case 2: // Move back (left)
-						App.scene.getMario().setWalke(true);
+						App.scene.getMario().setWalk(true);
 						App.scene.getMario().setToRight(false);
 						App.scene.setDx(-1);
 						break;

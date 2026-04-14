@@ -252,7 +252,7 @@ public class Mario extends GameCharacter {
 				gameItem) == true && this.isToRight() == true)
 				|| (super.backCollision(gameItem) == true && this.isToRight() == false) && merge == false) {
 			this.updateState(MarioState.BLOCKING_BY_OBJECT_HORIZONTAL, true);
-			this.setWalke(false);
+			this.setWalk(false);
 			App.scene.setDx(0);
 		}
 
@@ -290,7 +290,7 @@ public class Mario extends GameCharacter {
 		// ImageIcon ico;
 		Image img;
 
-		if (super.isWalke() == false || App.scene.getxPos() <= 0 || App.scene.getxPos() >= Config.X_MAX) {
+		if (super.isWalk() == false || App.scene.getxPos() <= 0 || App.scene.getxPos() >= Config.X_MAX) {
 			if (App.scene.getxPos() <= 0) {
 				this.updateState(MarioState.BLOCKING_BY_HORIZONTAL_BEGINNING_MAP, true);
 			} else if (App.scene.getxPos() >= Config.X_MAX) {
@@ -337,20 +337,10 @@ public class Mario extends GameCharacter {
 	public void init(int x, int y, int nbrLive, int score) {
 		setX(x);
 		setY(y);
-		setWalke(false);
+		setWalk(false);
 		isLiving = true;
 		numberOfLive = nbrLive;
 		Mario.score = score;
-
-		// for (MarioState stateItem : MarioState.values()) {
-		// StateValidityFrame stateValidityFrame = this.state.get(stateItem);
-		// stateValidityFrame.setValue(false);
-		// this.state.put(stateItem, stateValidityFrame);
-		// }
-
-		// StateValidityFrame standingState = state.get(MarioState.STANDING);
-		// standingState.setValue(true);
-		// this.state.put(MarioState.STANDING, standingState);
 	}
 
 	@Override

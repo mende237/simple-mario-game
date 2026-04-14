@@ -20,6 +20,7 @@ import com.game.mario.character.Mushroom;
 import com.game.mario.character.Mario;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
+import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
 
 public class FirstStage extends Stage {
@@ -244,7 +245,6 @@ public class FirstStage extends Stage {
 
 	@Override
 	public void paint(GraphicsContext gc) {// repaint the background each 3ms
-
 		gc.setFont(this.font);
 		gc.setFill(Color.WHITE);
 
@@ -263,7 +263,7 @@ public class FirstStage extends Stage {
 			if (super.mario.isLiving() == false && super.mario.getNumberOfLive() > 0) {
 				restart(getxPos());
 				super.mario.setIsOnObject(false);
-				super.mario.setWalke(false);
+				super.mario.setWalk(false);
 			}
 
 			Collision.updateTab(antagonistTab);
@@ -276,7 +276,7 @@ public class FirstStage extends Stage {
 			}
 
 			this.backgroundDisplacement();
-			if (super.getxPos() >= 0 && super.getxPos() <= Config.X_MAX + 550) {
+			if (super.getxPos() >= 0 && super.getxPos() <= Config.X_MAX) {
 
 				for (int i = 0; i < gameItems.size(); i++) {
 					gameItems.get(i).displacement();
@@ -289,6 +289,11 @@ public class FirstStage extends Stage {
 				for (int i = 0; i < antagonistTab.size(); i++) {
 					antagonistTab.get(i).displacement();
 				}
+			} else if (super.getxPos() >= Config.X_MAX) {
+				super.mario.updateState(MarioState.WIN, true);
+				init(0);
+				setxPos(0);
+				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES, 0);
 			}
 
 			Collision.antagonist(antagonistTab, gameItems, this.xMax);
@@ -318,9 +323,9 @@ public class FirstStage extends Stage {
 			}
 
 			// -----paint flag
-			gc.drawImage(imgDrapeau, Config.X_MAX - super.getxPos(), 115);
+			gc.drawImage(imgDrapeau, Config.X_MAX - super.getxPos() + mario.getX() - 100, 115);
 			// -----paint of chateau end
-			gc.drawImage(imgChateauFin, Config.X_MAX - super.getxPos(), 145);
+			gc.drawImage(imgChateauFin, Config.X_MAX - super.getxPos() + mario.getX(), 145);
 
 			// print of all champignons of the game
 			for (int i = 0; i < antagonistTab.size(); i++) {
