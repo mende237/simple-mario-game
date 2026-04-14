@@ -78,6 +78,19 @@ perl run.pl --run-server --venv model/venv
 perl run.pl --run-server
 ```
 
+To enable the AI RL model, you need to pass the `-Dmario.enableAI=true` argument to the Maven command.
+
+Example:
+```sh
+# Using run.pl with AI enabled
+perl run.pl --run-server --venv model/venv -Dmario.enableAI=true
+
+# Running directly with Maven and AI enabled
+cd mario
+mvn clean install
+mvn javafx:run -Dmario.enableAI=true
+```
+
 The `run.pl` script will:
 - Kill any existing process on port 50051 (where the gRPC server runs).
 - Start the Python gRPC server in the background.
@@ -98,10 +111,52 @@ Output from the Python server will be redirected to `model/proto_server/logs/pyt
 
 ## 📁 Project Structure
 
-- `src/main/java/com/game/mario/` — Main game logic and classes
-- `src/main/resources/com/game/mario/` — FXML layouts and resources
-- `screenshot/` — Game screenshots
-- `model/` — Contains the Python-based reinforcement learning model and gRPC server.
+The project is organized into the following key directories and files:
+
+```
+.
+├── mario/
+│   ├── pom.xml
+│   └── src/
+│       └── main/
+│           ├── java/
+│           │   └── com/
+│           │       └── game/
+│           │           └── mario/
+│           │               ├── App.java
+│           │               ├── character/
+│           │               ├── game/
+│           │               ├── item/
+│           │               └── util/
+│           └── resources/
+│               └── com/
+│                   └── game/
+│                       └── mario/
+│                           ├── audio/
+│                           ├── character/
+│                           ├── game/
+│                           ├── item/
+│                           └── police/
+├── model/
+│   ├── dqn.py
+│   ├── requirements.txt
+│   ├── proto_server/
+│   │   ├── server.py
+│   │   ├── data_pb2.py
+│   │   └── data_pb2_grpc.py
+│   └── util/
+│       ├── config.py
+│       └── mario_state.py
+├── proto/
+│   └── data.proto
+├── config/
+│   ├── context.json
+│   └── server.json
+├── screenshot/
+├── .gitignore
+├── readMe.md
+└── run.pl
+```
 
 ---
 
