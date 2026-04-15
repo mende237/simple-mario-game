@@ -41,7 +41,7 @@ public class GamerAI implements Runnable {
         this.windowFilter = windowFilter;
 
         // Initialize gRPC client
-        this.channel = ManagedChannelBuilder.forAddress(Config.host, Config.port)
+        this.channel = ManagedChannelBuilder.forAddress(Config.HOST, Config.PORT)
                 .usePlaintext() // plaintext for local testing
                 .build();
         this.blockingStub = GameServiceGrpc.newBlockingStub(channel);
@@ -221,6 +221,8 @@ public class GamerAI implements Runnable {
 
         while (true) {
             if (!stage.mario.isLiving() || GameManager.isInterupt()) {
+                System.out.println("///////// living " + stage.mario.isLiving() + "  //// interupt " + GameManager
+                        .isInterupt());
                 continue;
             }
 

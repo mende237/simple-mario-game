@@ -12,7 +12,7 @@ import data_pb2
 import data_pb2_grpc
 from dqn import DQN
 from util.mario_state import MarioState
-from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH, CONTEXT_COIN_WIDTH, HOST, PORT
+from util.config import STATE_SIZE, ACTION_SIZE, BATCH_SIZE, MODEL_DIR, MODEL_PATH, SAVE_FREQUENCY, CONTEXT_ANTAGONIST_WIDTH, CONTEXT_ITEM_WIDTH, CONTEXT_COIN_WIDTH, PORT, MAX_DISTANCE, Y_MAY
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -62,16 +62,16 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
             if state_enum_member.name in mario.state and mario.state[state_enum_member.name]:
                 mario_state_one_hot[i] = 1
 
-        state = [mario.position.y]
+        state = [mario.position.y/Y_MAY]
 
         # Add antagonist and item distances in context
         def euclidean_distance(x1, y1, x2, y2):
             return np.hypot(x1 - x2, y1 - y2)
 
-        ant_features = np.full(CONTEXT_ANTAGONIST_WIDTH, np.inf)
-        item_features = np.full(CONTEXT_ITEM_WIDTH, np.inf)
-        coin_features = np.full(CONTEXT_COIN_WIDTH, np.inf)
-
+        ant_features = np.full(CONTEXT_ANTAGONIST_WIDTH, MAX_DISTANCE)
+        item_features = np.full(CONTEXT_ITEM_WIDTH, MAX_DISTANCE)
+        coin_features = np.full(CONTEXT_COIN_WIDTH, MAX_DISTANCE)
+        
         ant_distances = [
             euclidean_distance(ant.position.x, ant.position.y, mario.position.x, mario.position.y) if ant else float('inf')
             for ant in request.antagonists
@@ -89,13 +89,13 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
         
         
         for i, dist in enumerate(ant_distances[:CONTEXT_ANTAGONIST_WIDTH]):
-            ant_features[i] = dist
+            ant_features[i] = dist/MAX_DISTANCE
         
         for i, dist in enumerate(item_distances[:CONTEXT_ITEM_WIDTH]):
-            item_features[i] = dist
+            item_features[i] = dist/MAX_DISTANCE
             
         for i, dist in enumerate(coin_distances[:CONTEXT_COIN_WIDTH]):
-            coin_features[i] = dist
+            coin_features[i] = dist/MAX_DISTANCE
 
 
         # Flatten and combine
@@ -109,36 +109,51 @@ class GameServiceServicer(data_pb2_grpc.GameServiceServicer):
 
     def _calculate_reward(self, last_mario, current_mario):
         reward = 0
-        # Reward for moving forward
-        if current_mario.position.x > last_mario.position.x:
-            reward += 10
-        # Penalty for moving backward
-        elif current_mario.position.x < last_mario.position.x:
-            reward -= 20
+        
+        
+        delta_x = current_mario.position.x - last_mario.position.x
+        reward += delta_x * 0.5 
+
+        if delta_x > 0:
+            reward += 0.5
+        elif delta_x < 0:
+            reward -= 0.5
         
         # Big penalty for dying
         if current_mario.state[MarioState.DEAD.name] == MarioState.DEAD.name:
-            reward -= 100
+            reward -= 10
+            return reward
             
         if current_mario.state[MarioState.HIT_BY_ANTAGONIST.name] == MarioState.HIT_BY_ANTAGONIST.name:
-            reward -= 50
+            reward -= 2
             
         if current_mario.state[MarioState.BLOCKING_BY_OBJECT_HORIZONTAL.name] == MarioState.BLOCKING_BY_OBJECT_HORIZONTAL.name:
-            reward -= 5
+            reward -= 1
             
-        if current_mario.state[MarioState.HIT_COIN.name] == MarioState.HIT_COIN.name:
-            reward += 15
-        
+        if current_mario.state[MarioState.BLOCKING_BY_HORIZONTAL_BEGINNING_MAP.name] == MarioState.BLOCKING_BY_HORIZONTAL_BEGINNING_MAP.name:
+            reward -= 2
+            
+            
+        if current_mario.state[MarioState.STANDING.name] == MarioState.STANDING.name and last_mario.state[MarioState.STANDING.name] == MarioState.STANDING.name:
+            reward -= 0.5
+            
         # Reward for jumping
         if current_mario.state[MarioState.JUMPING.name] == MarioState.JUMPING.name and last_mario.state[MarioState.JUMPING.name] != MarioState.JUMPING.name:
-            reward += 0.5
+            reward += 10
             
-        if current_mario.state[MarioState.ZOMBIFIYING_ANTAGONIST.name] == MarioState.ZOMBIFIYING_ANTAGONIST.name:
-            reward += 25
-
+            
+        if current_mario.state[MarioState.HIT_COIN.name] == MarioState.HIT_COIN.name:
+            reward += 1
+        
         # Reward for killing an antagonist (logic to be improved)
         if current_mario.state[MarioState.KILLING_ANTAGONIST.name] == MarioState.KILLING_ANTAGONIST.name:
-            reward += 50
+            reward += 2
+            
+        if current_mario.state[MarioState.ZOMBIFIYING_ANTAGONIST.name] == MarioState.ZOMBIFIYING_ANTAGONIST.name:
+            reward += 1.5
+
+
+        reward += 0.01
 
         return reward
 

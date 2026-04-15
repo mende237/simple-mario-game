@@ -281,7 +281,7 @@ public class Turtle extends Antagonist implements Runnable {
 						this.justDie = true;
 						super.setHeight(23);
 						super.setWidth(25);
-						super.setY(Config.Y_MAX - super.getHeight());
+						super.setY(Config.Y_FLOOR - super.getHeight());
 						// in the case that turtle is dead since a long time it become zombi
 					} else if (this.justDie == false) {
 						mario.updateState(MarioState.ZOMBIFIYING_ANTAGONIST, true);

@@ -173,9 +173,9 @@ public class FirstStage extends Stage {
 	public FirstStage(boolean aiMode) {
 
 		// super(293, 0, 0);
-		super(Y_FLOOR, 0, 0, Config.X_MAX, gameItems, antagonistTab, coinTab);
+		super(Config.Y_FLOOR, 0, 0, Config.X_MAX, gameItems, antagonistTab, coinTab);
 		initBackground();
-		mario = new Mario(MARIO_BEGIN_X, MARIO_BEGIN_Y);
+		mario = new Mario(Config.MARIO_X, Config.Y_FLOOR - Mario.HEIGHT);
 
 		this.font = Font.loadFont(getClass().getResourceAsStream("/com/game/mario/police/SuperMario256.ttf"), 20);
 
@@ -254,7 +254,7 @@ public class FirstStage extends Stage {
 			if (GameManager.getState() == TransitionState.PLAYING) {
 				init(0);
 				setxPos(0);
-				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES, 0);
+				super.mario.init(Config.MARIO_X, Config.Y_FLOOR - Mario.HEIGHT, Config.MARIO_NUMBER_OF_LIVES, 0);
 			}
 			System.out.println(GameManager.getState());
 		} else {
@@ -272,7 +272,7 @@ public class FirstStage extends Stage {
 
 			if (Collision.mario(gameItems, 0, super.mario) == false) {
 				App.scene.setHeightRoof(0);
-				App.scene.setYFloor(Config.Y_MAX);
+				App.scene.setYFloor(Config.Y_FLOOR);
 			}
 
 			this.backgroundDisplacement();
@@ -293,7 +293,7 @@ public class FirstStage extends Stage {
 				super.mario.updateState(MarioState.WIN, true);
 				init(0);
 				setxPos(0);
-				super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, Config.MARIO_NUMBER_OF_LIVES, 0);
+				super.mario.init(Config.MARIO_X, Config.Y_FLOOR - Mario.HEIGHT, Config.MARIO_NUMBER_OF_LIVES, 0);
 			}
 
 			Collision.antagonist(antagonistTab, gameItems, this.xMax);
@@ -337,9 +337,9 @@ public class FirstStage extends Stage {
 				} else {
 					if (antagonistTab.get(i) instanceof Turtle) {
 						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(),
-								(Y_FLOOR - antagonistTab.get(i).getHeight()));
+								(Config.Y_FLOOR - antagonistTab.get(i).getHeight()));
 					} else {
-						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(), Config.Y_MAX - 11);
+						gc.drawImage(antagonistTab.get(i).die(), antagonistTab.get(i).getX(), Config.Y_FLOOR - 11);
 					}
 				}
 			}
@@ -350,7 +350,7 @@ public class FirstStage extends Stage {
 				if (super.mario.isJump() == true && super.mario.isFall() == false) {
 					if (super.mario.isOnObject() == false) {
 						// --------------when mario jumps to suffer from an object
-						gc.drawImage(super.mario.jump(Y_FLOOR), super.mario.getX(), super.mario.getY());
+						gc.drawImage(super.mario.jump(Config.Y_FLOOR), super.mario.getX(), super.mario.getY());
 
 					} else {
 						// --------------when mario jumps to suffer from the floor
@@ -397,7 +397,8 @@ public class FirstStage extends Stage {
 	public void restart(int position) {
 		initBackground();
 
-		super.mario.init(MARIO_BEGIN_X, MARIO_BEGIN_Y, super.mario.getNumberOfLive(), super.mario.getScore());
+		super.mario.init(Config.MARIO_X, Config.Y_FLOOR - Mario.HEIGHT, super.mario.getNumberOfLive(),
+				super.mario.getScore());
 
 		for (int i = 0; i < gameItems.size(); i++) {
 			gameItems.get(i).setX(gameItems.get(i).getX() + position);

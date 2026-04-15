@@ -266,7 +266,7 @@ public class Mario extends GameCharacter {
 			// if (state != MarioState.BLOCKING_BY_OBJECT_HORIZONTAL) {
 			// state = MarioState.STANDING;
 			// }
-			App.scene.setYFloor(Config.Y_MAX);// altitude initiale
+			App.scene.setYFloor(Config.Y_FLOOR);// altitude initiale
 			if (this.jump == false && this.getY() + this.getHeight() < App.scene.getYFloor()) {
 				this.fall = true;
 				this.updateState(MarioState.FALLING, true);

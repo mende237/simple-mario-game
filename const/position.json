@@ -1,0 +1,14 @@
+{
+    "mario": {
+        "x": 300,
+        "y": 243
+    },
+    "furtherVisiblePoint": {
+        "x": 800,
+        "y": 350
+    },
+    "furtherPoint": {
+        "x": 4100,
+        "y": 350
+    }
+}
