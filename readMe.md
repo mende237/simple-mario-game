@@ -26,6 +26,13 @@ Enjoy classic gameplay, collect coins, avoid enemies, and reach the flag!
 
 ---
 
+## 🎥 Video
+
+<video src="video/record-RL-model.mp4" controls width="100%"></video>
+The video is the result of RL model for training during one day.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites

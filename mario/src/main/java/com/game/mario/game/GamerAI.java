@@ -6,6 +6,7 @@ import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
 import com.game.mario.util.GameStateLogger;
+import com.game.mario.util.MarioState;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -236,8 +237,14 @@ public class GamerAI implements Runnable {
 
             this.stage.mario.lockAllState();
 
-            // Log Mario state to file
-            GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            if (stage.mario.getState().get(MarioState.WIN).getValue()
+                    || stage.mario.getState().get(MarioState.DEAD).getValue()
+                    || stage.mario.getState().get(MarioState.KILLING_ANTAGONIST).getValue()
+                    || stage.mario.getState().get(MarioState.ZOMBIFIYING_ANTAGONIST).getValue()
+                    || stage.mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
+                // Log Mario state to file
+                GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
+            }
 
             // Build GameData
             Mario mario = stage.getMario();
