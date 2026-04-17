@@ -27,8 +27,9 @@ Enjoy classic gameplay, collect coins, avoid enemies, and reach the flag!
 ---
 
 ## 🎥 Video
+https://github.com/user-attachments/assets/a0c4fa87-1a57-4d79-8321-0f46fda6b227
 
-https://github.com/user-attachments/assets/80dc8b35-d04e-47ab-91e0-8ecf6a818cca
+
 The video is the result of RL model for training during one day.
 
 ---
