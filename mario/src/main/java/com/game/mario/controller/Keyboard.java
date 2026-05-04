@@ -1,12 +1,15 @@
-package com.game.mario.game;
+package com.game.mario.controller;
 
 import com.game.mario.App;
+import com.game.mario.game.Scene;
+import com.game.mario.game.Stage;
+
 import javafx.scene.input.KeyEvent;
 
-public class Clavier {
+public class Keyboard {
 	private final Scene scene;
 
-	public Clavier(Scene scene) {
+	public Keyboard(Scene scene) {
 		this.scene = scene;
 	}
 
@@ -18,17 +21,17 @@ public class Clavier {
 
 		switch (event.getCode()) {
 			case NUMPAD6:
-				scene.mario.setWalk(true);
-				scene.mario.setToRight(true);
+				scene.getMario().setWalk(true);
+				scene.getMario().setToRight(true);
 				scene.setDx(1); // displacement to right of background
 				break;
 			case NUMPAD4:
-				scene.mario.setWalk(true);
-				scene.mario.setToRight(false);
+				scene.getMario().setWalk(true);
+				scene.getMario().setToRight(false);
 				scene.setDx(-1); // displacement to left of background
 				break;
 			case SPACE:
-				scene.mario.setJump(true);
+				scene.getMario().setJump(true);
 				// com.mathmaurer.audio.Audio.playSong("/audio/saut.wav");
 				break;
 			default:
@@ -42,7 +45,7 @@ public class Clavier {
 		if (App.scene instanceof Stage && ((Stage) App.scene).getAiAction() != -1) {
 			return;
 		}
-		scene.mario.setWalk(false);
+		scene.getMario().setWalk(false);
 		scene.setDx(0); // immobilization of background
 	}
 }

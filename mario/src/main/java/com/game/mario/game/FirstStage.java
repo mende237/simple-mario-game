@@ -15,6 +15,8 @@ import com.game.mario.item.Coin;
 import com.game.mario.item.GameItem;
 import com.game.mario.item.Pipe;
 import com.game.mario.character.Turtle;
+import com.game.mario.game.AI.GamerAI;
+import com.game.mario.game.AI.WindowFilter;
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mushroom;
 import com.game.mario.character.Mario;

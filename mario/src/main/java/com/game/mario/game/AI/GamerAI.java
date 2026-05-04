@@ -1,7 +1,9 @@
-package com.game.mario.game;
+package com.game.mario.game.AI;
 
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mario;
+import com.game.mario.game.GameManager;
+import com.game.mario.game.Stage;
 import com.game.mario.item.GameItem;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
@@ -221,8 +223,8 @@ public class GamerAI implements Runnable {
     public void run() {
 
         while (true) {
-            if (!stage.mario.isLiving() || GameManager.isInterupt()) {
-                System.out.println("///////// living " + stage.mario.isLiving() + "  //// interupt " + GameManager
+            if (!stage.getMario().isLiving() || GameManager.isInterupt()) {
+                System.out.println("///////// living " + stage.getMario().isLiving() + "  //// interupt " + GameManager
                         .isInterupt());
                 continue;
             }
@@ -235,13 +237,13 @@ public class GamerAI implements Runnable {
             filterItem(gameItems);
             filterItem(coins);
 
-            this.stage.mario.lockAllState();
+            this.stage.getMario().lockAllState();
 
-            if (stage.mario.getState().get(MarioState.WIN).getValue()
-                    || stage.mario.getState().get(MarioState.DEAD).getValue()
-                    || stage.mario.getState().get(MarioState.KILLING_ANTAGONIST).getValue()
-                    || stage.mario.getState().get(MarioState.ZOMBIFIYING_ANTAGONIST).getValue()
-                    || stage.mario.getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
+            if (stage.getMario().getState().get(MarioState.WIN).getValue()
+                    || stage.getMario().getState().get(MarioState.DEAD).getValue()
+                    || stage.getMario().getState().get(MarioState.KILLING_ANTAGONIST).getValue()
+                    || stage.getMario().getState().get(MarioState.ZOMBIFIYING_ANTAGONIST).getValue()
+                    || stage.getMario().getState().get(MarioState.HIT_BY_ANTAGONIST).getValue()) {
                 // Log Mario state to file
                 GameStateLogger.logFullStateSnapshot(stage.getMario().getState());
             }
@@ -261,9 +263,9 @@ public class GamerAI implements Runnable {
                             .collect(Collectors.toMap(state -> state.name(), state -> mario.getState().get(state)
                                     .getValue())))
                     .build();
-            this.stage.mario.unlockAllState();
+            this.stage.getMario().unlockAllState();
 
-            this.stage.mario.marKAllStateAsRead();
+            this.stage.getMario().marKAllStateAsRead();
 
             List<Data.Antagonist> protoAntagonists = new ArrayList<>();
             if (antagonists != null) {

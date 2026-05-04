@@ -5,7 +5,7 @@ import javafx.scene.layout.StackPane;
 
 import java.util.List;
 
-import com.game.mario.game.Clavier;
+import com.game.mario.controller.Keyboard;
 import com.game.mario.game.FirstStage;
 // import javafx.scene.Scene;
 import com.game.mario.game.Scene;
@@ -26,7 +26,7 @@ public class App extends Application {
         System.out.println(enableAI ? "AI Enabled" : "AI Disabled");
         scene = new FirstStage(enableAI);
 
-        Clavier clavier = new Clavier(scene);
+        Keyboard keyboard = new Keyboard(scene);
 
         // Add the canvas to a StackPane
         StackPane root = new StackPane();
@@ -39,8 +39,8 @@ public class App extends Application {
         javafx.scene.Scene fxScene = new javafx.scene.Scene(root, 800, 350);
 
         // Register key event handlers
-        fxScene.setOnKeyPressed(clavier::handleKeyPressed);
-        fxScene.setOnKeyReleased(clavier::handleKeyReleased);
+        fxScene.setOnKeyPressed(keyboard::handleKeyPressed);
+        fxScene.setOnKeyReleased(keyboard::handleKeyReleased);
 
         // Set the scene and show the stage
         stage.setScene(fxScene);
