@@ -20,6 +20,7 @@ import com.game.mario.game.AI.WindowFilter;
 import com.game.mario.character.Antagonist;
 import com.game.mario.character.Mushroom;
 import com.game.mario.character.Mario;
+import com.game.mario.sound.Audio;
 import com.game.mario.util.Collision;
 import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
@@ -203,6 +204,8 @@ public class FirstStage extends Stage {
 		Thread chrono = new Thread(new Chrono());
 		chrono.start();
 		SceneUpdater.update(getGraphicsContext2D());
+
+		Audio.playBackgroundMusic("Theme.wav");
 
 		if (aiMode) {
 			GamerAI gamerAI = new GamerAI(this, Config.CONTEXT_ITEM_WIDTH, Config.CONTEXT_COIN_WIDTH,

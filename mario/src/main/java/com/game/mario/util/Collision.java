@@ -2,7 +2,7 @@ package com.game.mario.util;
 
 import java.util.ArrayList;
 
-// import com.mathmaurer.audio.Audio;
+import com.game.mario.sound.Audio;
 import com.game.mario.game.GameManager;
 import com.game.mario.item.GameItem;
 import com.game.mario.item.Coin;
@@ -44,7 +44,7 @@ public class Collision {
 						pieceTab.remove(begin + i);
 						minus++;
 						mario.setScore(mario.getScore() + 1);
-						// Audio.playSong("/audio/piece.wav");
+						Audio.playSong("piece.wav");
 					}
 
 				}
@@ -53,6 +53,7 @@ public class Collision {
 			if (mario.contactCoin(pieceTab.getFirst()) == true) {
 				pieceTab.removeFirst();
 				mario.setScore(mario.getScore() + 1);
+				Audio.playSong("piece.wav");
 			}
 
 		}

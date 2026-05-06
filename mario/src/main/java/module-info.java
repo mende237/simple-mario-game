@@ -2,6 +2,7 @@ module com.game.mario {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.desktop;
     requires com.google.protobuf;
     requires io.grpc;
     requires io.grpc.stub;
@@ -15,11 +16,13 @@ module com.game.mario {
     opens com.game.mario.game to javafx.fxml;
     opens com.game.mario.item to javafx.fxml;
     opens com.game.mario.util to javafx.fxml;
+    opens com.game.mario.sound to javafx.fxml;
 
     exports com.game.mario;
     exports com.game.mario.character;
     exports com.game.mario.game;
     exports com.game.mario.item;
     exports com.game.mario.util;
+    exports com.game.mario.sound;
     exports proto;
 }

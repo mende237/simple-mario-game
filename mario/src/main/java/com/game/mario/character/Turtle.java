@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
+import com.game.mario.sound.Audio;
 import com.game.mario.util.Axe;
 import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
@@ -137,7 +138,6 @@ public class Turtle extends Antagonist implements Runnable {
 							 * in the zombi state
 							 */
 							if (this.characterDirectlyBehind == true && this.behindCharacter.zombie == true) {
-								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 								super.behindCharacter.setLiving(false);
 								super.behindCharacter.remove = true;
 								this.remove = true;
@@ -155,7 +155,6 @@ public class Turtle extends Antagonist implements Runnable {
 								super.behindCharacter.setLiving(false);
 								super.behindCharacter.remove = true;
 								collision = true;
-								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							if (collision == true) {
@@ -166,6 +165,7 @@ public class Turtle extends Antagonist implements Runnable {
 									super.behindCharacter.behindCharacter.frontCharacter = super.frontCharacter;
 								}
 								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
+								Audio.playSong("smb-stomp.wav");
 							}
 							super.setToRight(true);
 							this.dxTurtle = 1;
@@ -184,7 +184,6 @@ public class Turtle extends Antagonist implements Runnable {
 								super.frontCharacter.remove = true;
 								super.remove = true;
 								collision = true;
-								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
 							}
 
 							/*
@@ -207,6 +206,7 @@ public class Turtle extends Antagonist implements Runnable {
 									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
 								}
 								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
+								Audio.playSong("smb-stomp.wav");
 							}
 
 							super.setToRight(false);
@@ -276,6 +276,7 @@ public class Turtle extends Antagonist implements Runnable {
 				if (mario.isJump() == true || mario.isFall() == true) {
 					if (super.isLiving() == true) {
 						mario.updateState(MarioState.KILLING_ANTAGONIST, true);
+						Audio.playSong("smb-stomp.wav");
 						super.nbreOfLive -= 1;
 						super.setLiving(false);
 						this.justDie = true;
@@ -285,6 +286,7 @@ public class Turtle extends Antagonist implements Runnable {
 						// in the case that turtle is dead since a long time it become zombi
 					} else if (this.justDie == false) {
 						mario.updateState(MarioState.ZOMBIFIYING_ANTAGONIST, true);
+						Audio.playSong("smb-kick.wav");
 						this.zombie = true;
 						super.setToRight(mario.isToRight());
 						int zoneMin, zoneMax;
@@ -315,7 +317,7 @@ public class Turtle extends Antagonist implements Runnable {
 					mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 					// System.out.println("nombre de vie: "+mario.getNumberOfLive());
 					mario.setLiving(false);
-					// Audio.playSong("/audio/game-over.wav");
+					Audio.playSong("game-over.wav");
 					GameManager.setState(TransitionState.REDUCING_LIVE);
 					if (mario.getNumberOfLive() <= 0) {
 						System.out.println("tutle position x " + this.getX());

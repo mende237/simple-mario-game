@@ -4,6 +4,8 @@ import com.game.mario.App;
 import com.game.mario.game.Scene;
 import com.game.mario.game.Stage;
 
+import com.game.mario.sound.Audio;
+
 import javafx.scene.input.KeyEvent;
 
 public class Keyboard {
@@ -32,7 +34,7 @@ public class Keyboard {
 				break;
 			case SPACE:
 				scene.getMario().setJump(true);
-				// com.mathmaurer.audio.Audio.playSong("/audio/saut.wav");
+				Audio.playSong("saut.wav");
 				break;
 			default:
 				// Handle other keys if needed

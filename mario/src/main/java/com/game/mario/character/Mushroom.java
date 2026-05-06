@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.game.mario.App;
+import com.game.mario.sound.Audio;
 import com.game.mario.util.Config;
 import com.game.mario.util.MarioState;
 import com.game.mario.util.TransitionState;
@@ -126,6 +127,7 @@ public class Mushroom extends Antagonist implements Runnable {
 								}
 
 								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
+								Audio.playSong("smb-stomp.wav");
 							}
 
 							super.setToRight(true);
@@ -145,6 +147,7 @@ public class Mushroom extends Antagonist implements Runnable {
 									super.frontCharacter.frontCharacter.behindCharacter = super.behindCharacter;
 								}
 								App.scene.getMario().updateState(MarioState.KILLING_ANTAGONIST, true);
+								Audio.playSong("smb-stomp.wav");
 
 							}
 
@@ -212,17 +215,17 @@ public class Mushroom extends Antagonist implements Runnable {
 			// dans ce cas c'est mario qui tu le champignon
 			if (mario.bottomCollision(this) == true && (mario.isJump() == true || mario.isFall() == true)) {
 				mario.updateState(MarioState.KILLING_ANTAGONIST, true);
+				Audio.playSong("smb-stomp.wav");
 				// System.out.println("tuer champ");
 				super.setLiving(false);
 				super.remove = true;
-				// Audio.playSong("/audio/ecrasePersonnage.wav");
 				// System.out.println("mario mort");
 			} else {
 				mario.updateState(MarioState.HIT_BY_ANTAGONIST, true);
 				// System.out.println("tuer mario");
 				mario.setNumberOfLive(mario.getNumberOfLive() - 1);
 				mario.setLiving(false);
-				// Audio.playSong("/audio/game-over.wav");
+				Audio.playSong("game-over.wav");
 				GameManager.setState(TransitionState.REDUCING_LIVE);
 				if (mario.getNumberOfLive() <= 0) {
 					System.out.println("champ position x " + this.getX());
