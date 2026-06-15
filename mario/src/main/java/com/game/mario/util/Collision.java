@@ -145,8 +145,8 @@ public class Collision {
 
 		for (int j = 0; j < antagonistsTab.size(); j++) {
 			tabO = antagonistBetweenObject(objectTab, 0, objectTab.size() - 1, 0, xMax, antagonistsTab.get(j));
-			antagonistsTab.get(j).setBehindObject(Math.min(tabO[0], tabO[1]));
-			antagonistsTab.get(j).setFrontObject(Math.max(tabO[0], tabO[1]));
+			antagonistsTab.get(j).setBehindObject(tabO[0]);
+			antagonistsTab.get(j).setFrontObject(tabO[1]);
 
 			/*
 			 * on retire le personnage du tableau, une même personne est toujours proche de
