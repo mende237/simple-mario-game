@@ -137,8 +137,8 @@ public class FirstStage extends Stage {
 		coinTab.add(new Coin(3300, 110));
 		coinTab.add(new Coin(3400, 150));
 
-		champignon1 = new Mushroom(800, 263);
-		champignon2 = new Mushroom(850, 263);
+		// champignon1 = new Mushroom(800, 263);
+		// champignon2 = new Mushroom(850, 263);
 		champignon3 = new Mushroom(1500, 263);
 		champignon4 = new Mushroom(3000, 263);
 		champignon5 = new Mushroom(3200, 263);
@@ -152,14 +152,14 @@ public class FirstStage extends Stage {
 		tortue6 = new Turtle(3300, 243);
 
 		antagonistTab.add(tortue1);
-		antagonistTab.add(tortue2);
-		antagonistTab.add(tortue3);
-		antagonistTab.add(tortue4);
-		antagonistTab.add(tortue5);
-		antagonistTab.add(tortue6);
+		// antagonistTab.add(tortue2);
+		// antagonistTab.add(tortue3);
+		// antagonistTab.add(tortue4);
+		// antagonistTab.add(tortue5);
+		// antagonistTab.add(tortue6);
 
-		antagonistTab.add(champignon1);
-		antagonistTab.add(champignon2);
+		// antagonistTab.add(champignon1);
+		// antagonistTab.add(champignon2);
 		antagonistTab.add(champignon3);
 		antagonistTab.add(champignon4);
 		antagonistTab.add(champignon5);

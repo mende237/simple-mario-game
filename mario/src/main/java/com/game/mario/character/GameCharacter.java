@@ -122,39 +122,39 @@ public abstract class GameCharacter {
 		return true;
 	}
 
-	public boolean near(GameCharacter personnage) {
-		if (personnage.getX() > this.getX() + this.getWidth()
-				|| personnage.getX() + personnage.getWidth() < this.getX()
-				|| personnage.getY() > this.getY() + this.getHeight()
-				|| personnage.getY() + personnage.getHeight() < this.getY()) {
+	public boolean near(GameCharacter character) {
+		if (character.getX() > this.getX() + this.getWidth()
+				|| character.getX() + character.getWidth() < this.getX()
+				|| character.getY() > this.getY() + this.getHeight()
+				|| character.getY() + character.getHeight() < this.getY()) {
 			return false;
 		}
 		return true;
 	}
 
-	public boolean near(GameCharacter personnage, Axe axe, int doubt) {
+	public boolean near(GameCharacter character, Axe axe, int doubt) {
 		switch (axe) {
 			case HORIZONTAL:
-				if (personnage.getX() > this.getX() + this.getWidth() + doubt
-						|| personnage.getX() + personnage.getWidth() < this.getX() - doubt
-						|| personnage.getY() > this.getY() + this.getHeight()
-						|| personnage.getY() + personnage.getHeight() < this.getY()) {
+				if (character.getX() > this.getX() + this.getWidth() + doubt
+						|| character.getX() + character.getWidth() < this.getX() - doubt
+						|| character.getY() > this.getY() + this.getHeight()
+						|| character.getY() + character.getHeight() < this.getY()) {
 					return false;
 				}
 				return true;
 			case VERTICAL:
-				if (personnage.getX() > this.getX() + this.getWidth()
-						|| personnage.getX() + personnage.getWidth() < this.getX()
-						|| personnage.getY() > this.getY() + this.getHeight() + doubt
-						|| personnage.getY() + personnage.getHeight() < this.getY() - doubt) {
+				if (character.getX() > this.getX() + this.getWidth()
+						|| character.getX() + character.getWidth() < this.getX()
+						|| character.getY() > this.getY() + this.getHeight() + doubt
+						|| character.getY() + character.getHeight() < this.getY() - doubt) {
 					return false;
 				}
 				return true;
 			default:
-				if (personnage.getX() > this.getX() + this.getWidth() + doubt
-						|| personnage.getX() + personnage.getWidth() < this.getX() - doubt
-						|| personnage.getY() > this.getY() + this.getHeight() + doubt
-						|| personnage.getY() + personnage.getHeight() < this.getY() - doubt) {
+				if (character.getX() > this.getX() + this.getWidth() + doubt
+						|| character.getX() + character.getWidth() < this.getX() - doubt
+						|| character.getY() > this.getY() + this.getHeight() + doubt
+						|| character.getY() + character.getHeight() < this.getY() - doubt) {
 					return false;
 				}
 				return true;

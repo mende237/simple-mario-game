@@ -117,6 +117,12 @@ public class Turtle extends Antagonist implements Runnable {
 					// we determine the area in which the character can move without any problems
 					int zoneMin = super.getZoneMin(super.behindCharacter, super.behindObject);
 					int zoneMax = super.getZoneMax(super.frontCharacter, super.frontObject);
+
+					// System.out
+					// .println("************************** personnage " +
+					// super.frontCharacter.getX() + " object "
+					// + super.frontObject + " verdict " + zoneMax + " conclusion "
+					// + this.characterDirectlyFront);
 					// we can move if only if the character is alive or in zombi state
 					if (super.isWalk() == true && (super.isLiving() == true || this.zombie == true)) {
 						if (super.getX() + super.getWidth() < zoneMax && super.getX() > zoneMin) {
@@ -196,6 +202,7 @@ public class Turtle extends Antagonist implements Runnable {
 								this.frontCharacter.setLiving(false);
 								super.frontCharacter.remove = true;
 								collision = true;
+								System.out.println("--------- pass");
 							}
 
 							if (collision == true) {

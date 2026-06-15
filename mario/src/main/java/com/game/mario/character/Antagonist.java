@@ -156,12 +156,13 @@ public abstract class Antagonist extends GameCharacter {
 	 */
 	public int getZoneMax(Antagonist personnage, int maxObject) {
 		if (personnage != null && personnage.remove == false) {
-
 			if (personnage.getX() <= maxObject && personnage.remove == false) {
 				this.characterDirectlyFront = true;
 				return personnage.getX();
-			} else
+			} else {
+				this.characterDirectlyFront = false;
 				return maxObject;
+			}
 		} else {
 			this.characterDirectlyFront = false;
 			return maxObject;
@@ -179,8 +180,10 @@ public abstract class Antagonist extends GameCharacter {
 				this.characterDirectlyBehind = true;
 
 				return personnage.getX() + personnage.getWidth();
-			} else
+			} else {
+				this.characterDirectlyBehind = false;
 				return minObject;
+			}
 		} else {
 			this.characterDirectlyBehind = false;
 			return minObject;
